@@ -1,44 +1,43 @@
 /* ==========================================================================
-   PartSwap theme: dark, Diodes Incorporated style
-   Deep navy surfaces with a single corporate-blue accent. Every color in the
-   UI comes from these tokens, so re-theming means editing this block only.
-   The brand values below are close approximations; drop in the exact hex
-   codes from the Diodes brand guide here and the whole UI follows.
-   Verdict badge colors are fixed by PLAN.md §4.16 and stay as they are.
+   PartSwap theme: "engineering drawing" (TAMU Drillbotics style)
+   Off-white drafting paper with a faint 80px grid, ink text, hairline rules,
+   Diodes blue as the primary color and amber as the highlight.
+   Every color in the UI comes from these tokens, so re-theming means editing
+   this block only. Verdict badge colors are fixed by PLAN.md §4.16.
    ========================================================================== */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
   /* Surfaces */
-  --bg: #070d18;
-  --bg-grad: radial-gradient(1100px 560px at 88% -12%, rgba(11, 111, 209, 0.22) 0%, transparent 60%), radial-gradient(900px 520px at -12% 8%, rgba(41, 163, 255, 0.10) 0%, transparent 55%);
-  --surface: #0f1a2c;
-  --surface-2: #132138;
-  --surface-3: #1a2a45;
-  --border: #22334f;
-  --border-strong: #31476b;
-  --hover-border: #40597f;
-  --topbar-bg: rgba(9, 16, 30, 0.82);
-  --foot-fade: rgba(15, 26, 44, 0.85);
-  --skeleton-hi: #263a5c;
-  --idle: #5b6b86;
+  --bg: #fafafa;
+  --bg-grad: linear-gradient(90deg, rgba(26, 26, 26, 0.066) 1px, transparent 1px), linear-gradient(rgba(26, 26, 26, 0.066) 1px, transparent 1px);
+  --surface: #ffffff;
+  --surface-2: #f6f6f5;
+  --surface-3: #eeeeec;
+  --border: rgba(26, 26, 26, 0.10);
+  --border-strong: rgba(26, 26, 26, 0.22);
+  --hover-border: rgba(26, 26, 26, 0.45);
+  --topbar-bg: rgba(250, 250, 250, 0.88);
+  --foot-fade: rgba(255, 255, 255, 0.9);
+  --skeleton-hi: #e0e0e0;
+  --idle: #a5a5a5;
 
-  /* Text */
-  --text: #e9eef7;
-  --text-2: #b6c2d6;
-  --text-3: #8a98b1;
+  /* Ink */
+  --text: #1a1a1a;
+  --text-2: #3a3a3a;
+  --text-3: #6b6b6b;
 
-  /* Accent: Diodes corporate blue */
+  /* Primary: Diodes corporate blue; highlight: amber */
   --accent: #0b6fd1;
-  --accent-hover: #1580e6;
-  --accent-press: #095db0;
-  --accent-2: #29a3ff;
-  --accent-disabled: #2b4d78;
-  --accent-soft: rgba(41, 140, 240, 0.13);
-  --accent-soft-2: rgba(41, 140, 240, 0.26);
-  --accent-text: #6cb8ff;
-  --accent-glow: rgba(11, 111, 209, 0.45);
-  --ring: 0 0 0 3px rgba(41, 163, 255, 0.35);
+  --accent-hover: #095db0;
+  --accent-press: #074c90;
+  --accent-2: #c8963e;
+  --accent-disabled: #8fb3d9;
+  --accent-soft: rgba(11, 111, 209, 0.07);
+  --accent-soft-2: rgba(11, 111, 209, 0.15);
+  --accent-text: #0b6fd1;
+  --accent-glow: rgba(11, 111, 209, 0.25);
+  --ring: 0 0 0 3px rgba(200, 150, 62, 0.45);
 
   /* Verdicts (PLAN.md §4.16, white text) */
   --v-drop: #1b7f4e;
@@ -46,64 +45,66 @@
   --v-redesign: #c2410c;
   --v-none: #b42318;
 
-  /* Check results, tuned for dark surfaces */
-  --pass-fg: #5fd39b;
-  --pass-bg: rgba(27, 127, 78, 0.18);
-  --pass-border: rgba(95, 211, 155, 0.30);
-  --fail-fg: #ff8f84;
-  --fail-bg: rgba(180, 35, 24, 0.18);
-  --fail-hover: rgba(180, 35, 24, 0.26);
-  --fail-border: rgba(255, 143, 132, 0.32);
-  --caveat-fg: #f3c84b;
-  --caveat-bg: rgba(138, 106, 0, 0.20);
-  --caveat-hover: rgba(138, 106, 0, 0.28);
-  --caveat-border: rgba(243, 200, 75, 0.30);
-  --caveat-pill: rgba(243, 200, 75, 0.18);
-  --unknown-fg: #f3c84b;
-  --cell-tint: rgba(7, 13, 24, 0.45);
-  --strike: rgba(255, 143, 132, 0.7);
-  --reason-fg: #b39dff;
-  --reason-bg: rgba(139, 108, 255, 0.14);
-  --reason-border: rgba(179, 157, 255, 0.30);
-  --guard-fg: #ff9d5c;
-  --guard-bg: rgba(194, 65, 12, 0.16);
-  --guard-border: rgba(255, 157, 92, 0.30);
-  --code-bg: #050a14;
-  --code-fg: #cfe3ff;
+  /* Check results (PLAN.md §4.16 light tints) */
+  --pass-fg: #1b7f4e;
+  --pass-bg: #e7f5ee;
+  --pass-border: #cfe9dc;
+  --fail-fg: #b42318;
+  --fail-bg: #fde8e8;
+  --fail-hover: #fbdcdc;
+  --fail-border: #f3c3c3;
+  --caveat-fg: #7a5d00;
+  --caveat-bg: #fff4d6;
+  --caveat-hover: #ffedc2;
+  --caveat-border: #f0dca0;
+  --caveat-pill: #fbe7a9;
+  --unknown-fg: #8a6a00;
+  --cell-tint: rgba(255, 255, 255, 0.75);
+  --strike: rgba(180, 35, 24, 0.6);
+  --reason-fg: #5b3a8c;
+  --reason-bg: #f2eef8;
+  --reason-border: #dcd2ec;
+  --guard-fg: #c2410c;
+  --guard-bg: #fff3ec;
+  --guard-border: #f6d3bf;
+  --code-bg: #1a1a1a;
+  --code-fg: #fafafa;
 
-  /* Shape and depth */
-  --radius-sm: 8px;
-  --radius: 12px;
-  --radius-lg: 16px;
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.35);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.30), 0 2px 10px rgba(0, 0, 0, 0.22);
-  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.35), 0 14px 36px rgba(0, 0, 0, 0.30);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.55);
+  /* Shape and depth: sharp, drafted, barely-there shadows */
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-lg: 8px;
+  --shadow-xs: 0 1px 0 rgba(26, 26, 26, 0.04);
+  --shadow-sm: 0 1px 0 rgba(26, 26, 26, 0.05), 0 2px 6px rgba(26, 26, 26, 0.04);
+  --shadow-md: 0 4px 14px rgba(26, 26, 26, 0.08);
+  --shadow-lg: 0 14px 40px rgba(26, 26, 26, 0.16);
 
-  /* Type: 18px base; nothing renders below 16px (PLAN.md Phase 4) */
-  --fs-xs: 0.889rem;   /* 16px */
-  --fs-sm: 0.944rem;   /* 17px */
-  --fs-md: 1rem;       /* 18px */
-  --fs-lg: 1.167rem;   /* 21px */
-  --fs-xl: 1.444rem;   /* 26px */
-  --fs-2xl: 2rem;      /* 36px */
-  --font: "Roboto", "Segoe UI", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: "Archivo", "Arial Black", var(--font);
-  --mono: "Roboto Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+  /* Type: 16px base so the whole workspace fits one screen without page scroll */
+  --fs-xs: 0.889rem;   /* 14px */
+  --fs-sm: 0.944rem;   /* 15px */
+  --fs-md: 1rem;       /* 16px */
+  --fs-lg: 1.167rem;   /* 19px */
+  --fs-xl: 1.444rem;   /* 23px */
+  --fs-2xl: 2rem;      /* 32px */
+  --font: "Barlow", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Chakra Petch", "Barlow", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+  --label-track: 0.08em;
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --fast: 140ms;
   --med: 260ms;
 
-  --topbar-h: 72px;
+  --topbar-h: 60px;
 
   font-family: var(--font);
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -187,12 +188,12 @@ td > .skeleton.short { margin-top: 0; }
   display: grid; grid-template-columns: minmax(0, auto) 1fr auto; align-items: center; gap: 24px;
   padding: 0 28px; background: var(--topbar-bg);
   backdrop-filter: saturate(180%) blur(14px); -webkit-backdrop-filter: saturate(180%) blur(14px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-strong);
 }
-/* Wordmark: wide, heavy display face in the spirit of the Diodes logotype. */
+/* Wordmark: blue Chakra Petch, then a drafting-style mono tagline. */
 .brand { display: flex; align-items: baseline; min-width: 0; white-space: nowrap; line-height: 1; }
-.wordmark { font-family: var(--font-display); font-stretch: 125%; font-weight: 800; font-size: 1.5rem; letter-spacing: 0.01em; color: var(--accent-2); }
-.tagline { font-size: var(--fs-md); font-weight: 500; color: var(--text-3); overflow: hidden; text-overflow: ellipsis; }
+.wordmark { font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; letter-spacing: -0.015em; color: var(--accent); }
+.tagline { font-family: var(--mono); font-size: var(--fs-xs); font-weight: 500; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-3); overflow: hidden; text-overflow: ellipsis; }
 .topbar-center { display: flex; justify-content: center; }
 .topbar-right { display: flex; justify-content: flex-end; gap: 10px; }
 .mode-pill { color: var(--accent-text); background: var(--accent-soft); border-color: transparent; }
@@ -634,3 +635,160 @@ button.stat:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); b
   .fix { grid-template-columns: 1fr; }
   .fix-arrow { transform: rotate(90deg); justify-self: center; }
 }
+
+/* ==========================================================================
+   Drafting layer (TAMU Drillbotics style)
+   Typography, color, borders and corner shapes only. Layout and responsive
+   rules above are untouched.
+   ========================================================================== */
+
+/* Drafting-paper grid */
+body { background-size: 80px 80px; background-position: -1px -1px; background-attachment: scroll; }
+
+/* Headings: Chakra Petch */
+.card-head h2, .step-head h2, .dsec-head h3, .empty-state h3, .pane-empty h3, .trace-head strong {
+  font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em;
+}
+.card-head h2 { font-size: var(--fs-xl); line-height: 1.15; }
+.empty-state h3 { font-size: var(--fs-xl); }
+
+/* Section markers ("§ 01") on the main cards, drawn in amber mono */
+.center { counter-reset: section; }
+.center .card-head h2::before {
+  counter-increment: section; content: "§ " counter(section, decimal-leading-zero);
+  display: block; margin-bottom: 6px;
+  font-family: var(--mono); font-size: var(--fs-xs); font-weight: 600; letter-spacing: var(--label-track); color: var(--accent-2);
+}
+
+/* Data labels: JetBrains Mono, uppercase, wide tracking */
+.rtable th, .spec-table th, .fix-label, .tl-kind, .side-tag, .metric-label, .run-status, .pill,
+.sub, .dsec-sub, .live-pill, .count, .tl-step, .why h3, .meta, .chip, .rpill, .tag, .trace-head, .menu-pop small {
+  font-family: var(--mono); text-transform: uppercase; letter-spacing: var(--label-track); font-weight: 500;
+}
+.rtable th, .spec-table th { letter-spacing: 0.07em; color: var(--text-3); }
+.ref, .tl-step, .step-num { font-family: var(--mono); }
+
+/* Form labels and stat titles: condensed Barlow caps (fit narrow columns) */
+.field-label, .stat-top, .segmented button, .mode-name {
+  text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;
+}
+.stat-num { font-family: var(--font-display); font-weight: 700; }
+.metric-num { font-family: var(--font-display); }
+
+/* Buttons: squared, uppercase Chakra Petch */
+.btn { border-radius: var(--radius); font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+.btn.lg { border-radius: var(--radius); }
+.btn.primary { box-shadow: none; }
+.btn.primary:hover:not(:disabled) { box-shadow: 0 6px 18px var(--accent-glow); }
+.btn.secondary { box-shadow: none; }
+.btn.secondary:hover:not(:disabled) { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.btn.ghost { border: 1px dashed var(--border-strong); background: transparent; color: var(--text); }
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+/* Badges: squared caps */
+.badge { border-radius: var(--radius-sm); font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; box-shadow: none; }
+
+/* Cards and panels: white, hairline border, sharp 8px corners */
+.card, .stat { border-color: var(--border-strong); box-shadow: none; }
+.card { border-radius: var(--radius-lg); }
+button.stat:hover { box-shadow: var(--shadow-md); border-color: var(--text); }
+.stat { border-radius: var(--radius); }
+.stat.traps { background: var(--surface); }
+.stat.traps .stat-top { color: var(--accent-2); }
+.stat.traps::before { background: var(--accent-2); }
+
+/* Dashed construction lines between sections */
+.step { border-bottom-style: dashed; border-bottom-color: var(--border-strong); }
+.setup-foot { border-top: 1px dashed var(--border-strong); }
+.detail-foot { border-top-style: dashed; border-top-color: var(--border-strong); }
+.rtable td { border-bottom-color: var(--border); }
+.rtable th { border-color: var(--border-strong); background: var(--surface-2); }
+
+/* Square off the remaining rounded controls */
+.input-wrap, .search, .mode-option, .segmented, .dropzone, .menu-pop, .callout, .caveats li, .fix-part, .why,
+.reject, .diff, .spec-table, .metric, .eval-headline, .eval-empty, .tl-body, .toast { border-radius: var(--radius); }
+.segmented button, .ref, .meta, .pp-item, .diff-cell, .icon-btn, .dz-icon, .tl-icon, .rpill, .menu-pop a, .side-tag,
+.page-link, .page-ref, .toast-icon, .trap-note, .args pre, .tag, .kbd-hint kbd, kbd { border-radius: var(--radius-sm); }
+.empty-art { border-radius: var(--radius-lg); border: 1px dashed var(--border-strong); background: var(--surface); box-shadow: none; }
+.step-num { border-radius: var(--radius-sm); }
+
+/* Inputs */
+.input-wrap { border-color: var(--border-strong); }
+.input-wrap:focus-within { border-color: var(--accent); }
+.unit { font-family: var(--mono); }
+.segmented { background: var(--surface-2); border: 1px solid var(--border); }
+.segmented button.on { color: var(--accent); box-shadow: inset 0 0 0 1px var(--border-strong); }
+.mode-option.on { background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
+
+/* Selection and emphasis */
+.row.selected .ref { color: var(--accent); border-color: var(--accent); }
+.tab-ink { background: var(--accent); }
+.why { background: var(--surface); border-left-color: var(--accent); }
+.why h3 { color: var(--accent); }
+.mode-pill { background: var(--surface); border-color: var(--border-strong); color: var(--text); }
+.run-status.live { color: var(--accent); }
+.dz-icon.ok, .step-num.done { background: var(--accent); }
+.meta svg, .dsec-head h3 svg, .menu-pop a svg { color: var(--accent-2); }
+.tl-item.tool_call .tl-icon { color: var(--accent); }
+.page-link { color: var(--accent); }
+.eyebrow { font-family: var(--mono); letter-spacing: 0.02em; }
+
+/* --------------------------------------------------------------------------
+   Single-screen workspace (desktop): the page itself never scrolls.
+   Setup and results fit the window; only the Detail / Agent pane scrolls.
+   Very long BOMs scroll inside the results table rather than the page.
+   -------------------------------------------------------------------------- */
+@media (min-width: 1501px) and (min-height: 700px) {
+  html, body { height: 100%; overflow: hidden; }
+  /* Scale the whole type ramp to the window height: about 15.4px at 1080px tall, down to 12px. */
+  :root { font-size: clamp(12px, calc(100vh / 70), 16px); }
+  .app { height: 100vh; display: flex; flex-direction: column; }
+  .layout { flex: 1; min-height: 0; width: 100%; align-items: stretch; padding-bottom: 20px; }
+  .setup, .pane { position: static; top: auto; max-height: none; height: 100%; min-height: 0; }
+  .center { height: 100%; min-height: 0; overflow: hidden; }
+  .results { flex: 0 1 auto; min-height: 0; display: flex; flex-direction: column; }
+  .results .table-wrap { flex: 1 1 auto; min-height: 0; overflow: auto; }
+  .eval, .summary { flex: none; }
+
+  /* Spacing in rem so it shrinks with the type on shorter windows (identical at 1080px). */
+  :root { --topbar-h: 3.75rem; }
+  .layout { gap: 1.25rem; padding: 1.25rem 1.5rem; }
+  .center { gap: 1.25rem; }
+  .card-head { padding: 1.25rem 1.375rem 1rem; }
+  .rtable th { padding: 0.6875rem 0.75rem; }
+  .rtable td { padding: 0.875rem 0.625rem; }
+  .ref, .badge { height: 1.875rem; }
+  .stat { padding: 0.9375rem 1.0625rem 0.875rem; gap: 0.375rem; }
+  .eval-empty { margin: 0 1.375rem 1.375rem; padding: 1rem; }
+  .setup-scroll { padding: 0.25rem 1.25rem 0.125rem; }
+  .step { padding: 0.875rem 0; }
+  .step-head { margin-bottom: 0.6875rem; }
+  .step-num { width: 1.75rem; height: 1.75rem; }
+  .step-body { gap: 0.625rem; }
+  .grid-2 { gap: 0.75rem; }
+  .field { gap: 0.375rem; }
+  .dropzone { padding: 0.75rem 0.875rem; }
+  .dz-icon { width: 2.625rem; height: 2.625rem; }
+  .input-wrap, .mode-option, .btn, .search { height: 2.625rem; }
+  .btn.lg { height: 3.25rem; }
+  .segmented button { height: 2.25rem; }
+  .mode-grid { gap: 0.5rem; }
+  .setup-foot { padding: 0.875rem 1.25rem; }
+  .kbd-hint { margin-top: 0.625rem; }
+  .pane-head { padding: 0.625rem 0.75rem 0 0.875rem; }
+  .tabs button { height: 2.875rem; }
+}
+
+/* Narrower desktops (1501–1700px): give the results table the room it needs. */
+@media (min-width: 1501px) and (max-width: 1700px) {
+  .layout { grid-template-columns: 280px minmax(0, 1fr) 440px; }
+  .layout.wide { grid-template-columns: 280px minmax(0, 1fr) 620px; }
+  .arrow-cell, .rtable th[aria-label="replaced by"] { display: none; }
+  .rtable th, .rtable td { padding-left: 0.5rem; padding-right: 0.5rem; }
+  .rtable th:first-child, .rtable td:first-child { padding-left: 1rem; }
+  .rtable th:last-child, .rtable td:last-child { padding-right: 1rem; }
+  .meter-bar { width: 2.75rem; }
+}
+
+/* Tighter word gap on mono step and section labels ("TOOL CALL", "WHY THIS VERDICT") */
+.tl-kind, .why h3, .meta { letter-spacing: 0.03em; word-spacing: -0.3em; }
