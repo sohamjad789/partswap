@@ -63,3 +63,9 @@ One-page PDF rendered in memory with PyMuPDF (text `VRRM 40 V`), converted to PN
 Observation for Phase 5b prompt work: the model recorded `drop_in` while listing a caveat (reverse leakage given only at 25 °C on a board that runs to 85 °C). System prompt step 5 asks for a stricter verdict in that case.
 
 With the API unreachable (`NVIDIA_BASE_URL=http://127.0.0.1:9`), D1 retried for about 7 s, emitted `part_error`, and fell back to the deterministic decision. Rerunning `probe_models.py` rewrites this file; copy this section back afterwards.
+
+## Phase 6 extraction baseline
+
+2026-11-21, seven locally cached manufacturer PDFs were processed with the NVIDIA Parse endpoint and the selected fast model. Generated provisional specs are kept separate from the hand-verified source data under `data/specs/extracted/`.
+
+The initial extraction comparison (`backend/scripts/extraction_report.py`) recorded **25 matching**, **10 mismatched**, and **16 missing** critical fields. This is a baseline measurement, not a claim that an extracted value is verified; the UI and report must continue to treat these values as provisional.

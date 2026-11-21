@@ -152,4 +152,30 @@ def get_eval() -> dict[str, Any]:
 
 @app.get("/api/extract/{mpn:path}")
 def get_extract(mpn: str) -> dict[str, Any]:
-    return {"available": False}
+    part = _load_part_or_404(mpn)
+    path = data_dir() / "specs" / "extracted" / f"{part.mpn.replace('/', '_')}.json"
+    if not path.exists():
+        return {"available": False}
+    extracted = json.loads(path.read_text(encoding="utf-8"))
+    fields = []
+    for key, verified in part.specs.items():
+        candidate = extracted.get("specs", {}).get(key, {})
+        value = candidate.get("value")
+        if value is None:
+            status = "missing"
+        elif verified.value is not None and abs(value - verified.value) <= max(abs(verified.value), 1e-12) * .02:
+            status = "match"
+        else:
+            status = "mismatch"
+        fields.append({"key": key, "verified_raw": verified.raw, "extracted_raw": candidate.get("raw"), "status": status})
+    return {"available": True, "parser": extracted.get("parser"), "fields": fields}
+
+
+@app.post("/api/extract/{mpn:path}")
+def post_extract(mpn: str) -> dict[str, Any]:
+    _load_part_or_404(mpn)
+    from app.extract.pipeline import extract_part
+    result = extract_part(mpn)
+    if result.get("error"):
+        return result
+    return get_extract(mpn)

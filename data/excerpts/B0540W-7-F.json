@@ -1,0 +1,25 @@
+{
+  "mpn": "B0540W-7-F",
+  "chunks": [
+    {
+      "page": 2,
+      "text": "B0540W \nDocument number: DS30138 Rev. 15 - 2 \n2 of 5 \nwww.diodes.com  \nNovember 2026 \n\u00a9 2026 Copyright Diodes Incorporated. All Rights Reserved. \n \nB0540W \n \n \n \n \nMaximum Ratings (@TA = +25\u00b0C, unless otherwise specified.) \n \nSingle phase, half wave, 60Hz, resistive or inductive load. \nFor capacitive load, derate current by 20%. \nCharacteristic \nSymbol \nValue \nUnit \nPeak Repetitive Reverse Voltage \nWorking Peak Reverse Voltage \nDC Blocking Voltage \nVRRM \nVRWM \nVR \n40 \nV \nRMS Reverse Voltage \nVR(RMS) \n28 \nV \nAverage Rectified Output Current  (See Figure 5) \nIO \n0.5 \nA \nNon-Repetitive Peak Forward Surge Current  \n8.3ms Single Half Sine Wave Superimposed on Rated Load \nIFSM \n5.5 \nA \n \n \n \nTherm"
+    },
+    {
+      "page": 2,
+      "text": "al Characteristics    \nCharacteristic \nSymbol \nTyp \nMax \nUnit \nTypical Thermal Resistance Junction to Ambient Air (Note 5)  \nTA = +25\u00b0C \nR\uf071JA \n385 \n\u23af \n\u00b0C/W \nTypical Thermal Resistance Junction to Ambient Air (Note 6)  \nTA = +25\u00b0C \nR\uf071JA \n325 \n\u23af \n\u00b0C/W \nOperating and Storage Temperature Range \nTJ, TSTG \n-65 to +150 \n\u00b0C \n \n \n \nElectrical Characteristics (@TA = +25\u00b0C, unless otherwise specified.) \nCharacteristic \nSymbol \nValue \nUnit \nTest Conditions \nMinimum Reverse Breakdown Voltage (Note 7) \nV(BR)R \n40 \nV \nIR = 20\u00b5A \nMaximum Forward Voltage Drop \nVFM \n0.510 \n0.620 \n0.460 \n0.610 \nV \nIF = 0.5A, TJ = +25\u00b0C \nIF = 1.0A, TJ = +25\u00b0C \nIF = 0.5A, TJ = +100\u00b0C \nIF = 1.0A, TJ = +100\u00b0C \nMaximum Leakage Curr"
+    },
+    {
+      "page": 2,
+      "text": "ent (Note 7)  \nIRM \n10 \n20 \n\u00b5A \nVR = 20V, TJ = +25\u00b0C \nVR = 40V, TJ = +25\u00b0C \n5.0  \n13 \nmA \nVR = 20V, TJ = +100\u00b0C \nVR = 40V, TJ = +100\u00b0C \nTotal Capacitance \nCT \n170 \npF \nf = 1MHz, VR = 0V DC \nNotes: \n5. FR-4 PCB, minimum recommended pad layout per http://www.diodes.com/package-outlines.html. \n6. Polymide PCB, minimum recommended pad layout per http://www.diodes.com/package-outlines.html. \n7. Short duration pulse test used to minimize self-heating effect."
+    },
+    {
+      "page": 3,
+      "text": "(\u7648)\nFig. 5  Forward Current Derating Curve\nA\n \n \n0.001 \n0.01 \n0.1 \n1\n10 \n100 \n0\n10 \n20 \n30 \n40\nV  , INSTANTANEOUS REVERSE VOLTAGE (V)\nFig. 3  Typical Reverse Characteristics\nR\nT   = -65\u00b0C\nJ \nT   = 25\u00b0C\nJ \nT   = 85\u00b0C\nJ \nT   = 100\u00b0C \nJ\nT   = 125\u00b0C \nJ\nNote 5 \nNote 6 \n(\u00b0C)"
+    },
+    {
+      "page": 4,
+      "text": "B0540W \nDocument number: DS30138 Rev. 15 - 2 \n4 of 5 \nwww.diodes.com  \nNovember 2026 \n\u00a9 2026 Copyright Diodes Incorporated. All Rights Reserved. \n \nB0540W \n \n \n \n \nPackage Outline Dimensions \nPlease see http://www.diodes.com/package-outlines.html for the latest version. \n \nSOD123 \n \n \nc\nHe\nE\nb\nD\n All 7\u00b0\nAll R0.100\na\nL\nA\nA1\nAll R0.100\nAll 7\u00b0\n \n \nSOD123 \nDim \nMin \nMax \nTyp \nA \n1.00 \n1.35 \n1.05 \nA1 \n0.00 \n0.10 \n0.05 \nb \n0.52 \n0.62 \n0.57 \nc \n0.10 \n0.15 \n0.11 \nD \n1.40 \n1.70 \n1.55 \nE \n2.55 \n2.85 \n2.65 \nHe \n3.55 \n3.85 \n3.65 \nL \n0.25 \n0.40 \n0.30 \na \n0\u00ba \n8\u00ba \n-- \nAll Dimensions in mm \n \n \n \n \nSuggested Pad Layout \nPlease see http://www.diodes.com/package-outlines.html for the latest version. \n \n \nSOD1"
+    }
+  ]
+}

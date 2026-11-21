@@ -1,0 +1,37 @@
+{
+  "mpn": "AP7333-33SAG-7",
+  "chunks": [
+    {
+      "page": 1,
+      "text": "AP7333\n300mA, Low Quiescent Current, Fast Transient\nLow Dropout Linear Regulator\n \n \nAP7333 Rev. 2                                                  1 of 12                                            NOVEMBER 2009                \n                                               www.diodes.com                                              \u00a9 Diodes Incorporated \n \n \n\u2022 \n300mA Low Dropout Regulator in 3-pin package \n\u2022 \nVery low IQ over full load: 65\u00b5A \n\u2022 \nWide input voltage range: 2V to 6V \n\u2022 \nFixed output options: 1.0V to 3.3V \n\u2022 \nPSRR: 65dB typical at 100Hz \n\u2022 \nFast start-up time: 80\u00b5s \n\u2022 \nStable with low ESR, 1\u00b5F ceramic output capacitor \n\u2022 \nExcellent Load/Line Transient Response \n\u2022 \nLow dropout:"
+    },
+    {
+      "page": 1,
+      "text": " 300mV typical at 300mA \n\u2022 \nCurrent limit protection \n\u2022 \nShort circuit protection \n\u2022 \nThermal shutdown protection \n\u2022 \nAmbient temperature range: -40\u00baC to 85\u00b0C  \n\u2022 \nSOT23 and SOT23R: Available in \u201cGreen\u201d Molding \nCompound (No Br, Sb) \n\u2022 \nLead Free Finish/RoHS Compliant (Note 1) \n \n \nThe AP7333 is a 300mA, fixed output voltage, low dropout linear \nregulator. The device included pass element, error amplifier, \nband-gap, current limit and thermal shutdown circuitry. \n \nThe characteristics of low dropout voltage and low quiescent \ncurrent make it suitable for low power applications, for example, \nbattery powered devices. The typical quiescent current is \napproximately 65\u03bcA.  \n \nBuilt-in current-l"
+    },
+    {
+      "page": 1,
+      "text": "imit and thermal-shutdown functions prevent IC \nfrom damage in fault conditions. \n \nThe AP7333 is available in SOT23 packages with different \npin-outs. \n \n \n \n \n \n \nApplications  \n \n \n\u2022 \nXDSL Router \n\u2022 \nWireless LAN Cards  \n\u2022 \nDesktop and Notebook Computers \n\u2022 \nBattery Powered Equipments \n\u2022 \nMouse, Keyboards \n \n \nTypical Application Circuit  \n \n \n1uF\nIN\nGND\nOUT\n1uF\nVIN\nVOUT\nAP7333\n \n \n \n \n \nFeatures \nDescription"
+    },
+    {
+      "page": 2,
+      "text": "ape & Reel \n-7 \nAP7333-XXSRG-7 \nSR \nSOT23R \n3000/Tape & Reel \n-7 \nNotes:   1. EU Directive 2002/95/EC (RoHS). All applicable RoHS exemptions applied. Please visit our website at \n http://www.diodes.com/products/lead_free.html    \n  2. Pad layout as shown on Diodes Inc. suggested pad layout document AP02001, which can be found on our website at \n           http://www.diodes.com/datasheets/ap02001.pdf. \n \n \nPin Assignment \n \n \n(1) SOT23 \n(1) SOT23R \nGND\n( Top View )\n3\nIN 1\nOUT 2\nIN\n( Top View )\n3\nGND 1\nOUT 2"
+    },
+    {
+      "page": 3,
+      "text": "AP7333\n300mA, Low Quiescent Current, Fast Transient\nLow Dropout Linear Regulator\n \n \nAP7333 Rev. 2                                                  3 of 12                                            NOVEMBER 2009                \n                                               www.diodes.com                                              \u00a9 Diodes Incorporated \nPin Descriptions \n \n \nPin Name \nPin Number \nDescription \nSOT23 \nSOT23R \nIN \n1 \n3 \nVoltage input pin. Bypass to ground through at least 1\u00b5F \ncapacitor \nOUT \n2 \n2 \nVoltage output pin. Bypass to ground through 1\u00b5F ceramic \ncapacitor \nGND \n3 \n1 \nGround \n \n \nFunctional Block Diagram \n \n \nIN\nG ND\nO UT\nGate \nDriver \nV REF\nCurrent Lim it \nand Ther"
+    },
+    {
+      "page": 4,
+      "text": "AP7333\n300mA, Low Quiescent Current, Fast Transient\nLow Dropout Linear Regulator\n \n \nAP7333 Rev. 2                                                  4 of 12                                            NOVEMBER 2009                \n                                               www.diodes.com                                              \u00a9 Diodes Incorporated \nAbsolute Maximum Ratings \n \n \nSymbol \nParameter \nRatings \nUnits \nESD HBM \nHuman Body Model ESD Protection \n6 \nkV \nESD MM \nMachine Model ESD Protection \n400 \nV \nVIN \nInput Voltage \n7 \nV \n \nContinuous Load Current \nInternal Limited \n \nTOP \nOperating Junction Temperature Range  \n-40 ~ 125 \n\u00b0C \nTST \nStorage Temperature Range \n-65 ~150 \n\u00b0C \nPD "
+    },
+    {
+      "page": 4,
+      "text": "\nPower Dissipation (Note 3) \nSOT23 \n600 \nmW \nSOT23R \n540 \nmW \nTJ \nMaximum Junction Temperature \n150 \n\u00b0C \n \n \nRecommended Operating Conditions \n \n \nSymbol \nParameter \nMin \nMax \nUnit \nVIN \nInput voltage \n2 \n6 \nV \nIOUT \nOutput Current (Note 4) \n0 \n300 \nmA \nTA \nOperating Ambient Temperature \n-40 \n85 \n\u00b0C \nNotes:    3. Ratings apply to ambient temperature at 25\u00b0C \n4. The device maintains a stable, regulated output voltage without a load current."
+    },
+    {
+      "page": 5,
+      "text": "AP7333\n300mA, Low Quiescent Current, Fast Transient\nLow Dropout Linear Regulator\n \n \nAP7333 Rev. 2                                                  5 of 12                                            NOVEMBER 2009                \n                                               www.diodes.com                                              \u00a9 Diodes Incorporated \nElectrical Characteristics \n \n \n(TA = 25\noC, VIN\n = VOUT +1V, CIN\n = 1uF, COUT\n = 1uF, unless otherwise stated) \nSymbol \nParameter \nTest Conditions \nMin Typ. Max Unit\nIQ \nInput Quiescent Current \nIOUT = 0mA \n\u23af \n55 \n75 \n\u03bcA \nIOUT = 300mA \n \n65 \n85 \nVDropout \nDropout Voltage (Note 5) \nIOUT = 300mA \n \n300 550\nmV \nVOUT \nOutput Voltage Accuracy "
+    }
+  ]
+}

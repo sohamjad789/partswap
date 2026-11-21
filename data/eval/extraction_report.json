@@ -1,0 +1,350 @@
+{
+  "parts": [
+    {
+      "mpn": "MCP1700-3302E/TT",
+      "fields": [
+        {
+          "key": "vout_v",
+          "verified_raw": "3.3 V",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "vin_abs_max_v",
+          "verified_raw": "+6.5 V",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "vin_max_v",
+          "verified_raw": "6.0 V",
+          "extracted_raw": "Input Operating Voltage Range: 2.3V to 6.0V",
+          "status": "match"
+        },
+        {
+          "key": "vin_min_v",
+          "verified_raw": "2.3 V",
+          "extracted_raw": "Input Operating Voltage Range: 2.3V to 6.0V",
+          "status": "match"
+        },
+        {
+          "key": "iout_max_a",
+          "verified_raw": "250 mA",
+          "extracted_raw": "250 mA Output Current for Output Voltages \u2265 2.5V",
+          "status": "match"
+        },
+        {
+          "key": "dropout_v",
+          "verified_raw": "350 mV max",
+          "extracted_raw": "178 mV Typical @ 250 mA for VOUT = 2.8V",
+          "status": "mismatch"
+        },
+        {
+          "key": "iq_a",
+          "verified_raw": "1.6 \u00b5A typ",
+          "extracted_raw": "1.6 \u03bcA Typical Quiescent Current",
+          "status": "match"
+        },
+        {
+          "key": "temp_min_c",
+          "verified_raw": "-40 \u00b0C",
+          "extracted_raw": "operating junction temperature range of -40\u00b0C to +125\u00b0C",
+          "status": "match"
+        },
+        {
+          "key": "temp_max_c",
+          "verified_raw": "+125 \u00b0C",
+          "extracted_raw": "operating junction temperature range of -40\u00b0C to +125\u00b0C",
+          "status": "match"
+        }
+      ]
+    },
+    {
+      "mpn": "MBR0540T1G",
+      "fields": [
+        {
+          "key": "vrrm_v",
+          "verified_raw": "40 V",
+          "extracted_raw": "40",
+          "status": "match"
+        },
+        {
+          "key": "if_avg_a",
+          "verified_raw": "0.5 A",
+          "extracted_raw": "0.5 AMPERES, 40 VOLTS",
+          "status": "match"
+        },
+        {
+          "key": "vf_v",
+          "verified_raw": "0.510 V",
+          "extracted_raw": "0.62",
+          "status": "mismatch"
+        },
+        {
+          "key": "ir_a",
+          "verified_raw": "20 \u00b5A",
+          "extracted_raw": "13,000",
+          "status": "mismatch"
+        },
+        {
+          "key": "temp_min_c",
+          "verified_raw": "-55 \u00b0C",
+          "extracted_raw": "-55 to +150",
+          "status": "match"
+        },
+        {
+          "key": "temp_max_c",
+          "verified_raw": "+150 \u00b0C",
+          "extracted_raw": "-55 to +150",
+          "status": "match"
+        }
+      ]
+    },
+    {
+      "mpn": "B0520LW-7-F",
+      "fields": [
+        {
+          "key": "vrrm_v",
+          "verified_raw": "20 V",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "if_avg_a",
+          "verified_raw": "0.5 A",
+          "extracted_raw": "0.78",
+          "status": "mismatch"
+        },
+        {
+          "key": "vf_v",
+          "verified_raw": "0.385 V",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "ir_a",
+          "verified_raw": "250 \u00b5A",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "temp_min_c",
+          "verified_raw": "-65 \u00b0C",
+          "extracted_raw": "-55",
+          "status": "mismatch"
+        },
+        {
+          "key": "temp_max_c",
+          "verified_raw": "+125 \u00b0C",
+          "extracted_raw": "125",
+          "status": "match"
+        }
+      ]
+    },
+    {
+      "mpn": "B0530W-7-F",
+      "fields": [
+        {
+          "key": "vrrm_v",
+          "verified_raw": "30 V",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "if_avg_a",
+          "verified_raw": "0.5 A",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "vf_v",
+          "verified_raw": "0.430 V",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "ir_a",
+          "verified_raw": "130 \u00b5A",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "temp_min_c",
+          "verified_raw": "-65 \u00b0C",
+          "extracted_raw": "-65\u00b0C",
+          "status": "match"
+        },
+        {
+          "key": "temp_max_c",
+          "verified_raw": "+125 \u00b0C",
+          "extracted_raw": "125\u00b0C",
+          "status": "match"
+        }
+      ]
+    },
+    {
+      "mpn": "B0540W-7-F",
+      "fields": [
+        {
+          "key": "vrrm_v",
+          "verified_raw": "40 V",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "if_avg_a",
+          "verified_raw": "0.5 A",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "vf_v",
+          "verified_raw": "0.510 V",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "ir_a",
+          "verified_raw": "20 \u00b5A",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "temp_min_c",
+          "verified_raw": "-65 \u00b0C",
+          "extracted_raw": "T_J = -65\u00b0C",
+          "status": "match"
+        },
+        {
+          "key": "temp_max_c",
+          "verified_raw": "+150 \u00b0C",
+          "extracted_raw": "T_J = 125\u00b0C",
+          "status": "mismatch"
+        }
+      ]
+    },
+    {
+      "mpn": "AP7333-33SRG-7",
+      "fields": [
+        {
+          "key": "vout_v",
+          "verified_raw": "3.3 V",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "vin_abs_max_v",
+          "verified_raw": "7 V",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "vin_max_v",
+          "verified_raw": "6 V",
+          "extracted_raw": "2V to 6V",
+          "status": "match"
+        },
+        {
+          "key": "vin_min_v",
+          "verified_raw": "2 V",
+          "extracted_raw": "2V to 6V",
+          "status": "match"
+        },
+        {
+          "key": "iout_max_a",
+          "verified_raw": "300 mA",
+          "extracted_raw": "300mA",
+          "status": "match"
+        },
+        {
+          "key": "dropout_v",
+          "verified_raw": "550 mV max",
+          "extracted_raw": "300mV typical at 300mA",
+          "status": "mismatch"
+        },
+        {
+          "key": "iq_a",
+          "verified_raw": "55 \u00b5A typ",
+          "extracted_raw": "65\u03bcA",
+          "status": "mismatch"
+        },
+        {
+          "key": "temp_min_c",
+          "verified_raw": "-40 \u00b0C",
+          "extracted_raw": "-40\u00b0C to 85\u00b0C",
+          "status": "match"
+        },
+        {
+          "key": "temp_max_c",
+          "verified_raw": "+85 \u00b0C",
+          "extracted_raw": "-40\u00b0C to 85\u00b0C",
+          "status": "match"
+        }
+      ]
+    },
+    {
+      "mpn": "AP7333-33SAG-7",
+      "fields": [
+        {
+          "key": "vout_v",
+          "verified_raw": "3.3 V",
+          "extracted_raw": "33 : 3.3V",
+          "status": "match"
+        },
+        {
+          "key": "vin_abs_max_v",
+          "verified_raw": "7 V",
+          "extracted_raw": null,
+          "status": "missing"
+        },
+        {
+          "key": "vin_max_v",
+          "verified_raw": "6 V",
+          "extracted_raw": "Wide input voltage range: 2V to 6V",
+          "status": "match"
+        },
+        {
+          "key": "vin_min_v",
+          "verified_raw": "2 V",
+          "extracted_raw": "Wide input voltage range: 2V to 6V",
+          "status": "match"
+        },
+        {
+          "key": "iout_max_a",
+          "verified_raw": "300 mA",
+          "extracted_raw": "300mA Low Dropout Regulator",
+          "status": "match"
+        },
+        {
+          "key": "dropout_v",
+          "verified_raw": "550 mV max",
+          "extracted_raw": "Low dropout: 300mV typical at 300mA",
+          "status": "mismatch"
+        },
+        {
+          "key": "iq_a",
+          "verified_raw": "55 \u00b5A typ",
+          "extracted_raw": "Very low I<sub>O</sub> over full load: 65\u03bcA",
+          "status": "mismatch"
+        },
+        {
+          "key": "temp_min_c",
+          "verified_raw": "-40 \u00b0C",
+          "extracted_raw": "Ambient temperature range: -40\u00b0C to 85\u00b0C",
+          "status": "match"
+        },
+        {
+          "key": "temp_max_c",
+          "verified_raw": "+85 \u00b0C",
+          "extracted_raw": "Ambient temperature range: -40\u00b0C to 85\u00b0C",
+          "status": "match"
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "match": 25,
+    "mismatch": 10,
+    "missing": 16
+  }
+}

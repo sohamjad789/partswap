@@ -1,0 +1,37 @@
+{
+  "mpn": "MCP1700-3302E/TT",
+  "chunks": [
+    {
+      "page": 1,
+      "text": "\uf0e32005-2020 Microchip Technology Inc.\nDS20001826F-page 1\nMCP1700\nFeatures\n\u2022 AEC-Q100 Qualified and PPAP Capable\n\u2022 1.6 \u00b5A Typical Quiescent Current\n\u2022 Input Operating Voltage Range: 2.3V to 6.0V\n\u2022 Output Voltage Range: 1.2V to 5.0V\n\u2022 250 mA Output Current for Output\nVoltages \uf0b32.5V\n\u2022 200 mA Output Current for Output\nVoltages < 2.5V\n\u2022 Low Dropout (LDO) Voltage\n- 178 mV Typical @ 250 mA for VOUT = 2.8V\n\u2022 0.4% Typical Output Voltage Tolerance\n\u2022 Standard Output Voltage Options:\n- 1.2V, 1.8V, 2.5V, 2.8V, 2.9V, 3.0V, 3.3V, 5.0V\n\u2022 Stable with 1.0 \u00b5F Ceramic Output Capacitor\n\u2022 Short Circuit Protection\n\u2022 Overtemperature Protection\nApplications\n\u2022 Battery-Powered Devices\n\u2022 Battery-Powered Alarm Circuits\n\u2022 "
+    },
+    {
+      "page": 1,
+      "text": "Smoke Detectors\n\u2022 CO2 Detectors\n\u2022 Pagers and Cellular Phones\n\u2022 Smart Battery Packs\n\u2022 Low Quiescent Current Voltage Reference\n\u2022 PDAs\n\u2022 Digital Cameras\n\u2022 Microcontroller Power\nRelated Literature\n\u2022 AN765, \u201cUsing Microchip\u2019s Micropower LDOs\u201d\n(DS00765), Microchip Technology Inc., 2002\n\u2022 AN766, \u201cPin-Compatible CMOS Upgrades to\nBiPolar LDOs\u201d (DS00766),\nMicrochip Technology Inc., 2002\n\u2022 AN792, \u201cA Method to Determine How Much\nPower a SOT23 Can Dissipate in an Application\u201d\n(DS00792), Microchip Technology Inc., 2001\nGeneral Description\nThe MCP1700 is a family of CMOS low dropout (LDO)\nvoltage regulators that can deliver up to 250 mA of\ncurrent while consuming only 1.6 \u00b5A of quiescent\ncurrent (typical)."
+    },
+    {
+      "page": 1,
+      "text": " The input operating range is specified\nfrom 2.3V to 6.0V, making it an ideal choice for two and\nthree primary cell battery-powered applications, as well\nas single cell Li-Ion-powered applications.\nThe MCP1700 is capable of delivering 250 mA with\nonly 178 mV of input to output voltage differential\n(VOUT = 2.8V). The output voltage tolerance of the\nMCP1700 is typically \u00b10.4% at +25\u00b0C and \u00b13%\nmaximum over the operating junction temperature\nrange of -40\u00b0C to +125\u00b0C.\nOutput voltages available for the MCP1700 range from\n1.2V to 5.0V. The LDO output is stable when using only\n1 \u00b5F output capacitance. Ceramic, tantalum or\naluminum electrolytic capacitors can all be used for\ninput and output. Overcur"
+    },
+    {
+      "page": 1,
+      "text": "rent limit and overtemperature\nshutdown provide a robust solution for any application.\nPackage options include SOT-23, SOT-89, TO-92 and\n2x2 DFN-6.\nPackage Types\n1\n3\n2\nVIN\nGND VOUT\nMCP1700\n1\n2\n3\nVIN\nGND\nVOUT\nMCP1700\n3-Pin SOT-23\n3-Pin SOT-89\n3\n2\n1\nGND VIN VOUT\nMCP1700\n3-Pin TO-92\nVIN\nVIN 1\n2\n3\nEP\n7\n* Includes Exposed Thermal Pad (EP); see Table 3-1.\n6\n5\n4\nNC\nGND\nNC\nNC\nVOUT\n2x2 DFN-6*\nLow Quiescent Current LDO"
+    },
+    {
+      "page": 3,
+      "text": "\uf0e3 2005-2020 Microchip Technology Inc.\nDS20001826F-page 3\nMCP1700\n1.0\nELECTRICAL \nCHARACTERISTICS\nAbsolute Maximum Ratings \u2020\nVDD............................................................................................+6.5V\nAll inputs and outputs w.r.t. ......... (VSS - 0.3V) to (VIN + 0.3V)\nPeak Output Current ....................................Internally Limited\nStorage Temperature ....................................-65\u00b0C to +150\u00b0C\nMaximum Junction Temperature................................... 150\u00b0C\nOperating Junction Temperature...................-40\u00b0C to +125\u00b0C\nESD protection on all pins (HBM;MM)\uf02e\uf02e\uf02e\uf02e\uf02e\uf02e\uf02e\uf02e\uf02e\uf02e\uf02e\uf02e\uf02e\uf02e\uf02e\uf0b34 kV; \uf0b3400V\n\u2020 Notice: Stresses above those listed under \u201cMaximum\nRatings\u201d"
+    },
+    {
+      "page": 3,
+      "text": " may cause permanent damage to the device. This is\na stress rating only, and functional operation of the device at\nthose or any other conditions above those indicated in the\noperational listings of this specification is not implied.\nExposure to maximum rating conditions for extended periods\nmay affect device reliability.\n DC CHARACTERISTICS\nElectrical Characteristics: Unless otherwise specified, all limits are established for VIN = VR + 1V, ILOAD = 100 \u00b5A,\nCOUT = 1 \u00b5F (X7R), CIN = 1 \u00b5F (X7R), TA = +25\u00b0C.\nBoldface type applies for junction temperatures, TJ (Note 6) of -40\u00b0C to +125\u00b0C.\nParameters\nSym.\nMin.\nTyp.\nMax.\nUnits\nConditions\nInput/Output Characteristics\nInput Operating \nVoltage\nVIN\n2.3"
+    },
+    {
+      "page": 3,
+      "text": "on temperature using low duty cycle pulse testing. Changes in output \nvoltage due to heating effects are determined using thermal regulation specification TCVOUT.\n5:\nDropout voltage is defined as the input to output differential at which the output voltage drops 2% below its measured \nvalue with a VR + 1V differential applied.\n6:\nThe maximum allowable power dissipation is a function of ambient temperature, the maximum allowable junction     \ntemperature and the thermal resistance from junction to air (i.e. TA, TJ, \uf071JA). Exceeding the maximum allowable power \ndissipation will cause the device operating junction temperature to exceed the maximum 150\u00b0C rating. Sustained    \njunction temperature"
+    },
+    {
+      "page": 3,
+      "text": "s above 150\u00b0C can impact the device reliability.\n7:\nThe junction temperature is approximated by soaking the device under test at an ambient temperature equal to the \ndesired Junction temperature. The test time is small enough such that the rise in the Junction temperature over the \nambient temperature is not significant."
+    }
+  ]
+}

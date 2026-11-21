@@ -1,0 +1,21 @@
+{
+  "mpn": "B0520LW-7-F",
+  "chunks": [
+    {
+      "page": 2,
+      "text": "B0520LW \nDocument number: DS30051 Rev. 19 - 2 \n2 of 5 \nwww.diodes.com  \nDecember 2025 \n\u00a9 2025 Copyright Diodes Incorporated. All Rights Reserved. \n \nB0520LW \n \n \n \n \nMaximum Ratings (@ TA = +25\u00b0C, unless otherwise specified.) \nSingle phase, half wave, 60Hz, resistive or inductive load. \nFor capacitive load, derate current by 20%. \nCharacteristic \nSymbol \nValue \nUnit \nPeak Repetitive Reverse Voltage \nWorking Peak Reverse Voltage \nDC Blocking Voltage \nVRRM \nVRWM \nVR \n20 \nV \nRMS Reverse Voltage \nVR(RMS) \n14 \nV \nAverage Rectified Output Current  \nIO \n0.5 \nA \nNon-Repetitive Peak Forward Surge Current  \n8.3ms Single Half Sine Wave Superimposed on Rated Load \nIFSM \n5.5 \nA \n \n \n \nThermal Characteris"
+    },
+    {
+      "page": 2,
+      "text": "tics  \nCharacteristic \nSymbol \nValue \nUnit \nPower Dissipation (Note 5) \nPD \n410 \nmW \nTypical Thermal Resistance Junction to Ambient (Note 5) \nR\uf071JA \n244 \n\u00b0C/W \nOperating and Storage Temperature Range \nTJ, TSTG \n-65 to +125 \n\u00b0C \n \n \n \nElectrical Characteristics (@ TA = +25\u00b0C, unless otherwise specified.) \nCharacteristic \nSymbol \nValue \nUnit \nTest Conditions \nMinimum Reverse Breakdown Voltage (Note 6) \nV(BR)R \n20 \nV \nIR = 250\u00b5A \nMaximum Forward Voltage Drop \nVFM \n0.300 \n0.385 \n0.220 \n0.330 \nV \nIF = 0.1A, TJ = +25\u00b0C \nIF = 0.5A, TJ = +25\u00b0C \nIF = 0.1A, TJ = +100\u00b0C \nIF = 0.5A, TJ = +100\u00b0C \nMaximum Leakage Current (Note 6) \nIRM \n75 \n250  \n\u00b5A \nVR = 10V, TJ = +25\u00b0C \nVR = 20V, TJ = +25\u00b0C \nIRM \n5.0 \n8.0"
+    },
+    {
+      "page": 3,
+      "text": ".50\n0\n50\n100\n150\nI , AVERAGE RECTIFIED CURRENT (A)\nO\nT , LEAD TEMPERATURE ( C)\nFig. 4  Forward Current Derating Curve\nL\n\u00b0\n0.75\n1.0\n25\n75\n125\nNote 6\nFig. 2 Typical Forward Characteristics \nNote 5 \nNote 5"
+    },
+    {
+      "page": 4,
+      "text": "B0520LW \nDocument number: DS30051 Rev. 19 - 2 \n4 of 5 \nwww.diodes.com  \nDecember 2025 \n\u00a9 2025 Copyright Diodes Incorporated. All Rights Reserved. \n \nB0520LW \n \n \n \n \nPackage Outline Dimensions \nPlease see http://www.diodes.com/package-outlines.html for the latest version. \n \nSOD123 \n \n \n \n \nSOD123 \nDim \nMin \nMax \nTyp \nA \n1.00 \n1.35 \n1.05 \nA1 \n0.00 \n0.10 \n0.05 \nb \n0.52 \n0.62 \n0.57 \nc \n0.10 \n0.15 \n0.11 \nD \n1.40 \n1.70 \n1.55 \nE \n2.55 \n2.85 \n2.65 \nHe \n3.55 \n3.85 \n3.65 \nL \n0.25 \n0.40 \n0.30 \na \n0\u00ba \n8\u00ba \n-- \nAll Dimensions in mm \n \n \n \n \nSuggested Pad Layout \nPlease see http://www.diodes.com/package-outlines.html for the latest version. \n \nSOD123 \n \n \n \nDimensions Value (in mm) \nX \n0.900 \nX1 \n4.050 \n"
+    }
+  ]
+}
