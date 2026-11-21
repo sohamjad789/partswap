@@ -221,3 +221,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# PartSwap source documents and generated data
+data/datasheets/*.pdf
+data/cache/
+data/specs/extracted/
