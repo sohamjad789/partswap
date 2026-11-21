@@ -1,0 +1,28 @@
+{
+  "mpn": "TST-LDO33",
+  "manufacturer": "Test Original Co",
+  "category": "ldo",
+  "description": "Test 3.3 V 250 mA LDO, SOT-23",
+  "datasheet_filename": null,
+  "package": {"code": "SOT-23", "pins": 3, "page": 1},
+  "pinout": [
+    {"pin": 1, "name": "GND", "functions": ["ground"]},
+    {"pin": 2, "name": "VOUT", "functions": ["power_out"]},
+    {"pin": 3, "name": "VIN", "functions": ["power_in"]}
+  ],
+  "pinout_page": 1,
+  "output_type": "fixed",
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vout_v":        {"value": 3.3,     "raw": "3.3 V",  "condition": "fixed output", "page": 1, "table": "test"},
+    "vin_abs_max_v": {"value": 6.5,     "raw": "6.5 V",  "condition": "absolute maximum", "page": 2, "table": "test"},
+    "vin_max_v":     {"value": 6.0,     "raw": "6.0 V",  "condition": "operating, max", "page": 3, "table": "test"},
+    "vin_min_v":     {"value": 2.3,     "raw": "2.3 V",  "condition": "operating, min", "page": 3, "table": "test"},
+    "iout_max_a":    {"value": 0.25,    "raw": "250 mA", "condition": "maximum output current", "page": 3, "table": "test"},
+    "dropout_v":     {"value": 0.178,   "raw": "178 mV", "condition": "typ, IL = 250 mA", "page": 3, "table": "test"},
+    "iq_a":          {"value": 0.0000016, "raw": "1.6 µA", "condition": "typ, IL = 0 mA", "page": 3, "table": "test"},
+    "temp_min_c":    {"value": -40,     "raw": "-40 °C", "condition": "junction", "page": 4, "table": "test"},
+    "temp_max_c":    {"value": 125,     "raw": "125 °C", "condition": "junction", "page": 4, "table": "test"}
+  }
+}

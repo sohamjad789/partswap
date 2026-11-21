@@ -1,0 +1,24 @@
+{
+  "mpn": "TST-SCH40",
+  "manufacturer": "Test Original Co",
+  "category": "schottky",
+  "description": "Test 40 V 0.5 A Schottky, SOD-123",
+  "datasheet_filename": null,
+  "package": {"code": "SOD-123", "pins": 2, "page": 1},
+  "pinout": [
+    {"pin": 1, "name": "K", "functions": ["cathode"]},
+    {"pin": 2, "name": "A", "functions": ["anode"]}
+  ],
+  "pinout_page": 1,
+  "diode_count": 1,
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vrrm_v":     {"value": 40,      "raw": "40 V",   "condition": "peak repetitive reverse voltage", "page": 2, "table": "test"},
+    "if_avg_a":   {"value": 0.5,     "raw": "0.5 A",  "condition": "average rectified forward current", "page": 2, "table": "test"},
+    "vf_v":       {"value": 0.51,    "raw": "0.51 V", "condition": "max, IF = 0.5 A, TJ = 25 °C", "page": 2, "table": "test"},
+    "ir_a":       {"value": 0.00002, "raw": "20 µA",  "condition": "max, VR = 40 V, TJ = 25 °C", "page": 2, "table": "test"},
+    "temp_min_c": {"value": -65,     "raw": "-65 °C", "condition": "junction", "page": 2, "table": "test"},
+    "temp_max_c": {"value": 125,     "raw": "125 °C", "condition": "junction", "page": 2, "table": "test"}
+  }
+}

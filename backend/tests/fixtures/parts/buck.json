@@ -1,0 +1,31 @@
+{
+  "mpn": "TST-BUCK33",
+  "manufacturer": "Test Original Co",
+  "category": "buck",
+  "description": "Test 36 V 1 A synchronous buck, fixed 3.3 V, SOT-23-6",
+  "datasheet_filename": null,
+  "package": {"code": "SOT-23-6", "pins": 6, "page": 1},
+  "pinout": [
+    {"pin": 1, "name": "CB", "functions": ["bootstrap"]},
+    {"pin": 2, "name": "GND", "functions": ["ground"]},
+    {"pin": 3, "name": "FB", "functions": ["feedback"]},
+    {"pin": 4, "name": "EN", "functions": ["enable_active_high"]},
+    {"pin": 5, "name": "VIN", "functions": ["power_in"]},
+    {"pin": 6, "name": "SW", "functions": ["switch"]}
+  ],
+  "pinout_page": 1,
+  "output_type": "fixed",
+  "topology": "synchronous",
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vin_min_v":  {"value": 4.0,     "raw": "4 V",     "condition": "operating, min", "page": 2, "table": "test"},
+    "vin_max_v":  {"value": 36,      "raw": "36 V",    "condition": "operating, max", "page": 2, "table": "test"},
+    "vout_v":     {"value": 3.3,     "raw": "3.3 V",   "condition": "fixed output", "page": 1, "table": "test"},
+    "iout_max_a": {"value": 1.0,     "raw": "1 A",     "condition": "continuous output current", "page": 1, "table": "test"},
+    "fsw_hz":     {"value": 1100000, "raw": "1.1 MHz", "condition": "typ", "page": 3, "table": "test"},
+    "iq_a":       {"value": 0.000025, "raw": "25 µA",  "condition": "typ, non-switching", "page": 3, "table": "test"},
+    "temp_min_c": {"value": -40,     "raw": "-40 °C",  "condition": "junction", "page": 2, "table": "test"},
+    "temp_max_c": {"value": 125,     "raw": "125 °C",  "condition": "junction", "page": 2, "table": "test"}
+  }
+}

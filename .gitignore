@@ -229,3 +229,4 @@ data/datasheets/*.pdf
 data/cache/
 data/specs/extracted/
 docs/*.mp4
+!backend/tests/fixtures/parts/

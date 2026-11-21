@@ -1,0 +1,26 @@
+{
+  "mpn": "TST-NFET60",
+  "manufacturer": "Test Original Co",
+  "category": "mosfet",
+  "description": "Test 60 V N-channel MOSFET, SOT-23",
+  "datasheet_filename": null,
+  "package": {"code": "SOT-23", "pins": 3, "page": 1},
+  "pinout": [
+    {"pin": 1, "name": "G", "functions": ["gate"]},
+    {"pin": 2, "name": "S", "functions": ["source"]},
+    {"pin": 3, "name": "D", "functions": ["drain"]}
+  ],
+  "pinout_page": 1,
+  "polarity": "n",
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vds_max_v":    {"value": 60,   "raw": "60 V",    "condition": "drain-source voltage", "page": 2, "table": "test"},
+    "id_max_a":     {"value": 0.2,  "raw": "200 mA",  "condition": "continuous drain current, TA = 25 °C", "page": 2, "table": "test"},
+    "vgs_max_v":    {"value": 20,   "raw": "±20 V",   "condition": "gate-source voltage", "page": 2, "table": "test"},
+    "vgs_th_max_v": {"value": 2.5,  "raw": "2.5 V",   "condition": "max, ID = 250 µA", "page": 3, "table": "test"},
+    "rds_on_ohm":   {"value": 2.0,  "raw": "2.0 Ω",   "condition": "max, VGS = 4.5 V", "page": 3, "table": "test"},
+    "temp_min_c":   {"value": -55,  "raw": "-55 °C",  "condition": "junction", "page": 2, "table": "test"},
+    "temp_max_c":   {"value": 150,  "raw": "150 °C",  "condition": "junction", "page": 2, "table": "test"}
+  }
+}

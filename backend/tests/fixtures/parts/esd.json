@@ -1,0 +1,25 @@
+{
+  "mpn": "TST-ESD5",
+  "manufacturer": "Test Original Co",
+  "category": "esd",
+  "description": "Test 5 V unidirectional ESD diode, SOD-323",
+  "datasheet_filename": null,
+  "package": {"code": "SOD-323", "pins": 2, "page": 1},
+  "pinout": [
+    {"pin": 1, "name": "K", "functions": ["cathode"]},
+    {"pin": 2, "name": "A", "functions": ["anode"]}
+  ],
+  "pinout_page": 1,
+  "polarity": "unidirectional",
+  "channel_count": 1,
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vrwm_v":         {"value": 5,   "raw": "5 V",    "condition": "reverse working voltage", "page": 2, "table": "test"},
+    "esd_contact_kv": {"value": 8,   "raw": "±8 kV",  "condition": "IEC 61000-4-2 contact", "page": 1, "table": "test"},
+    "vc_v":           {"value": 14,  "raw": "14 V",   "condition": "IPP = 1 A, tp = 8/20 µs", "page": 2, "table": "test"},
+    "c_pf":           {"value": 35,  "raw": "35 pF",  "condition": "VR = 0 V, f = 1 MHz", "page": 2, "table": "test"},
+    "temp_min_c":     {"value": -55, "raw": "-55 °C", "condition": "junction", "page": 2, "table": "test"},
+    "temp_max_c":     {"value": 150, "raw": "150 °C", "condition": "junction", "page": 2, "table": "test"}
+  }
+}
