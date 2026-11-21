@@ -181,10 +181,10 @@ export default function App() {
   return (
     <div className="app">
       <header className="topbar">
-        <div className="brand">
-          <span className="logo"><Icon name="logo" size={20} /></span>
-          <div><h1>PartSwap</h1><p>BOM cross-reference intelligence</p></div>
-        </div>
+        <h1 className="brand">
+          <span className="wordmark">PartSwap</span>
+          <span className="tagline">: BOM cross-reference intelligence</span>
+        </h1>
         <div className="topbar-center">{status}</div>
         <div className="topbar-right">
           <span className="pill mode-pill" title={modeInfo[mode].hint}><Icon name="layers" size={14} />{modeInfo[mode].label}</span>
