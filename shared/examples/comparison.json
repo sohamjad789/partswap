@@ -1,0 +1,18 @@
+{
+  "original_mpn": "MBR0540T1G",
+  "candidate_mpn": "B0520LW-7-F",
+  "category": "schottky",
+  "checks": [
+    {
+      "spec": "vrrm_v",
+      "result": "fail",
+      "on_fail": "no_safe_match",
+      "requirement": ">= 32 V (line requirement)",
+      "original": {"value": 40, "raw": "40 V", "condition": "peak repetitive reverse voltage", "page": 1},
+      "candidate": {"value": 20, "raw": "20 V", "condition": "peak repetitive reverse voltage", "page": 2},
+      "reason": "candidate 20 V is below the required 32 V"
+    }
+  ],
+  "suggested_verdict": "no_safe_match",
+  "headline_match": true
+}

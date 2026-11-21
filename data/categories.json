@@ -1,0 +1,55 @@
+{
+  "ldo": {"checks": [
+    {"key": "output_type",   "where": "root",  "rule": "enum_equal",      "on_fail": "needs_redesign", "on_unknown": "no_safe_match"},
+    {"key": "vout_v",        "where": "specs", "rule": "relative_match",  "tolerance": 0.02, "required_from": "req_vout_v", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "vin_abs_max_v", "where": "specs", "rule": "candidate_gte",   "required_from": "req_vin_max_v", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "vin_max_v",     "where": "specs", "rule": "candidate_gte",   "required_from": "req_vin_max_v", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "vin_min_v",     "where": "specs", "rule": "candidate_lte",   "required_from": "req_headroom_vin_v", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "iout_max_a",    "where": "specs", "rule": "candidate_gte",   "required_from": "req_iout_a", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "dropout_v",     "where": "specs", "rule": "dropout_fits",    "caveat_abs": 0.05, "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "iq_a",          "where": "specs", "rule": "not_worse_ratio", "ratio": 2.0, "on_unknown": "caveat"},
+    {"key": "temp_min_c",    "where": "specs", "rule": "candidate_lte",   "required_from": "req_temp_min_c", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "temp_max_c",    "where": "specs", "rule": "candidate_gte",   "required_from": "req_temp_max_c", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"}
+  ]},
+  "buck": {"checks": [
+    {"key": "output_type",   "where": "root",  "rule": "enum_equal",      "on_fail": "needs_redesign", "on_unknown": "no_safe_match"},
+    {"key": "topology",      "where": "root",  "rule": "enum_equal",      "on_fail": "needs_redesign", "on_unknown": "no_safe_match"},
+    {"key": "vin_min_v",     "where": "specs", "rule": "candidate_lte",   "required_from": "input_voltage_v", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "vin_max_v",     "where": "specs", "rule": "candidate_gte",   "required_from": "req_vin_max_v", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "vout_v",        "where": "specs", "rule": "relative_match",  "tolerance": 0.02, "required_from": "req_vout_v", "only_when_output_type": "fixed", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "iout_max_a",    "where": "specs", "rule": "candidate_gte",   "required_from": "req_iout_a", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "fsw_hz",        "where": "specs", "rule": "within_ratio",    "ratio": 2.0, "on_unknown": "caveat"},
+    {"key": "iq_a",          "where": "specs", "rule": "not_worse_ratio", "ratio": 2.0, "on_unknown": "caveat"},
+    {"key": "temp_min_c",    "where": "specs", "rule": "candidate_lte",   "required_from": "req_temp_min_c", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "temp_max_c",    "where": "specs", "rule": "candidate_gte",   "required_from": "req_temp_max_c", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"}
+  ]},
+  "schottky": {"checks": [
+    {"key": "diode_count",   "where": "root",  "rule": "enum_equal",      "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "vrrm_v",        "where": "specs", "rule": "candidate_gte",   "required_from": "req_vrrm_v", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "if_avg_a",      "where": "specs", "rule": "candidate_gte",   "required_from": "req_iout_a", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "vf_v",          "where": "specs", "rule": "worse_by_abs",    "caveat_abs": 0.1, "on_unknown": "caveat"},
+    {"key": "ir_a",          "where": "specs", "rule": "not_worse_ratio", "ratio": 5.0, "on_unknown": "caveat"},
+    {"key": "temp_min_c",    "where": "specs", "rule": "candidate_lte",   "required_from": "req_temp_min_c", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "temp_max_c",    "where": "specs", "rule": "candidate_gte",   "required_from": "req_temp_max_c", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"}
+  ]},
+  "mosfet": {"checks": [
+    {"key": "polarity",      "where": "root",  "rule": "enum_equal",      "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "vds_max_v",     "where": "specs", "rule": "candidate_gte",   "required_from": "req_vds_v", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "id_max_a",      "where": "specs", "rule": "candidate_gte",   "required_from": "req_iout_a", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "vgs_max_v",     "where": "specs", "rule": "candidate_gte",   "required_from": null, "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "vgs_th_max_v",  "where": "specs", "rule": "vgs_th_drive",    "required_from": "req_vgs_v", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "rds_on_ohm",    "where": "specs", "rule": "rds_on",          "caveat_ratio": 1.5, "fail_ratio": 3.0, "on_fail": "no_safe_match", "on_unknown": "caveat"},
+    {"key": "temp_min_c",    "where": "specs", "rule": "candidate_lte",   "required_from": "req_temp_min_c", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "temp_max_c",    "where": "specs", "rule": "candidate_gte",   "required_from": "req_temp_max_c", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"}
+  ]},
+  "esd": {"checks": [
+    {"key": "polarity",       "where": "root",  "rule": "enum_equal",      "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "channel_count",  "where": "root",  "rule": "candidate_gte",   "required_from": null, "on_fail": "needs_redesign", "on_unknown": "no_safe_match"},
+    {"key": "vrwm_v",         "where": "specs", "rule": "candidate_gte",   "required_from": "req_vrwm_v", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "esd_contact_kv", "where": "specs", "rule": "candidate_gte",   "required_from": "req_esd_contact_kv", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "vc_v",           "where": "specs", "rule": "not_worse_ratio", "ratio": 1.2, "on_unknown": "caveat"},
+    {"key": "c_pf",           "where": "specs", "rule": "esd_c",           "required_from": "req_c_max_pf", "on_fail": "no_safe_match", "on_unknown": "caveat"},
+    {"key": "temp_min_c",     "where": "specs", "rule": "candidate_lte",   "required_from": "req_temp_min_c", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"},
+    {"key": "temp_max_c",     "where": "specs", "rule": "candidate_gte",   "required_from": "req_temp_max_c", "on_fail": "no_safe_match", "on_unknown": "no_safe_match"}
+  ]}
+}

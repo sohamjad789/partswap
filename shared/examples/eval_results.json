@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-11-21T18:30:00-06:00",
+  "pair_count": 20,
+  "dangerous_count": 14,
+  "prompt_version": "v1",
+  "approaches": [
+    {"name": "naive_baseline", "accuracy": 0.0, "false_drop_in_count": 0, "model_false_drop_in_count": null,
+     "tightened_count": null, "fallback_count": null, "median_latency_ms": 0}
+  ],
+  "per_pair": [{"id": "A1-schottky-vrrm-20", "expected": "no_safe_match",
+                "naive_baseline": "drop_in", "partswap_rules": "no_safe_match"}]
+}

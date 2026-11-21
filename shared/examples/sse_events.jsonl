@@ -1,0 +1,11 @@
+{"event": "run_started", "data": {"run_id": "run-20261121-1400-a1b2", "part_count": 2, "mode": "live"}}
+{"event": "part_started", "data": {"ref": "D1", "mpn": "MBR0540T1G", "index": 0}}
+{"event": "agent_step", "data": {"ref": "D1", "step": 1, "kind": "reasoning", "text": "The line blocks reverse polarity on a 24 V input that can reach 32 V, so Vrrm must be at least 32 V. Search the catalog first."}}
+{"event": "agent_step", "data": {"ref": "D1", "step": 2, "kind": "tool_call", "tool": "compare_specs", "arguments": {"original_mpn": "MBR0540T1G", "candidate_mpn": "B0520LW-7-F", "ref": "D1"}}}
+{"event": "agent_step", "data": {"ref": "D1", "step": 3, "kind": "tool_result", "tool": "compare_specs", "summary": "B0520LW-7-F: no_safe_match; 1 fail, 1 caveat"}}
+{"event": "agent_step", "data": {"ref": "D1", "step": 4, "kind": "guardrail", "text": "Verdict tightened by deterministic check: vrrm_v: candidate 20 V is below the required 32 V"}}
+{"event": "agent_step", "data": {"ref": "D1", "step": 5, "kind": "error", "text": "unknown_candidate: ZZZ-1 was not in this line's search results"}}
+{"event": "part_error", "data": {"ref": "D1", "message": "Model turn budget exceeded; using the deterministic decision.", "fallback": true}}
+{"event": "part_decision", "data": {"ref": "D1", "original_mpn": "MBR0540T1G", "original_manufacturer": "onsemi", "recommended_mpn": "B0540W-7-F", "recommended_manufacturer": "Diodes Incorporated", "compared_mpn": "B0540W-7-F", "verdict": "drop_in", "model_verdict": null, "tightened": false, "confidence": null, "source": "deterministic_fallback", "model": null, "spec_checks": [], "package_pinout": {"package_result": "pass", "pinout_result": "pass", "detail": "Same SOD-123 package and pin functions."}, "caveats": [], "explanation": "Drop-in: B0540W-7-F.", "rejected": [{"mpn": "B0520LW-7-F", "manufacturer": "Diodes Incorporated", "verdict": "no_safe_match", "reason": "vrrm_v: candidate 20 V is below the required 32 V", "headline_match": true}], "candidates_considered": ["B0520LW-7-F", "B0540W-7-F"]}}
+{"event": "run_completed", "data": {"run_id": "run-20261121-1400-a1b2", "elapsed_ms": 48210}}
+{"event": "error", "data": {"message": "NVIDIA_API_KEY is not set"}}

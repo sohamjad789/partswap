@@ -1,0 +1,23 @@
+{
+  "ref": "D1",
+  "original_mpn": "MBR0540T1G",
+  "original_manufacturer": "onsemi",
+  "recommended_mpn": "B0540W-7-F",
+  "recommended_manufacturer": "Diodes Incorporated",
+  "compared_mpn": "B0540W-7-F",
+  "verdict": "drop_in",
+  "model_verdict": "drop_in",
+  "tightened": false,
+  "confidence": 0.9,
+  "source": "model",
+  "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+  "spec_checks": [],
+  "package_pinout": {"package_result": "pass", "pinout_result": "pass", "detail": "Same SOD-123 package and pin functions."},
+  "caveats": [],
+  "explanation": "B0540W-7-F matches the 40 V / 0.5 A rating in the same SOD-123 package (datasheet p.2). B0520LW-7-F and B0530W-7-F share the package and current rating but block only 20 V and 30 V, below the 32 V this input can reach.",
+  "rejected": [
+    {"mpn": "B0520LW-7-F", "manufacturer": "Diodes Incorporated", "verdict": "no_safe_match", "reason": "vrrm_v: candidate 20 V is below the required 32 V", "headline_match": true},
+    {"mpn": "B0530W-7-F", "manufacturer": "Diodes Incorporated", "verdict": "no_safe_match", "reason": "vrrm_v: candidate 30 V is below the required 32 V", "headline_match": true}
+  ],
+  "candidates_considered": ["B0520LW-7-F", "B0530W-7-F", "B0540W-7-F"]
+}
