@@ -1,0 +1,110 @@
+{
+  "mpn": "MCP1700-3302E/TT",
+  "manufacturer": "Microchip Technology",
+  "category": "ldo",
+  "description": "3.3 V 250 mA low quiescent current LDO, SOT-23",
+  "datasheet_filename": "MCP1700.pdf",
+  "package": {
+    "code": "SOT-23-3",
+    "pins": 3,
+    "page": 1
+  },
+  "pinout": [
+    {
+      "pin": 1,
+      "name": "GND",
+      "functions": [
+        "ground"
+      ]
+    },
+    {
+      "pin": 2,
+      "name": "VOUT",
+      "functions": [
+        "power_out"
+      ]
+    },
+    {
+      "pin": 3,
+      "name": "VIN",
+      "functions": [
+        "power_in"
+      ]
+    }
+  ],
+  "pinout_page": 1,
+  "polarity": null,
+  "diode_count": null,
+  "channel_count": null,
+  "topology": null,
+  "output_type": "fixed",
+  "unit_price_usd": null,
+  "lead_time_weeks": null,
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vout_v": {
+      "value": 3.3,
+      "raw": "3.3 V",
+      "condition": "MCP1700-3302E/TT fixed output option",
+      "page": 18,
+      "table": "SOT-23 Package Ordering Information"
+    },
+    "vin_abs_max_v": {
+      "value": 6.5,
+      "raw": "+6.5 V",
+      "condition": "absolute maximum VIN rating; stress rating, not an operating condition",
+      "page": 3,
+      "table": "Absolute Maximum Ratings"
+    },
+    "vin_max_v": {
+      "value": 6.0,
+      "raw": "6.0 V",
+      "condition": "input operating voltage maximum",
+      "page": 3,
+      "table": "DC Characteristics"
+    },
+    "vin_min_v": {
+      "value": 2.3,
+      "raw": "2.3 V",
+      "condition": "input operating voltage minimum",
+      "page": 3,
+      "table": "DC Characteristics"
+    },
+    "iout_max_a": {
+      "value": 0.25,
+      "raw": "250 mA",
+      "condition": "maximum output current for VR ≥ 2.5 V (3.3 V output option)",
+      "page": 3,
+      "table": "DC Characteristics"
+    },
+    "dropout_v": {
+      "value": 0.35,
+      "raw": "350 mV max",
+      "condition": "max, IL = 250 mA, VR > 2.5 V",
+      "page": 3,
+      "table": "DC Characteristics"
+    },
+    "iq_a": {
+      "value": 1.6e-06,
+      "raw": "1.6 µA typ",
+      "condition": "typ, IL = 0 mA, VIN = VR + 1 V",
+      "page": 3,
+      "table": "DC Characteristics"
+    },
+    "temp_min_c": {
+      "value": -40,
+      "raw": "-40 °C",
+      "condition": "operating junction temperature minimum",
+      "page": 3,
+      "table": "Absolute Maximum Ratings"
+    },
+    "temp_max_c": {
+      "value": 125,
+      "raw": "+125 °C",
+      "condition": "operating junction temperature maximum",
+      "page": 3,
+      "table": "Absolute Maximum Ratings"
+    }
+  }
+}

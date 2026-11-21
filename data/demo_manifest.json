@@ -1,0 +1,53 @@
+{
+  "design_context": {
+    "input_voltage_v": 24,
+    "input_voltage_max_v": 32,
+    "operating_temp_min_c": -40,
+    "operating_temp_max_c": 85,
+    "preferred_manufacturer": "Diodes Incorporated",
+    "goal": "lowest_risk"
+  },
+  "lines": [
+    {
+      "ref": "D1",
+      "original_mpn": "MBR0540T1G",
+      "expected_recommended_mpn": "B0540W-7-F",
+      "expected_verdict": "drop_in",
+      "candidates": [
+        {
+          "mpn": "B0540W-7-F",
+          "expected_pair_verdict": "drop_in",
+          "headline_match": true
+        },
+        {
+          "mpn": "B0530W-7-F",
+          "expected_pair_verdict": "no_safe_match",
+          "headline_match": true
+        },
+        {
+          "mpn": "B0520LW-7-F",
+          "expected_pair_verdict": "no_safe_match",
+          "headline_match": true
+        }
+      ]
+    },
+    {
+      "ref": "U2",
+      "original_mpn": "MCP1700-3302E/TT",
+      "expected_recommended_mpn": "AP7333-33SRG-7",
+      "expected_verdict": "drop_in_with_caveats",
+      "candidates": [
+        {
+          "mpn": "AP7333-33SRG-7",
+          "expected_pair_verdict": "drop_in_with_caveats",
+          "headline_match": true
+        },
+        {
+          "mpn": "AP7333-33SAG-7",
+          "expected_pair_verdict": "needs_redesign",
+          "headline_match": true
+        }
+      ]
+    }
+  ]
+}

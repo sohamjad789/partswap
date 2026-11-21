@@ -1,0 +1,110 @@
+{
+  "mpn": "AP7333-33SRG-7",
+  "manufacturer": "Diodes Incorporated",
+  "category": "ldo",
+  "description": "3.3 V 300 mA fixed LDO, AP7333 SR package variant",
+  "datasheet_filename": "AP7333.pdf",
+  "package": {
+    "code": "SOT-23-3",
+    "pins": 3,
+    "page": 2
+  },
+  "pinout": [
+    {
+      "pin": 1,
+      "name": "GND",
+      "functions": [
+        "ground"
+      ]
+    },
+    {
+      "pin": 2,
+      "name": "OUT",
+      "functions": [
+        "power_out"
+      ]
+    },
+    {
+      "pin": 3,
+      "name": "IN",
+      "functions": [
+        "power_in"
+      ]
+    }
+  ],
+  "pinout_page": 2,
+  "polarity": null,
+  "diode_count": null,
+  "channel_count": null,
+  "topology": null,
+  "output_type": "fixed",
+  "unit_price_usd": null,
+  "lead_time_weeks": null,
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vout_v": {
+      "value": 3.3,
+      "raw": "3.3 V",
+      "condition": "fixed output code 33",
+      "page": 2,
+      "table": "Ordering Information"
+    },
+    "vin_abs_max_v": {
+      "value": 7.0,
+      "raw": "7 V",
+      "condition": "absolute maximum input voltage; stress rating",
+      "page": 4,
+      "table": "Absolute Maximum Ratings"
+    },
+    "vin_max_v": {
+      "value": 6.0,
+      "raw": "6 V",
+      "condition": "recommended operating input voltage maximum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    },
+    "vin_min_v": {
+      "value": 2.0,
+      "raw": "2 V",
+      "condition": "recommended operating input voltage minimum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    },
+    "iout_max_a": {
+      "value": 0.3,
+      "raw": "300 mA",
+      "condition": "recommended operating output current maximum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    },
+    "dropout_v": {
+      "value": 0.55,
+      "raw": "550 mV max",
+      "condition": "max, IOUT = 300 mA; dropout is the VIN − VOUT differential at 2% output drop",
+      "page": 5,
+      "table": "Electrical Characteristics"
+    },
+    "iq_a": {
+      "value": 5.5e-05,
+      "raw": "55 µA typ",
+      "condition": "typ, IOUT = 0 mA",
+      "page": 5,
+      "table": "Electrical Characteristics"
+    },
+    "temp_min_c": {
+      "value": -40,
+      "raw": "-40 °C",
+      "condition": "recommended operating ambient temperature minimum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    },
+    "temp_max_c": {
+      "value": 85,
+      "raw": "+85 °C",
+      "condition": "recommended operating ambient temperature maximum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    }
+  }
+}

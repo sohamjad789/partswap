@@ -1,0 +1,51 @@
+[
+  {
+    "mpn": "MCP1700-3302E/TT",
+    "manufacturer": "Microchip Technology",
+    "category": "ldo",
+    "description": "3.3 V 250 mA low quiescent current LDO, SOT-23",
+    "spec_file": "specs/MCP1700-3302E_TT.json"
+  },
+  {
+    "mpn": "MBR0540T1G",
+    "manufacturer": "onsemi",
+    "category": "schottky",
+    "description": "40 V 0.5 A Schottky power rectifier, SOD-123",
+    "spec_file": "specs/MBR0540T1G.json"
+  },
+  {
+    "mpn": "B0520LW-7-F",
+    "manufacturer": "Diodes Incorporated",
+    "category": "schottky",
+    "description": "20 V 0.5 A Schottky barrier rectifier, SOD-123",
+    "spec_file": "specs/B0520LW-7-F.json"
+  },
+  {
+    "mpn": "B0530W-7-F",
+    "manufacturer": "Diodes Incorporated",
+    "category": "schottky",
+    "description": "30 V 0.5 A Schottky barrier rectifier, SOD-123",
+    "spec_file": "specs/B0530W-7-F.json"
+  },
+  {
+    "mpn": "B0540W-7-F",
+    "manufacturer": "Diodes Incorporated",
+    "category": "schottky",
+    "description": "40 V 0.5 A Schottky barrier rectifier, SOD-123",
+    "spec_file": "specs/B0540W-7-F.json"
+  },
+  {
+    "mpn": "AP7333-33SRG-7",
+    "manufacturer": "Diodes Incorporated",
+    "category": "ldo",
+    "description": "3.3 V 300 mA fixed LDO, AP7333 SR package variant",
+    "spec_file": "specs/AP7333-33SRG-7.json"
+  },
+  {
+    "mpn": "AP7333-33SAG-7",
+    "manufacturer": "Diodes Incorporated",
+    "category": "ldo",
+    "description": "3.3 V 300 mA fixed LDO, AP7333 SA package variant",
+    "spec_file": "specs/AP7333-33SAG-7.json"
+  }
+]

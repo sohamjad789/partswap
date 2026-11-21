@@ -1,0 +1,82 @@
+{
+  "mpn": "B0540W-7-F",
+  "manufacturer": "Diodes Incorporated",
+  "category": "schottky",
+  "description": "40 V 0.5 A Schottky barrier rectifier, SOD-123",
+  "datasheet_filename": "B0540W.pdf",
+  "package": {
+    "code": "SOD-123",
+    "pins": 2,
+    "page": 1
+  },
+  "pinout": [
+    {
+      "pin": 1,
+      "name": "K",
+      "functions": [
+        "cathode"
+      ]
+    },
+    {
+      "pin": 2,
+      "name": "A",
+      "functions": [
+        "anode"
+      ]
+    }
+  ],
+  "pinout_page": 1,
+  "polarity": null,
+  "diode_count": 1,
+  "channel_count": null,
+  "topology": null,
+  "output_type": null,
+  "unit_price_usd": null,
+  "lead_time_weeks": null,
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vrrm_v": {
+      "value": 40,
+      "raw": "40 V",
+      "condition": "peak repetitive reverse voltage",
+      "page": 2,
+      "table": "Maximum Ratings"
+    },
+    "if_avg_a": {
+      "value": 0.5,
+      "raw": "0.5 A",
+      "condition": "average rectified output current",
+      "page": 2,
+      "table": "Maximum Ratings"
+    },
+    "vf_v": {
+      "value": 0.51,
+      "raw": "0.510 V",
+      "condition": "max, IF = 0.5 A, TJ = +25 °C",
+      "page": 2,
+      "table": "Electrical Characteristics"
+    },
+    "ir_a": {
+      "value": 2e-05,
+      "raw": "20 µA",
+      "condition": "max, VR = 40 V, TJ = +25 °C",
+      "page": 2,
+      "table": "Electrical Characteristics"
+    },
+    "temp_min_c": {
+      "value": -65,
+      "raw": "-65 °C",
+      "condition": "operating junction temperature minimum (TJ)",
+      "page": 2,
+      "table": "Thermal Characteristics"
+    },
+    "temp_max_c": {
+      "value": 150,
+      "raw": "+150 °C",
+      "condition": "operating junction temperature maximum (TJ)",
+      "page": 2,
+      "table": "Thermal Characteristics"
+    }
+  }
+}
