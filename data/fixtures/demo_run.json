@@ -1,11 +1,11 @@
 {
-  "run_id": "fixture-starter",
-  "mode": "fixture",
+  "run_id": "run-0fc23ebbadd3",
+  "mode": "deterministic",
   "design_context": {
     "input_voltage_v": 24.0,
     "input_voltage_max_v": 32.0,
-    "operating_temp_min_c": -40,
-    "operating_temp_max_c": 85,
+    "operating_temp_min_c": -40.0,
+    "operating_temp_max_c": 85.0,
     "preferred_manufacturer": "Diodes Incorporated",
     "goal": "lowest_risk"
   },
@@ -13,9 +13,9 @@
     {
       "event": "run_started",
       "data": {
-        "run_id": "fixture-starter",
-        "part_count": 3,
-        "mode": "fixture"
+        "run_id": "run-0fc23ebbadd3",
+        "part_count": 2,
+        "mode": "deterministic"
       }
     },
     {
@@ -31,15 +31,6 @@
       "data": {
         "ref": "D1",
         "step": 1,
-        "kind": "reasoning",
-        "text": "Reverse-polarity Schottky on a 24 V input that can reach 32 V: Vrrm must be at least 32 V and IF at least 0.5 A. Start with the catalog search."
-      }
-    },
-    {
-      "event": "agent_step",
-      "data": {
-        "ref": "D1",
-        "step": 2,
         "kind": "tool_call",
         "tool": "search_candidates",
         "arguments": {
@@ -53,7 +44,7 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 3,
+        "step": 2,
         "kind": "tool_result",
         "tool": "search_candidates",
         "summary": "3 candidates: B0520LW-7-F, B0530W-7-F, B0540W-7-F"
@@ -63,7 +54,7 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 4,
+        "step": 3,
         "kind": "tool_call",
         "tool": "compare_specs",
         "arguments": {
@@ -77,7 +68,7 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 5,
+        "step": 4,
         "kind": "tool_result",
         "tool": "compare_specs",
         "summary": "B0520LW-7-F: no_safe_match; 1 fail, 1 caveat"
@@ -87,7 +78,7 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 6,
+        "step": 5,
         "kind": "tool_call",
         "tool": "compare_specs",
         "arguments": {
@@ -101,7 +92,7 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 7,
+        "step": 6,
         "kind": "tool_result",
         "tool": "compare_specs",
         "summary": "B0530W-7-F: no_safe_match; 1 fail, 1 caveat"
@@ -111,7 +102,7 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 8,
+        "step": 7,
         "kind": "tool_call",
         "tool": "compare_specs",
         "arguments": {
@@ -125,46 +116,10 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 9,
+        "step": 8,
         "kind": "tool_result",
         "tool": "compare_specs",
         "summary": "B0540W-7-F: drop_in; 0 fail, 0 caveat"
-      }
-    },
-    {
-      "event": "agent_step",
-      "data": {
-        "ref": "D1",
-        "step": 10,
-        "kind": "reasoning",
-        "text": "B0520LW-7-F and B0530W-7-F match package and current but block only 20 V and 30 V. B0540W-7-F passes every check; its leakage and Vf are specified at 25 °C, same as the original."
-      }
-    },
-    {
-      "event": "agent_step",
-      "data": {
-        "ref": "D1",
-        "step": 11,
-        "kind": "tool_call",
-        "tool": "record_decision",
-        "arguments": {
-          "ref": "D1",
-          "candidate_mpn": "B0540W-7-F",
-          "verdict": "drop_in",
-          "confidence": 0.9,
-          "caveats": [],
-          "explanation": "B0540W-7-F matches the 40 V / 0.5 A rating in the same SOD-123 package (datasheet p.2). B0520LW-7-F and B0530W-7-F share the package and current rating but block only 20 V and 30 V, below the 32 V this input can reach."
-        }
-      }
-    },
-    {
-      "event": "agent_step",
-      "data": {
-        "ref": "D1",
-        "step": 12,
-        "kind": "tool_result",
-        "tool": "record_decision",
-        "summary": "B0540W-7-F: drop_in recorded"
       }
     },
     {
@@ -177,11 +132,11 @@
         "recommended_manufacturer": "Diodes Incorporated",
         "compared_mpn": "B0540W-7-F",
         "verdict": "drop_in",
-        "model_verdict": "drop_in",
+        "model_verdict": null,
         "tightened": false,
-        "confidence": 0.9,
-        "source": "model",
-        "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+        "confidence": null,
+        "source": "deterministic",
+        "model": null,
         "spec_checks": [
           {
             "spec": "diode_count",
@@ -190,18 +145,18 @@
             "on_unknown": "no_safe_match",
             "requirement": "equal to original (1)",
             "original": {
-              "value": 1,
+              "value": 1.0,
               "raw": "1",
-              "condition": "single diode",
-              "page": 1
+              "condition": null,
+              "page": null
             },
             "candidate": {
-              "value": 1,
+              "value": 1.0,
               "raw": "1",
-              "condition": "single diode",
-              "page": 1
+              "condition": null,
+              "page": null
             },
-            "reason": "both single diodes"
+            "reason": "both 1"
           },
           {
             "spec": "vrrm_v",
@@ -210,13 +165,13 @@
             "on_unknown": "no_safe_match",
             "requirement": ">= 32 V (line requirement)",
             "original": {
-              "value": 40,
+              "value": 40.0,
               "raw": "40 V",
               "condition": "peak repetitive reverse voltage",
-              "page": 1
+              "page": 2
             },
             "candidate": {
-              "value": 40,
+              "value": 40.0,
               "raw": "40 V",
               "condition": "peak repetitive reverse voltage",
               "page": 2
@@ -228,12 +183,12 @@
             "result": "pass",
             "on_fail": "no_safe_match",
             "on_unknown": "no_safe_match",
-            "requirement": ">= 0.5 A (line requirement)",
+            "requirement": ">= 500 mA (line requirement)",
             "original": {
               "value": 0.5,
               "raw": "0.5 A",
-              "condition": "average rectified forward current",
-              "page": 1
+              "condition": "average rectified output current",
+              "page": 2
             },
             "candidate": {
               "value": 0.5,
@@ -241,42 +196,44 @@
               "condition": "average rectified output current",
               "page": 2
             },
-            "reason": "candidate 0.5 A meets the required 0.5 A"
+            "reason": "candidate 0.5 A meets the required 500 mA"
           },
           {
             "spec": "vf_v",
             "result": "pass",
+            "on_fail": null,
             "on_unknown": "caveat",
-            "requirement": "<= 0.61 V (original + 0.1 V)",
+            "requirement": "<= 610 mV (original + 100 mV)",
             "original": {
-              "value": 0.51,
-              "raw": "0.51 V",
-              "condition": "max, IF = 0.5 A, TJ = 25 °C",
-              "page": 1
-            },
-            "candidate": {
               "value": 0.51,
               "raw": "0.510 V",
               "condition": "max, IF = 0.5 A, TJ = 25 °C",
               "page": 2
             },
-            "reason": "candidate 0.510 V is within 0.1 V of the original 0.51 V"
+            "candidate": {
+              "value": 0.51,
+              "raw": "0.510 V",
+              "condition": "max, IF = 0.5 A, TJ = +25 °C",
+              "page": 2
+            },
+            "reason": "candidate 0.510 V is within 100 mV of the original 0.510 V"
           },
           {
             "spec": "ir_a",
             "result": "pass",
+            "on_fail": null,
             "on_unknown": "caveat",
             "requirement": "<= 100 µA (5 x original)",
             "original": {
-              "value": 2e-05,
+              "value": 0.00002,
               "raw": "20 µA",
               "condition": "max, VR = 40 V, TJ = 25 °C",
-              "page": 1
+              "page": 2
             },
             "candidate": {
-              "value": 1.9999999999999998e-05,
+              "value": 0.00002,
               "raw": "20 µA",
-              "condition": "max, VR = 40 V, TJ = 25 °C",
+              "condition": "max, VR = 40 V, TJ = +25 °C",
               "page": 2
             },
             "reason": "candidate 20 µA is within 5x the original 20 µA"
@@ -286,40 +243,40 @@
             "result": "pass",
             "on_fail": "no_safe_match",
             "on_unknown": "no_safe_match",
-            "requirement": "<= -40 °C (design context)",
+            "requirement": "<= -40 °C (operating range)",
             "original": {
-              "value": -65,
-              "raw": "-65 °C",
-              "condition": "junction",
-              "page": 1
-            },
-            "candidate": {
-              "value": -65,
-              "raw": "-65 °C",
-              "condition": "junction",
+              "value": -55.0,
+              "raw": "-55 °C",
+              "condition": "operating junction temperature minimum (TJ)",
               "page": 2
             },
-            "reason": "candidate -65 °C covers -40 °C"
+            "candidate": {
+              "value": -65.0,
+              "raw": "-65 °C",
+              "condition": "operating junction temperature minimum (TJ)",
+              "page": 2
+            },
+            "reason": "candidate -65 °C meets the required -40 °C"
           },
           {
             "spec": "temp_max_c",
             "result": "pass",
             "on_fail": "no_safe_match",
             "on_unknown": "no_safe_match",
-            "requirement": ">= 85 °C (design context)",
+            "requirement": ">= 85 °C (operating range)",
             "original": {
-              "value": 125,
-              "raw": "+125 °C",
-              "condition": "junction",
-              "page": 1
-            },
-            "candidate": {
-              "value": 150,
+              "value": 150.0,
               "raw": "+150 °C",
-              "condition": "junction",
+              "condition": "operating junction temperature maximum (TJ)",
               "page": 2
             },
-            "reason": "candidate +150 °C covers 85 °C"
+            "candidate": {
+              "value": 150.0,
+              "raw": "+150 °C",
+              "condition": "operating junction temperature maximum (TJ)",
+              "page": 2
+            },
+            "reason": "candidate +150 °C meets the required 85 °C"
           },
           {
             "spec": "package",
@@ -368,7 +325,7 @@
           "detail": "Same SOD-123 package and pin functions."
         },
         "caveats": [],
-        "explanation": "B0540W-7-F matches the 40 V / 0.5 A rating in the same SOD-123 package (datasheet p.2). B0520LW-7-F and B0530W-7-F share the package and current rating but block only 20 V and 30 V, below the 32 V this input can reach.",
+        "explanation": "Drop-in: B0540W-7-F.",
         "rejected": [
           {
             "mpn": "B0520LW-7-F",
@@ -405,15 +362,6 @@
       "data": {
         "ref": "U2",
         "step": 1,
-        "kind": "reasoning",
-        "text": "3.3 V LDO behind the 5 V rail at 150 mA: 1.7 V of headroom. Pin order on SOT-23 LDOs varies by suffix, so the pinout check matters."
-      }
-    },
-    {
-      "event": "agent_step",
-      "data": {
-        "ref": "U2",
-        "step": 2,
         "kind": "tool_call",
         "tool": "search_candidates",
         "arguments": {
@@ -427,7 +375,7 @@
       "event": "agent_step",
       "data": {
         "ref": "U2",
-        "step": 3,
+        "step": 2,
         "kind": "tool_result",
         "tool": "search_candidates",
         "summary": "2 candidates: AP7333-33SAG-7, AP7333-33SRG-7"
@@ -437,7 +385,7 @@
       "event": "agent_step",
       "data": {
         "ref": "U2",
-        "step": 4,
+        "step": 3,
         "kind": "tool_call",
         "tool": "compare_specs",
         "arguments": {
@@ -451,7 +399,7 @@
       "event": "agent_step",
       "data": {
         "ref": "U2",
-        "step": 5,
+        "step": 4,
         "kind": "tool_result",
         "tool": "compare_specs",
         "summary": "AP7333-33SAG-7: needs_redesign; 1 fail, 2 caveat"
@@ -461,7 +409,7 @@
       "event": "agent_step",
       "data": {
         "ref": "U2",
-        "step": 6,
+        "step": 5,
         "kind": "tool_call",
         "tool": "compare_specs",
         "arguments": {
@@ -475,49 +423,10 @@
       "event": "agent_step",
       "data": {
         "ref": "U2",
-        "step": 7,
+        "step": 6,
         "kind": "tool_result",
         "tool": "compare_specs",
         "summary": "AP7333-33SRG-7: drop_in_with_caveats; 0 fail, 2 caveat"
-      }
-    },
-    {
-      "event": "agent_step",
-      "data": {
-        "ref": "U2",
-        "step": 8,
-        "kind": "tool_call",
-        "tool": "record_decision",
-        "arguments": {
-          "ref": "U2",
-          "candidate_mpn": "AP7333-33SRG-7",
-          "verdict": "drop_in",
-          "confidence": 0.85,
-          "caveats": [
-            "Quiescent current is 55 µA typical against 1.6 µA on the original (datasheet p.3).",
-            "Dropout is 300 mV typical at 300 mA against 178 mV on the original; 1.7 V of headroom is available (datasheet p.3)."
-          ],
-          "explanation": "AP7333-33SRG-7 regulates 3.3 V at up to 300 mA from the 5 V rail in the same SOT-23 body with the same GND / VOUT / VIN pin order (SOT23R, datasheet p.1). Its quiescent current is about 34 times higher, which matters on a battery-backed rail. AP7333-33SAG-7 is the same die in the SOT23 assignment with IN and GND swapped, so it would need a board change."
-        }
-      }
-    },
-    {
-      "event": "agent_step",
-      "data": {
-        "ref": "U2",
-        "step": 9,
-        "kind": "guardrail",
-        "text": "Verdict tightened by deterministic check: iq_a: candidate 55 µA is more than 2x the original 1.6 µA"
-      }
-    },
-    {
-      "event": "agent_step",
-      "data": {
-        "ref": "U2",
-        "step": 10,
-        "kind": "tool_result",
-        "tool": "record_decision",
-        "summary": "AP7333-33SRG-7: drop_in_with_caveats recorded (tightened from drop_in)"
       }
     },
     {
@@ -525,16 +434,16 @@
       "data": {
         "ref": "U2",
         "original_mpn": "MCP1700-3302E/TT",
-        "original_manufacturer": "Microchip",
+        "original_manufacturer": "Microchip Technology",
         "recommended_mpn": "AP7333-33SRG-7",
         "recommended_manufacturer": "Diodes Incorporated",
         "compared_mpn": "AP7333-33SRG-7",
         "verdict": "drop_in_with_caveats",
-        "model_verdict": "drop_in",
-        "tightened": true,
-        "confidence": 0.6,
-        "source": "model",
-        "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+        "model_verdict": null,
+        "tightened": false,
+        "confidence": null,
+        "source": "deterministic",
+        "model": null,
         "spec_checks": [
           {
             "spec": "output_type",
@@ -544,17 +453,17 @@
             "requirement": "equal to original (fixed)",
             "original": {
               "value": "fixed",
-              "raw": "fixed 3.3 V",
+              "raw": "fixed",
               "condition": null,
-              "page": 1
+              "page": null
             },
             "candidate": {
               "value": "fixed",
-              "raw": "fixed 3.3 V",
+              "raw": "fixed",
               "condition": null,
-              "page": 1
+              "page": null
             },
-            "reason": "both fixed-output"
+            "reason": "both fixed"
           },
           {
             "spec": "vout_v",
@@ -565,14 +474,14 @@
             "original": {
               "value": 3.3,
               "raw": "3.3 V",
-              "condition": "fixed output option -33",
-              "page": 1
+              "condition": "MCP1700-3302E/TT fixed output option",
+              "page": 18
             },
             "candidate": {
               "value": 3.3,
               "raw": "3.3 V",
-              "condition": "fixed output option -33",
-              "page": 1
+              "condition": "fixed output code 33",
+              "page": 2
             },
             "reason": "candidate 3.3 V matches 3.3 V"
           },
@@ -585,14 +494,14 @@
             "original": {
               "value": 6.5,
               "raw": "+6.5 V",
-              "condition": "absolute maximum, VDD",
-              "page": 2
+              "condition": "absolute maximum VIN rating; stress rating, not an operating condition",
+              "page": 3
             },
             "candidate": {
-              "value": 7,
+              "value": 7.0,
               "raw": "7 V",
-              "condition": "absolute maximum input voltage",
-              "page": 2
+              "condition": "absolute maximum input voltage; stress rating",
+              "page": 4
             },
             "reason": "candidate 7 V meets the required 5.5 V"
           },
@@ -605,14 +514,14 @@
             "original": {
               "value": 6.0,
               "raw": "6.0 V",
-              "condition": "operating input voltage range, max",
+              "condition": "input operating voltage maximum",
               "page": 3
             },
             "candidate": {
-              "value": 6,
+              "value": 6.0,
               "raw": "6 V",
-              "condition": "recommended input voltage, max",
-              "page": 2
+              "condition": "recommended operating input voltage maximum",
+              "page": 4
             },
             "reason": "candidate 6 V meets the required 5.5 V"
           },
@@ -625,34 +534,34 @@
             "original": {
               "value": 2.3,
               "raw": "2.3 V",
-              "condition": "operating input voltage range, min",
+              "condition": "input operating voltage minimum",
               "page": 3
             },
             "candidate": {
-              "value": 2,
+              "value": 2.0,
               "raw": "2 V",
-              "condition": "recommended input voltage, min",
-              "page": 2
+              "condition": "recommended operating input voltage minimum",
+              "page": 4
             },
-            "reason": "candidate 2 V is below the 5 V supplied"
+            "reason": "candidate 2 V meets the required 5 V"
           },
           {
             "spec": "iout_max_a",
             "result": "pass",
             "on_fail": "no_safe_match",
             "on_unknown": "no_safe_match",
-            "requirement": ">= 0.15 A (line requirement)",
+            "requirement": ">= 150 mA (line requirement)",
             "original": {
               "value": 0.25,
               "raw": "250 mA",
-              "condition": "maximum output current",
+              "condition": "maximum output current for VR ≥ 2.5 V (3.3 V output option)",
               "page": 3
             },
             "candidate": {
               "value": 0.3,
               "raw": "300 mA",
-              "condition": "output current",
-              "page": 2
+              "condition": "recommended operating output current maximum",
+              "page": 4
             },
             "reason": "candidate 300 mA meets the required 150 mA"
           },
@@ -661,79 +570,80 @@
             "result": "caveat",
             "on_fail": "no_safe_match",
             "on_unknown": "no_safe_match",
-            "requirement": "<= 1.7 V headroom; caveat above 228 mV (original + 50 mV)",
+            "requirement": "<= 1.7 V headroom; caveat above 400 mV (original + 50 mV)",
             "original": {
-              "value": 0.178,
-              "raw": "178 mV",
-              "condition": "typ, IL = 250 mA",
+              "value": 0.35,
+              "raw": "350 mV max",
+              "condition": "max, IL = 250 mA, VR > 2.5 V",
               "page": 3
             },
             "candidate": {
-              "value": 0.3,
-              "raw": "300 mV",
-              "condition": "typ, IOUT = 300 mA",
-              "page": 3
+              "value": 0.55,
+              "raw": "550 mV max",
+              "condition": "max, IOUT = 300 mA; dropout is the VIN − VOUT differential at 2% output drop",
+              "page": 5
             },
-            "reason": "candidate 300 mV fits the 1.7 V headroom but is more than 50 mV above the original 178 mV"
+            "reason": "candidate 550 mV max fits the 1.7 V headroom but is more than 50 mV above the original 350 mV max"
           },
           {
             "spec": "iq_a",
             "result": "caveat",
+            "on_fail": null,
             "on_unknown": "caveat",
             "requirement": "<= 3.2 µA (2 x original)",
             "original": {
-              "value": 1.6e-06,
-              "raw": "1.6 µA",
-              "condition": "typ, IL = 0 mA",
+              "value": 1.6e-6,
+              "raw": "1.6 µA typ",
+              "condition": "typ, IL = 0 mA, VIN = VR + 1 V",
               "page": 3
             },
             "candidate": {
-              "value": 5.5e-05,
-              "raw": "55 µA",
+              "value": 0.000055,
+              "raw": "55 µA typ",
               "condition": "typ, IOUT = 0 mA",
-              "page": 3
+              "page": 5
             },
-            "reason": "candidate 55 µA is more than 2x the original 1.6 µA"
+            "reason": "candidate 55 µA typ is more than 2x the original 1.6 µA typ"
           },
           {
             "spec": "temp_min_c",
             "result": "pass",
             "on_fail": "no_safe_match",
             "on_unknown": "no_safe_match",
-            "requirement": "<= -40 °C (design context)",
+            "requirement": "<= -40 °C (operating range)",
             "original": {
-              "value": -40,
+              "value": -40.0,
               "raw": "-40 °C",
-              "condition": "operating junction",
-              "page": 4
+              "condition": "operating junction temperature minimum",
+              "page": 3
             },
             "candidate": {
-              "value": -40,
+              "value": -40.0,
               "raw": "-40 °C",
-              "condition": "operating ambient",
-              "page": 2
+              "condition": "recommended operating ambient temperature minimum",
+              "page": 4
             },
-            "reason": "candidate -40 °C covers -40 °C"
+            "reason": "candidate -40 °C meets the required -40 °C"
           },
           {
             "spec": "temp_max_c",
             "result": "pass",
             "on_fail": "no_safe_match",
             "on_unknown": "no_safe_match",
-            "requirement": ">= 85 °C (design context)",
+            "requirement": ">= 85 °C (operating range)",
             "original": {
-              "value": 125,
+              "value": 125.0,
               "raw": "+125 °C",
-              "condition": "operating junction",
-              "page": 4
+              "condition": "operating junction temperature maximum",
+              "page": 3
             },
             "candidate": {
-              "value": 85,
+              "value": 85.0,
               "raw": "+85 °C",
-              "condition": "operating ambient",
-              "page": 2
+              "condition": "recommended operating ambient temperature maximum",
+              "page": 4
             },
-            "reason": "candidate +85 °C covers 85 °C"
+            "reason": "candidate +85 °C meets the required 85 °C"
           },
           {
             "spec": "package",
@@ -743,15 +653,15 @@
             "requirement": "same package as original",
             "original": {
               "value": "SOT-23-3",
-              "raw": "SOT-23",
+              "raw": "SOT-23-3",
               "condition": null,
               "page": 1
             },
             "candidate": {
               "value": "SOT-23-3",
-              "raw": "SOT23R",
+              "raw": "SOT-23-3",
               "condition": null,
-              "page": 1
+              "page": 2
             },
             "reason": "Same SOT-23-3 package."
           },
@@ -771,7 +681,7 @@
               "value": "1: ground; 2: power_out; 3: power_in",
               "raw": "1 GND, 2 OUT, 3 IN",
               "condition": null,
-              "page": 1
+              "page": 2
             },
             "reason": "Same pin functions."
           }
@@ -779,14 +689,13 @@
         "package_pinout": {
           "package_result": "pass",
           "pinout_result": "pass",
-          "detail": "Same SOT-23-3 package and pin functions (SOT23R pin assignment)."
+          "detail": "Same SOT-23-3 package and pin functions."
         },
         "caveats": [
-          "Quiescent current is 55 µA typical against 1.6 µA on the original (datasheet p.3).",
-          "Dropout is 300 mV typical at 300 mA against 178 mV on the original; 1.7 V of headroom is available (datasheet p.3).",
-          "Verdict tightened by deterministic check: iq_a: candidate 55 µA is more than 2x the original 1.6 µA"
+          "dropout_v: candidate 550 mV max fits the 1.7 V headroom but is more than 50 mV above the original 350 mV max",
+          "iq_a: candidate 55 µA typ is more than 2x the original 1.6 µA typ"
         ],
-        "explanation": "AP7333-33SRG-7 regulates 3.3 V at up to 300 mA from the 5 V rail in the same SOT-23 body with the same GND / VOUT / VIN pin order (SOT23R, datasheet p.1). Its quiescent current is about 34 times higher, which matters on a battery-backed rail. AP7333-33SAG-7 is the same die in the SOT23 assignment with IN and GND swapped, so it would need a board change.",
+        "explanation": "Drop-in with caveats: AP7333-33SRG-7. dropout_v: candidate 550 mV max fits the 1.7 V headroom but is more than 50 mV above the original 350 mV max.",
         "rejected": [
           {
             "mpn": "AP7333-33SAG-7",
@@ -803,41 +712,10 @@
       }
     },
     {
-      "event": "part_started",
-      "data": {
-        "ref": "U9",
-        "mpn": "ZZZ999",
-        "index": 2
-      }
-    },
-    {
-      "event": "part_decision",
-      "data": {
-        "ref": "U9",
-        "original_mpn": "ZZZ999",
-        "original_manufacturer": "Acme",
-        "recommended_mpn": null,
-        "recommended_manufacturer": null,
-        "compared_mpn": null,
-        "verdict": "no_safe_match",
-        "model_verdict": null,
-        "tightened": false,
-        "confidence": null,
-        "source": "deterministic",
-        "model": null,
-        "spec_checks": [],
-        "package_pinout": null,
-        "caveats": [],
-        "explanation": "ZZZ999 is not in the local catalog.",
-        "rejected": [],
-        "candidates_considered": []
-      }
-    },
-    {
       "event": "run_completed",
       "data": {
-        "run_id": "fixture-starter",
-        "elapsed_ms": 61840
+        "run_id": "run-0fc23ebbadd3",
+        "elapsed_ms": 5
       }
     }
   ],
@@ -850,11 +728,11 @@
       "recommended_manufacturer": "Diodes Incorporated",
       "compared_mpn": "B0540W-7-F",
       "verdict": "drop_in",
-      "model_verdict": "drop_in",
+      "model_verdict": null,
       "tightened": false,
-      "confidence": 0.9,
-      "source": "model",
-      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "confidence": null,
+      "source": "deterministic",
+      "model": null,
       "spec_checks": [
         {
           "spec": "diode_count",
@@ -863,18 +741,18 @@
           "on_unknown": "no_safe_match",
           "requirement": "equal to original (1)",
           "original": {
-            "value": 1,
+            "value": 1.0,
             "raw": "1",
-            "condition": "single diode",
-            "page": 1
+            "condition": null,
+            "page": null
           },
           "candidate": {
-            "value": 1,
+            "value": 1.0,
             "raw": "1",
-            "condition": "single diode",
-            "page": 1
+            "condition": null,
+            "page": null
           },
-          "reason": "both single diodes"
+          "reason": "both 1"
         },
         {
           "spec": "vrrm_v",
@@ -883,13 +761,13 @@
           "on_unknown": "no_safe_match",
           "requirement": ">= 32 V (line requirement)",
           "original": {
-            "value": 40,
+            "value": 40.0,
             "raw": "40 V",
             "condition": "peak repetitive reverse voltage",
-            "page": 1
+            "page": 2
           },
           "candidate": {
-            "value": 40,
+            "value": 40.0,
             "raw": "40 V",
             "condition": "peak repetitive reverse voltage",
             "page": 2
@@ -901,12 +779,12 @@
           "result": "pass",
           "on_fail": "no_safe_match",
           "on_unknown": "no_safe_match",
-          "requirement": ">= 0.5 A (line requirement)",
+          "requirement": ">= 500 mA (line requirement)",
           "original": {
             "value": 0.5,
             "raw": "0.5 A",
-            "condition": "average rectified forward current",
-            "page": 1
+            "condition": "average rectified output current",
+            "page": 2
           },
           "candidate": {
             "value": 0.5,
@@ -914,42 +792,44 @@
             "condition": "average rectified output current",
             "page": 2
           },
-          "reason": "candidate 0.5 A meets the required 0.5 A"
+          "reason": "candidate 0.5 A meets the required 500 mA"
         },
         {
           "spec": "vf_v",
           "result": "pass",
+          "on_fail": null,
           "on_unknown": "caveat",
-          "requirement": "<= 0.61 V (original + 0.1 V)",
+          "requirement": "<= 610 mV (original + 100 mV)",
           "original": {
-            "value": 0.51,
-            "raw": "0.51 V",
-            "condition": "max, IF = 0.5 A, TJ = 25 °C",
-            "page": 1
-          },
-          "candidate": {
             "value": 0.51,
             "raw": "0.510 V",
             "condition": "max, IF = 0.5 A, TJ = 25 °C",
             "page": 2
           },
-          "reason": "candidate 0.510 V is within 0.1 V of the original 0.51 V"
+          "candidate": {
+            "value": 0.51,
+            "raw": "0.510 V",
+            "condition": "max, IF = 0.5 A, TJ = +25 °C",
+            "page": 2
+          },
+          "reason": "candidate 0.510 V is within 100 mV of the original 0.510 V"
         },
         {
           "spec": "ir_a",
           "result": "pass",
+          "on_fail": null,
           "on_unknown": "caveat",
           "requirement": "<= 100 µA (5 x original)",
           "original": {
-            "value": 2e-05,
+            "value": 0.00002,
             "raw": "20 µA",
             "condition": "max, VR = 40 V, TJ = 25 °C",
-            "page": 1
+            "page": 2
           },
           "candidate": {
-            "value": 1.9999999999999998e-05,
+            "value": 0.00002,
             "raw": "20 µA",
-            "condition": "max, VR = 40 V, TJ = 25 °C",
+            "condition": "max, VR = 40 V, TJ = +25 °C",
             "page": 2
           },
           "reason": "candidate 20 µA is within 5x the original 20 µA"
@@ -959,40 +839,40 @@
           "result": "pass",
           "on_fail": "no_safe_match",
           "on_unknown": "no_safe_match",
-          "requirement": "<= -40 °C (design context)",
+          "requirement": "<= -40 °C (operating range)",
           "original": {
-            "value": -65,
-            "raw": "-65 °C",
-            "condition": "junction",
-            "page": 1
-          },
-          "candidate": {
-            "value": -65,
-            "raw": "-65 °C",
-            "condition": "junction",
+            "value": -55.0,
+            "raw": "-55 °C",
+            "condition": "operating junction temperature minimum (TJ)",
             "page": 2
           },
-          "reason": "candidate -65 °C covers -40 °C"
+          "candidate": {
+            "value": -65.0,
+            "raw": "-65 °C",
+            "condition": "operating junction temperature minimum (TJ)",
+            "page": 2
+          },
+          "reason": "candidate -65 °C meets the required -40 °C"
         },
         {
           "spec": "temp_max_c",
           "result": "pass",
           "on_fail": "no_safe_match",
           "on_unknown": "no_safe_match",
-          "requirement": ">= 85 °C (design context)",
+          "requirement": ">= 85 °C (operating range)",
           "original": {
-            "value": 125,
-            "raw": "+125 °C",
-            "condition": "junction",
-            "page": 1
-          },
-          "candidate": {
-            "value": 150,
+            "value": 150.0,
             "raw": "+150 °C",
-            "condition": "junction",
+            "condition": "operating junction temperature maximum (TJ)",
             "page": 2
           },
-          "reason": "candidate +150 °C covers 85 °C"
+          "candidate": {
+            "value": 150.0,
+            "raw": "+150 °C",
+            "condition": "operating junction temperature maximum (TJ)",
+            "page": 2
+          },
+          "reason": "candidate +150 °C meets the required 85 °C"
         },
         {
           "spec": "package",
@@ -1041,7 +921,7 @@
         "detail": "Same SOD-123 package and pin functions."
       },
       "caveats": [],
-      "explanation": "B0540W-7-F matches the 40 V / 0.5 A rating in the same SOD-123 package (datasheet p.2). B0520LW-7-F and B0530W-7-F share the package and current rating but block only 20 V and 30 V, below the 32 V this input can reach.",
+      "explanation": "Drop-in: B0540W-7-F.",
       "rejected": [
         {
           "mpn": "B0520LW-7-F",
@@ -1067,16 +947,16 @@
     {
       "ref": "U2",
       "original_mpn": "MCP1700-3302E/TT",
-      "original_manufacturer": "Microchip",
+      "original_manufacturer": "Microchip Technology",
       "recommended_mpn": "AP7333-33SRG-7",
       "recommended_manufacturer": "Diodes Incorporated",
       "compared_mpn": "AP7333-33SRG-7",
       "verdict": "drop_in_with_caveats",
-      "model_verdict": "drop_in",
-      "tightened": true,
-      "confidence": 0.6,
-      "source": "model",
-      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "model_verdict": null,
+      "tightened": false,
+      "confidence": null,
+      "source": "deterministic",
+      "model": null,
       "spec_checks": [
         {
           "spec": "output_type",
@@ -1086,17 +966,17 @@
           "requirement": "equal to original (fixed)",
           "original": {
             "value": "fixed",
-            "raw": "fixed 3.3 V",
+            "raw": "fixed",
             "condition": null,
-            "page": 1
+            "page": null
           },
           "candidate": {
             "value": "fixed",
-            "raw": "fixed 3.3 V",
+            "raw": "fixed",
             "condition": null,
-            "page": 1
+            "page": null
           },
-          "reason": "both fixed-output"
+          "reason": "both fixed"
         },
         {
           "spec": "vout_v",
@@ -1107,14 +987,14 @@
           "original": {
             "value": 3.3,
             "raw": "3.3 V",
-            "condition": "fixed output option -33",
-            "page": 1
+            "condition": "MCP1700-3302E/TT fixed output option",
+            "page": 18
           },
           "candidate": {
             "value": 3.3,
             "raw": "3.3 V",
-            "condition": "fixed output option -33",
-            "page": 1
+            "condition": "fixed output code 33",
+            "page": 2
           },
           "reason": "candidate 3.3 V matches 3.3 V"
         },
@@ -1127,14 +1007,14 @@
           "original": {
             "value": 6.5,
             "raw": "+6.5 V",
-            "condition": "absolute maximum, VDD",
-            "page": 2
+            "condition": "absolute maximum VIN rating; stress rating, not an operating condition",
+            "page": 3
           },
           "candidate": {
-            "value": 7,
+            "value": 7.0,
             "raw": "7 V",
-            "condition": "absolute maximum input voltage",
-            "page": 2
+            "condition": "absolute maximum input voltage; stress rating",
+            "page": 4
           },
           "reason": "candidate 7 V meets the required 5.5 V"
         },
@@ -1147,14 +1027,14 @@
           "original": {
             "value": 6.0,
             "raw": "6.0 V",
-            "condition": "operating input voltage range, max",
+            "condition": "input operating voltage maximum",
             "page": 3
           },
           "candidate": {
-            "value": 6,
+            "value": 6.0,
             "raw": "6 V",
-            "condition": "recommended input voltage, max",
-            "page": 2
+            "condition": "recommended operating input voltage maximum",
+            "page": 4
           },
           "reason": "candidate 6 V meets the required 5.5 V"
         },
@@ -1167,34 +1047,34 @@
           "original": {
             "value": 2.3,
             "raw": "2.3 V",
-            "condition": "operating input voltage range, min",
+            "condition": "input operating voltage minimum",
             "page": 3
           },
           "candidate": {
-            "value": 2,
+            "value": 2.0,
             "raw": "2 V",
-            "condition": "recommended input voltage, min",
-            "page": 2
+            "condition": "recommended operating input voltage minimum",
+            "page": 4
           },
-          "reason": "candidate 2 V is below the 5 V supplied"
+          "reason": "candidate 2 V meets the required 5 V"
         },
         {
           "spec": "iout_max_a",
           "result": "pass",
           "on_fail": "no_safe_match",
           "on_unknown": "no_safe_match",
-          "requirement": ">= 0.15 A (line requirement)",
+          "requirement": ">= 150 mA (line requirement)",
           "original": {
             "value": 0.25,
             "raw": "250 mA",
-            "condition": "maximum output current",
+            "condition": "maximum output current for VR ≥ 2.5 V (3.3 V output option)",
             "page": 3
           },
           "candidate": {
             "value": 0.3,
             "raw": "300 mA",
-            "condition": "output current",
-            "page": 2
+            "condition": "recommended operating output current maximum",
+            "page": 4
           },
           "reason": "candidate 300 mA meets the required 150 mA"
         },
@@ -1203,79 +1083,80 @@
           "result": "caveat",
           "on_fail": "no_safe_match",
           "on_unknown": "no_safe_match",
-          "requirement": "<= 1.7 V headroom; caveat above 228 mV (original + 50 mV)",
+          "requirement": "<= 1.7 V headroom; caveat above 400 mV (original + 50 mV)",
           "original": {
-            "value": 0.178,
-            "raw": "178 mV",
-            "condition": "typ, IL = 250 mA",
+            "value": 0.35,
+            "raw": "350 mV max",
+            "condition": "max, IL = 250 mA, VR > 2.5 V",
             "page": 3
           },
           "candidate": {
-            "value": 0.3,
-            "raw": "300 mV",
-            "condition": "typ, IOUT = 300 mA",
-            "page": 3
+            "value": 0.55,
+            "raw": "550 mV max",
+            "condition": "max, IOUT = 300 mA; dropout is the VIN − VOUT differential at 2% output drop",
+            "page": 5
           },
-          "reason": "candidate 300 mV fits the 1.7 V headroom but is more than 50 mV above the original 178 mV"
+          "reason": "candidate 550 mV max fits the 1.7 V headroom but is more than 50 mV above the original 350 mV max"
         },
         {
           "spec": "iq_a",
           "result": "caveat",
+          "on_fail": null,
           "on_unknown": "caveat",
           "requirement": "<= 3.2 µA (2 x original)",
           "original": {
-            "value": 1.6e-06,
-            "raw": "1.6 µA",
-            "condition": "typ, IL = 0 mA",
+            "value": 1.6e-6,
+            "raw": "1.6 µA typ",
+            "condition": "typ, IL = 0 mA, VIN = VR + 1 V",
             "page": 3
           },
           "candidate": {
-            "value": 5.5e-05,
-            "raw": "55 µA",
+            "value": 0.000055,
+            "raw": "55 µA typ",
             "condition": "typ, IOUT = 0 mA",
-            "page": 3
+            "page": 5
           },
-          "reason": "candidate 55 µA is more than 2x the original 1.6 µA"
+          "reason": "candidate 55 µA typ is more than 2x the original 1.6 µA typ"
         },
         {
           "spec": "temp_min_c",
           "result": "pass",
           "on_fail": "no_safe_match",
           "on_unknown": "no_safe_match",
-          "requirement": "<= -40 °C (design context)",
+          "requirement": "<= -40 °C (operating range)",
           "original": {
-            "value": -40,
+            "value": -40.0,
             "raw": "-40 °C",
-            "condition": "operating junction",
-            "page": 4
+            "condition": "operating junction temperature minimum",
+            "page": 3
           },
           "candidate": {
-            "value": -40,
+            "value": -40.0,
             "raw": "-40 °C",
-            "condition": "operating ambient",
-            "page": 2
+            "condition": "recommended operating ambient temperature minimum",
+            "page": 4
           },
-          "reason": "candidate -40 °C covers -40 °C"
+          "reason": "candidate -40 °C meets the required -40 °C"
         },
         {
           "spec": "temp_max_c",
           "result": "pass",
           "on_fail": "no_safe_match",
           "on_unknown": "no_safe_match",
-          "requirement": ">= 85 °C (design context)",
+          "requirement": ">= 85 °C (operating range)",
           "original": {
-            "value": 125,
+            "value": 125.0,
             "raw": "+125 °C",
-            "condition": "operating junction",
-            "page": 4
+            "condition": "operating junction temperature maximum",
+            "page": 3
           },
           "candidate": {
-            "value": 85,
+            "value": 85.0,
             "raw": "+85 °C",
-            "condition": "operating ambient",
-            "page": 2
+            "condition": "recommended operating ambient temperature maximum",
+            "page": 4
           },
-          "reason": "candidate +85 °C covers 85 °C"
+          "reason": "candidate +85 °C meets the required 85 °C"
         },
         {
           "spec": "package",
@@ -1285,15 +1166,15 @@
           "requirement": "same package as original",
           "original": {
             "value": "SOT-23-3",
-            "raw": "SOT-23",
+            "raw": "SOT-23-3",
             "condition": null,
             "page": 1
           },
           "candidate": {
             "value": "SOT-23-3",
-            "raw": "SOT23R",
+            "raw": "SOT-23-3",
             "condition": null,
-            "page": 1
+            "page": 2
           },
           "reason": "Same SOT-23-3 package."
         },
@@ -1313,7 +1194,7 @@
             "value": "1: ground; 2: power_out; 3: power_in",
             "raw": "1 GND, 2 OUT, 3 IN",
             "condition": null,
-            "page": 1
+            "page": 2
           },
           "reason": "Same pin functions."
         }
@@ -1321,14 +1202,13 @@
       "package_pinout": {
         "package_result": "pass",
         "pinout_result": "pass",
-        "detail": "Same SOT-23-3 package and pin functions (SOT23R pin assignment)."
+        "detail": "Same SOT-23-3 package and pin functions."
       },
       "caveats": [
-        "Quiescent current is 55 µA typical against 1.6 µA on the original (datasheet p.3).",
-        "Dropout is 300 mV typical at 300 mA against 178 mV on the original; 1.7 V of headroom is available (datasheet p.3).",
-        "Verdict tightened by deterministic check: iq_a: candidate 55 µA is more than 2x the original 1.6 µA"
+        "dropout_v: candidate 550 mV max fits the 1.7 V headroom but is more than 50 mV above the original 350 mV max",
+        "iq_a: candidate 55 µA typ is more than 2x the original 1.6 µA typ"
       ],
-      "explanation": "AP7333-33SRG-7 regulates 3.3 V at up to 300 mA from the 5 V rail in the same SOT-23 body with the same GND / VOUT / VIN pin order (SOT23R, datasheet p.1). Its quiescent current is about 34 times higher, which matters on a battery-backed rail. AP7333-33SAG-7 is the same die in the SOT23 assignment with IN and GND swapped, so it would need a board change.",
+      "explanation": "Drop-in with caveats: AP7333-33SRG-7. dropout_v: candidate 550 mV max fits the 1.7 V headroom but is more than 50 mV above the original 350 mV max.",
       "rejected": [
         {
           "mpn": "AP7333-33SAG-7",
@@ -1342,26 +1222,6 @@
         "AP7333-33SAG-7",
         "AP7333-33SRG-7"
       ]
-    },
-    {
-      "ref": "U9",
-      "original_mpn": "ZZZ999",
-      "original_manufacturer": "Acme",
-      "recommended_mpn": null,
-      "recommended_manufacturer": null,
-      "compared_mpn": null,
-      "verdict": "no_safe_match",
-      "model_verdict": null,
-      "tightened": false,
-      "confidence": null,
-      "source": "deterministic",
-      "model": null,
-      "spec_checks": [],
-      "package_pinout": null,
-      "caveats": [],
-      "explanation": "ZZZ999 is not in the local catalog.",
-      "rejected": [],
-      "candidates_considered": []
     }
   ]
 }
