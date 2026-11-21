@@ -1,0 +1,36 @@
+{
+  "mpn": "TLV75533PDBVR",
+  "manufacturer": "Texas Instruments",
+  "category": "ldo",
+  "description": "3.3 V 500 mA fixed LDO with enable, SOT-23-5",
+  "datasheet_filename": "TLV755P.pdf",
+  "package": {"code": "SOT-23-5", "pins": 5, "page": 3},
+  "pinout": [
+    {"pin": 1, "name": "IN", "functions": ["power_in"]},
+    {"pin": 2, "name": "GND", "functions": ["ground"]},
+    {"pin": 3, "name": "EN", "functions": ["enable_active_high"]},
+    {"pin": 4, "name": "NC", "functions": ["nc"]},
+    {"pin": 5, "name": "OUT", "functions": ["power_out"]}
+  ],
+  "pinout_page": 3,
+  "polarity": null,
+  "diode_count": null,
+  "channel_count": null,
+  "topology": null,
+  "output_type": "fixed",
+  "unit_price_usd": null,
+  "lead_time_weeks": null,
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vout_v": {"value": 3.3, "raw": "3.3 V", "condition": "fixed output code 33", "page": 1, "table": "Device Comparison Table"},
+    "vin_abs_max_v": {"value": 6.0, "raw": "6.0 V", "condition": "absolute maximum supply voltage; stress rating", "page": 4, "table": "Absolute Maximum Ratings"},
+    "vin_max_v": {"value": 5.5, "raw": "5.5 V", "condition": "recommended operating input voltage maximum", "page": 4, "table": "Recommended Operating Conditions"},
+    "vin_min_v": {"value": 1.45, "raw": "1.45 V", "condition": "recommended operating input voltage minimum", "page": 4, "table": "Recommended Operating Conditions"},
+    "iout_max_a": {"value": 0.5, "raw": "500 mA", "condition": "maximum recommended output current", "page": 4, "table": "Recommended Operating Conditions"},
+    "dropout_v": {"value": 0.238, "raw": "238 mV max", "condition": "max, IOUT = 500 mA, -40 °C ≤ TJ ≤ +125 °C, 3.3 V ≤ VOUT < 5.0 V", "page": 6, "table": "Electrical Characteristics"},
+    "iq_a": {"value": 2.5e-05, "raw": "25 µA typ", "condition": "typ, TJ = 25 °C, IOUT = 0 mA", "page": 5, "table": "Electrical Characteristics"},
+    "temp_min_c": {"value": -40, "raw": "-40 °C", "condition": "recommended junction operating temperature minimum", "page": 4, "table": "Recommended Operating Conditions"},
+    "temp_max_c": {"value": 125, "raw": "+125 °C", "condition": "recommended junction operating temperature maximum", "page": 4, "table": "Recommended Operating Conditions"}
+  }
+}

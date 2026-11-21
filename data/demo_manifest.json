@@ -48,6 +48,63 @@
           "headline_match": true
         }
       ]
+    },
+    {
+      "ref": "D2",
+      "original_mpn": "MBR0520LT1G",
+      "expected_recommended_mpn": "B0520LW-7-F",
+      "expected_verdict": "drop_in",
+      "candidates": [
+        {
+          "mpn": "B0520LW-7-F",
+          "expected_pair_verdict": "drop_in",
+          "headline_match": true
+        }
+      ]
+    },
+    {
+      "ref": "U3",
+      "original_mpn": "TLV75533PDBVR",
+      "expected_recommended_mpn": "AP2112K-3.3TRG1",
+      "expected_verdict": "drop_in_with_caveats",
+      "candidates": [
+        {
+          "mpn": "AP2112K-3.3TRG1",
+          "expected_pair_verdict": "drop_in_with_caveats",
+          "headline_match": true
+        }
+      ]
+    },
+    {
+      "ref": "Q1",
+      "original_mpn": "2N7002LT1G",
+      "expected_recommended_mpn": "2N7002-7-F",
+      "expected_verdict": "drop_in",
+      "candidates": [
+        {
+          "mpn": "2N7002-7-F",
+          "expected_pair_verdict": "drop_in",
+          "headline_match": true
+        },
+        {
+          "mpn": "DMN65D8L-7",
+          "expected_pair_verdict": "drop_in",
+          "headline_match": true
+        }
+      ]
+    },
+    {
+      "ref": "U1",
+      "original_mpn": "TPS560430X3FDBVR",
+      "expected_recommended_mpn": "AP63203WU-7",
+      "expected_verdict": "needs_redesign",
+      "candidates": [
+        {
+          "mpn": "AP63203WU-7",
+          "expected_pair_verdict": "needs_redesign",
+          "headline_match": false
+        }
+      ]
     }
   ]
 }

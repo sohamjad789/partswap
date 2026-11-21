@@ -47,5 +47,61 @@
     "category": "ldo",
     "description": "3.3 V 300 mA fixed LDO, AP7333 SA package variant",
     "spec_file": "specs/AP7333-33SAG-7.json"
+  },
+  {
+    "mpn": "MBR0520LT1G",
+    "manufacturer": "onsemi",
+    "category": "schottky",
+    "description": "20 V 0.5 A Schottky power rectifier, SOD-123",
+    "spec_file": "specs/MBR0520LT1G.json"
+  },
+  {
+    "mpn": "TLV75533PDBVR",
+    "manufacturer": "Texas Instruments",
+    "category": "ldo",
+    "description": "3.3 V 500 mA fixed LDO with enable, SOT-23-5",
+    "spec_file": "specs/TLV75533PDBVR.json"
+  },
+  {
+    "mpn": "AP2112K-3.3TRG1",
+    "manufacturer": "Diodes Incorporated",
+    "category": "ldo",
+    "description": "3.3 V 600 mA fixed LDO with enable, SOT-23-5",
+    "spec_file": "specs/AP2112K-3.3TRG1.json"
+  },
+  {
+    "mpn": "2N7002LT1G",
+    "manufacturer": "onsemi",
+    "category": "mosfet",
+    "description": "60 V 115 mA N-channel small-signal MOSFET, SOT-23",
+    "spec_file": "specs/2N7002LT1G.json"
+  },
+  {
+    "mpn": "2N7002-7-F",
+    "manufacturer": "Diodes Incorporated",
+    "category": "mosfet",
+    "description": "60 V 170 mA N-channel MOSFET, SOT-23",
+    "spec_file": "specs/2N7002-7-F.json"
+  },
+  {
+    "mpn": "DMN65D8L-7",
+    "manufacturer": "Diodes Incorporated",
+    "category": "mosfet",
+    "description": "60 V 270 mA N-channel MOSFET with ESD-protected gate, SOT-23",
+    "spec_file": "specs/DMN65D8L-7.json"
+  },
+  {
+    "mpn": "TPS560430X3FDBVR",
+    "manufacturer": "Texas Instruments",
+    "category": "buck",
+    "description": "36 V 600 mA fixed 3.3 V synchronous buck converter, SOT-23-6",
+    "spec_file": "specs/TPS560430X3FDBVR.json"
+  },
+  {
+    "mpn": "AP63203WU-7",
+    "manufacturer": "Diodes Incorporated",
+    "category": "buck",
+    "description": "32 V 2 A fixed 3.3 V synchronous buck converter, TSOT26",
+    "spec_file": "specs/AP63203WU-7.json"
   }
 ]

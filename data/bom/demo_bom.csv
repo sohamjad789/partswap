@@ -1,3 +1,7 @@
 ref,manufacturer,mpn,qty,description,req_vin_max_v,req_vout_v,req_iout_a,req_temp_min_c,req_temp_max_c,req_vrrm_v,req_vds_v,req_vgs_v,req_vrwm_v,req_headroom_vin_v,req_esd_contact_kv,req_c_max_pf
 D1,onsemi,MBR0540T1G,1,Reverse-polarity Schottky on the 24 V input,,,0.5,,,32,,,,,,
 U2,Microchip,MCP1700-3302E/TT,1,3.3 V LDO for the MCU fed from the 5 V rail,5.5,3.3,0.15,,,,,,,5,,
+D2,onsemi,MBR0520LT1G,1,20 V Schottky on the 24 V input,,,0.5,,,20,,,,,,
+U3,Texas Instruments,TLV75533PDBVR,1,3.3 V LDO with enable from the 5 V rail,5.5,3.3,0.25,,,,,,,5,,
+Q1,onsemi,2N7002LT1G,1,60 V N-channel signal MOSFET; 3.3 V gate drive; datasheet continuous drain limit is 115 mA,,,0.1,,,,60,3.3,,,,
+U1,Texas Instruments,TPS560430X3FDBVR,1,Fixed 3.3 V buck converter for 24 V input,32,3.3,0.5,,,,,,,,,

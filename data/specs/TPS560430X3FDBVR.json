@@ -1,0 +1,124 @@
+{
+  "mpn": "TPS560430X3FDBVR",
+  "manufacturer": "Texas Instruments",
+  "category": "buck",
+  "description": "36 V 600 mA fixed 3.3 V synchronous buck converter, SOT-23-6",
+  "datasheet_filename": "TPS560430.pdf",
+  "package": {
+    "code": "SOT-23-6",
+    "pins": 6,
+    "page": 3
+  },
+  "pinout": [
+    {
+      "pin": 1,
+      "name": "CB",
+      "functions": [
+        "bootstrap"
+      ]
+    },
+    {
+      "pin": 2,
+      "name": "GND",
+      "functions": [
+        "ground"
+      ]
+    },
+    {
+      "pin": 3,
+      "name": "FB",
+      "functions": [
+        "feedback"
+      ]
+    },
+    {
+      "pin": 4,
+      "name": "EN",
+      "functions": [
+        "enable_active_high"
+      ]
+    },
+    {
+      "pin": 5,
+      "name": "VIN",
+      "functions": [
+        "power_in"
+      ]
+    },
+    {
+      "pin": 6,
+      "name": "SW",
+      "functions": [
+        "switch"
+      ]
+    }
+  ],
+  "pinout_page": 3,
+  "polarity": null,
+  "diode_count": null,
+  "channel_count": null,
+  "topology": "synchronous",
+  "output_type": "fixed",
+  "unit_price_usd": null,
+  "lead_time_weeks": null,
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vin_min_v": {
+      "value": 4.0,
+      "raw": "4 V",
+      "condition": "recommended operating input voltage minimum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 36.0,
+      "raw": "36 V",
+      "condition": "recommended operating input voltage maximum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "raw": "3.3 V",
+      "condition": "fixed output device variant X3F",
+      "page": 2,
+      "table": "Device Comparison Table"
+    },
+    "iout_max_a": {
+      "value": 0.6,
+      "raw": "600 mA",
+      "condition": "maximum continuous output current",
+      "page": 1,
+      "table": "Features"
+    },
+    "fsw_hz": {
+      "value": 1100000.0,
+      "raw": "1.1 MHz",
+      "condition": "nominal switching frequency for this fixed-output part number",
+      "page": 2,
+      "table": "Device Comparison Table"
+    },
+    "iq_a": {
+      "value": 8e-05,
+      "raw": "80 \u00b5A typ",
+      "condition": "operating non-switching current, PFM version only; orderable X3F variant uses FPWM, so this value is not representative of this suffix",
+      "page": 5,
+      "table": "Electrical Characteristics"
+    },
+    "temp_min_c": {
+      "value": -40,
+      "raw": "-40 \u00b0C",
+      "condition": "recommended operating junction/ambient temperature minimum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    },
+    "temp_max_c": {
+      "value": 125,
+      "raw": "+125 \u00b0C",
+      "condition": "recommended operating junction/ambient temperature maximum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    }
+  }
+}
