@@ -1,0 +1,16 @@
+{
+  "GND": "ground", "VSS": "ground", "GROUND": "ground",
+  "IN": "power_in", "VIN": "power_in", "VCC": "power_in", "VDD": "power_in",
+  "OUT": "power_out", "VOUT": "power_out",
+  "EN": "enable_active_high", "ENABLE": "enable_active_high", "CE": "enable_active_high",
+  "/EN": "enable_active_low", "NEN": "enable_active_low", "EN#": "enable_active_low",
+  "SHDN": "enable_active_low", "/SHDN": "enable_active_low", "NSHDN": "enable_active_low",
+  "NC": "nc", "N/C": "nc", "DNC": "nc",
+  "G": "gate", "GATE": "gate", "D": "drain", "DRAIN": "drain", "S": "source", "SOURCE": "source",
+  "A": "anode", "ANODE": "anode", "K": "cathode", "C": "cathode", "CATHODE": "cathode",
+  "IO": "io", "I/O": "io",
+  "ADJ": "feedback", "FB": "feedback", "VFB": "feedback",
+  "BYP": "bypass", "BP": "bypass", "NR": "bypass",
+  "SW": "switch", "LX": "switch", "BST": "bootstrap", "BOOT": "bootstrap", "CB": "bootstrap",
+  "PG": "power_good", "PGOOD": "power_good"
+}

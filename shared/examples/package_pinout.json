@@ -1,0 +1,5 @@
+{"package": {"original": "SOT-23-3", "candidate": "SOT-23-3", "result": "pass"},
+ "pinout": {"original": {"1": ["ground"], "2": ["power_out"], "3": ["power_in"]},
+            "candidate": {"1": ["power_in"], "2": ["power_out"], "3": ["ground"]},
+            "result": "fail"},
+ "detail": "Same SOT-23-3 package. Pin 1 is ground on the original and power_in on the candidate; pin 3 is power_in on the original and ground on the candidate."}

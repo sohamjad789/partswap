@@ -221,3 +221,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# PartSwap
+node_modules/
+frontend/dist/
+data/datasheets/*.pdf
+data/cache/
+data/specs/extracted/
+docs/*.mp4

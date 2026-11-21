@@ -1,0 +1,8 @@
+{
+  "input_voltage_v": 24.0,
+  "input_voltage_max_v": 32.0,
+  "operating_temp_min_c": -40,
+  "operating_temp_max_c": 85,
+  "preferred_manufacturer": "Diodes Incorporated",
+  "goal": "lowest_risk"
+}
