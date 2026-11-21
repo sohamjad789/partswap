@@ -225,6 +225,9 @@ __marimo__/
 # PartSwap
 node_modules/
 frontend/dist/
+frontend/*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
 data/datasheets/*.pdf
 data/cache/
 data/specs/extracted/
