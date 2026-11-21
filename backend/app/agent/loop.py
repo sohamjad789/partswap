@@ -17,6 +17,7 @@ from app.schemas import AgentStep, BomLine, Decision, DesignContext, Source
 Emit = Callable[[str, dict[str, Any]], None]
 
 MAX_TURNS = 10
+LINE_TIME_BUDGET_S = 150
 MAX_CALLS_PER_TURN = 4
 RETRY_WAITS_S = (1, 2, 4)
 REASONING_CHARS = 500
@@ -65,17 +66,29 @@ def _converse(client: Any, state: AgentState, step: Callable[..., None]) -> Deci
         {"role": "user", "content": _first_message(state)},
     ]
     kwargs = {**completion_kwargs(state.model_id), "tools": TOOL_SCHEMAS, "tool_choice": "auto"}
-    recovered = empty_retried = False
+    recovered = empty_retried = length_retried = False
     last_error: Optional[str] = None
+    started = time.monotonic()
 
     for _ in range(MAX_TURNS):
-        message = _complete(client, kwargs, messages).choices[0].message
+        if time.monotonic() - started > LINE_TIME_BUDGET_S:
+            raise FallbackRequired(f"line exceeded the {LINE_TIME_BUDGET_S}-second time budget")
+        response = _complete(client, kwargs, messages)
+        choice = response.choices[0]
+        message = choice.message
         reasoning = getattr(message, "reasoning_content", None)
         if reasoning:
             step(kind="reasoning", text=str(reasoning)[:REASONING_CHARS])
 
         content = message.content or ""
         calls = [(c.id, c.function.name, c.function.arguments) for c in (message.tool_calls or [])]
+        if choice.finish_reason == "length" and not calls:
+            if length_retried:
+                raise FallbackRequired("the model hit its length limit twice")
+            length_retried = True
+            extra_body = kwargs.setdefault("extra_body", {})
+            extra_body.setdefault("chat_template_kwargs", {})["enable_thinking"] = False
+            continue
         if not calls and not recovered:
             found = _call_from_content(content)
             if found is not None:

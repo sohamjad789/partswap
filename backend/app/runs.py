@@ -1,6 +1,7 @@
 """Run modes, SSE framing, and the run store (PLAN.md sections 4.1, 4.11, 4.12)."""
 
 import json
+import hashlib
 import queue
 import re
 import threading
@@ -12,6 +13,7 @@ from typing import Any, Callable, Iterator, Optional
 
 from pydantic import BaseModel
 
+from app.agent.prompts import PROMPT_VERSION
 from app.config import get_settings
 from app.paths import data_dir
 from app.schemas import BomLine, Decision, DesignContext, FixtureRun, Mode, Run, Source, Verdict
@@ -27,6 +29,14 @@ class StoredRun(BaseModel):
 
     run: Run
     lines: list[BomLine] = []
+
+
+class CachedDecision(BaseModel):
+    """A replayable live line decision, keyed by every input that can affect it."""
+
+    key: str
+    decision: Decision
+    events: list[dict[str, Any]]
 
 
 _store: dict[str, StoredRun] = {}
@@ -50,6 +60,44 @@ def stream_run(lines: list[BomLine], context: DesignContext, mode: Mode, *, fast
 
 def _runs_dir() -> Path:
     return data_dir() / "cache" / "runs"
+
+
+def _decisions_dir() -> Path:
+    return data_dir() / "cache" / "decisions"
+
+
+def decision_cache_key(line: BomLine, context: DesignContext, model_id: str) -> str:
+    payload = {
+        "line": line.model_dump(mode="json"),
+        "design_context": context.model_dump(mode="json"),
+        "model_id": model_id,
+        "prompt_version": PROMPT_VERSION,
+    }
+    canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def load_cached_decision(line: BomLine, context: DesignContext, model_id: str) -> CachedDecision | None:
+    key = decision_cache_key(line, context, model_id)
+    path = _decisions_dir() / f"{key}.json"
+    if not path.exists():
+        return None
+    try:
+        cached = CachedDecision.model_validate_json(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    return cached if cached.key == key else None
+
+
+def save_cached_decision(line: BomLine, context: DesignContext, model_id: str, decision: Decision,
+                         events: list[dict[str, Any]]) -> None:
+    key = decision_cache_key(line, context, model_id)
+    cached = CachedDecision(key=key, decision=decision, events=events)
+    path = _decisions_dir() / f"{key}.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".json.tmp")
+    tmp.write_text(cached.model_dump_json(indent=2), encoding="utf-8")
+    tmp.replace(path)
 
 
 def save_run(stored: StoredRun) -> None:
@@ -104,6 +152,8 @@ def run_events(lines: list[BomLine], context: DesignContext, mode: Mode, *, fast
         yield from _deterministic_events(lines, context)
     elif mode == Mode.live:
         yield from _live_events(lines, context)
+    elif mode == Mode.cache:
+        yield from _cache_events(lines, context)
     else:
         yield "error", {"message": f"Mode '{mode.value}' is not implemented yet; use 'fixture', 'deterministic', or 'live'."}
 
@@ -148,8 +198,33 @@ def _live_events(lines: list[BomLine], context: DesignContext) -> Iterator[Event
 
     settings = get_settings()
     client = make_client(settings)
-    yield from _decided_events(lines, context, Mode.live,
-                               lambda line, emit: run_part(line, context, settings.super_model, emit, client=client))
+    def decide(line: BomLine, emit: Callable[[str, dict[str, Any]], None]) -> Decision:
+        captured: list[dict[str, Any]] = []
+
+        def capture(event: str, data: dict[str, Any]) -> None:
+            captured.append({"event": event, "data": data})
+            emit(event, data)
+
+        decision = run_part(line, context, settings.super_model, capture, client=client)
+        save_cached_decision(line, context, settings.super_model, decision, captured)
+        return decision
+
+    yield from _decided_events(lines, context, Mode.live, decide)
+
+
+def _cache_events(lines: list[BomLine], context: DesignContext) -> Iterator[Event]:
+    settings = get_settings()
+
+    def decide(line: BomLine, emit: Callable[[str, dict[str, Any]], None]) -> Decision:
+        cached = load_cached_decision(line, context, settings.super_model)
+        if cached is not None:
+            for item in cached.events:
+                emit(item["event"], item["data"])
+            return cached.decision
+        from app.decide import decide_deterministic
+        return decide_deterministic(line, context, emit=emit)
+
+    yield from _decided_events(lines, context, Mode.cache, decide)
 
 
 Decide = Callable[[BomLine, Callable[..., None]], Decision]

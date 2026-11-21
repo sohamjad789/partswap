@@ -1,6 +1,6 @@
 {
-  "run_id": "run-0fc23ebbadd3",
-  "mode": "deterministic",
+  "run_id": "run-a9c78fd3785c",
+  "mode": "live",
   "design_context": {
     "input_voltage_v": 24.0,
     "input_voltage_max_v": 32.0,
@@ -13,9 +13,9 @@
     {
       "event": "run_started",
       "data": {
-        "run_id": "run-0fc23ebbadd3",
+        "run_id": "run-a9c78fd3785c",
         "part_count": 2,
-        "mode": "deterministic"
+        "mode": "live"
       }
     },
     {
@@ -31,6 +31,15 @@
       "data": {
         "ref": "D1",
         "step": 1,
+        "kind": "reasoning",
+        "text": "Let me start by understanding the task. I need to verify a replacement for BOM line D1, which is a reverse-polarity Schottky diode on a 24V input. The original part is MBR0540T1G from onsemi, category schottky, package SOD-123.\n\nRequirements:\n- Input voltage: 24V\n- Output current: 0.5A\n- Temp range: -40°C to 85°C\n- VRRM: 32V\n- Preferred manufacturer: Diodes Incorporated\n- Goal: lowest_risk\n\nLet me start with search_candidates to find candidates in the schottky category with preferred manufacture"
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "D1",
+        "step": 2,
         "kind": "tool_call",
         "tool": "search_candidates",
         "arguments": {
@@ -44,7 +53,7 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 2,
+        "step": 3,
         "kind": "tool_result",
         "tool": "search_candidates",
         "summary": "3 candidates: B0520LW-7-F, B0530W-7-F, B0540W-7-F"
@@ -54,7 +63,16 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 3,
+        "step": 4,
+        "kind": "reasoning",
+        "text": "Now I need to compare specs for each candidate against the original MBR0540T1G for ref D1. Let me start with the preferred manufacturer candidates. I'll compare all three since they're all from Diodes Incorporated and in SOD-123 package.\n\nLet me call compare_specs for each candidate."
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "D1",
+        "step": 5,
         "kind": "tool_call",
         "tool": "compare_specs",
         "arguments": {
@@ -68,7 +86,7 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 4,
+        "step": 6,
         "kind": "tool_result",
         "tool": "compare_specs",
         "summary": "B0520LW-7-F: no_safe_match; 1 fail, 1 caveat"
@@ -78,7 +96,16 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 5,
+        "step": 7,
+        "kind": "reasoning",
+        "text": "B0520LW-7-F fails VRRM (20V < 32V required). So no_safe_match. Let's check B0530W-7-F next."
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "D1",
+        "step": 8,
         "kind": "tool_call",
         "tool": "compare_specs",
         "arguments": {
@@ -92,7 +119,7 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 6,
+        "step": 9,
         "kind": "tool_result",
         "tool": "compare_specs",
         "summary": "B0530W-7-F: no_safe_match; 1 fail, 1 caveat"
@@ -102,7 +129,16 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 7,
+        "step": 10,
+        "kind": "reasoning",
+        "text": "B0530W-7-F also fails VRRM (30 V < 32 V required). Let me check B0540W-7-F."
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "D1",
+        "step": 11,
         "kind": "tool_call",
         "tool": "compare_specs",
         "arguments": {
@@ -116,10 +152,48 @@
       "event": "agent_step",
       "data": {
         "ref": "D1",
-        "step": 8,
+        "step": 12,
         "kind": "tool_result",
         "tool": "compare_specs",
         "summary": "B0540W-7-F: drop_in; 0 fail, 0 caveat"
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "D1",
+        "step": 13,
+        "kind": "reasoning",
+        "text": "All three candidates passed package and pinout checks. B0520LW-7-F and B0530W-7-F failed VRRM (20V and 30V below required 32V), so they're no_safe_match. B0540W-7-F passed all numeric checks with suggested verdict drop_in.\n\nNow I need to consider conditions. The VRRM is 40V at peak repetitive reverse voltage - this is a rating, not a measured value under specific conditions that the circuit might not meet. The circuit runs at 24V input, so 40V VRRM gives margin.\n\nThe VF is measured at IF=0.5A, T"
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "D1",
+        "step": 14,
+        "kind": "tool_call",
+        "tool": "record_decision",
+        "arguments": {
+          "ref": "D1",
+          "candidate_mpn": "B0540W-7-F",
+          "verdict": "drop_in",
+          "confidence": 0.95,
+          "caveats": [
+            "Reverse leakage (IR) is specified at TJ = 25 °C per datasheet p.2; the board operates to 85 °C, so actual leakage at high temperature may be higher, though the circuit sees only 24 V reverse versus the 40 V test condition, keeping leakage negligible."
+          ],
+          "explanation": "Selected Diodes Incorporated B0540W-7-F as a drop-in replacement for onsemi MBR0540T1G on line D1 (reverse-polarity Schottky on 24 V input). All numeric checks passed per compare_specs: VRRM 40 V >= required 32 V (p.2), IF 0.5 A >= required 0.5 A (p.2), VF 0.510 V at IF=0.5 A, TJ=25 °C matches original exactly (p.2), IR 20 µA at VR=40 V, TJ=25 °C within limit (p.2), operating temp −65 to +150 °C covers required −40 to +85 °C (p.2), package SOD-123 matches (p.1), pinout 1:cathode/2:anode matches (p.1). Rejected look-alikes B0520LW-7-F (VRRM 20 V < 32 V) and B0530W-7-F (VRRM 30 V < 32 V) — both fail the reverse voltage requirement and are no_safe_match. Minor caveat: IR test condition is TJ=25 °C while board runs to 85 °C, but 24 V operating reverse voltage is below the 40 V test condition so impact is negligible."
+        }
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "D1",
+        "step": 15,
+        "kind": "tool_result",
+        "tool": "record_decision",
+        "summary": "D1: drop_in (B0540W-7-F)"
       }
     },
     {
@@ -132,11 +206,11 @@
         "recommended_manufacturer": "Diodes Incorporated",
         "compared_mpn": "B0540W-7-F",
         "verdict": "drop_in",
-        "model_verdict": null,
+        "model_verdict": "drop_in",
         "tightened": false,
-        "confidence": null,
-        "source": "deterministic",
-        "model": null,
+        "confidence": 0.95,
+        "source": "model",
+        "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
         "spec_checks": [
           {
             "spec": "diode_count",
@@ -324,8 +398,10 @@
           "pinout_result": "pass",
           "detail": "Same SOD-123 package and pin functions."
         },
-        "caveats": [],
-        "explanation": "Drop-in: B0540W-7-F.",
+        "caveats": [
+          "Reverse leakage (IR) is specified at TJ = 25 °C per datasheet p.2; the board operates to 85 °C, so actual leakage at high temperature may be higher, though the circuit sees only 24 V reverse versus the 40 V test condition, keeping leakage negligible."
+        ],
+        "explanation": "Selected Diodes Incorporated B0540W-7-F as a drop-in replacement for onsemi MBR0540T1G on line D1 (reverse-polarity Schottky on 24 V input). All numeric checks passed per compare_specs: VRRM 40 V >= required 32 V (p.2), IF 0.5 A >= required 0.5 A (p.2), VF 0.510 V at IF=0.5 A, TJ=25 °C matches original exactly (p.2), IR 20 µA at VR=40 V, TJ=25 °C within limit (p.2), operating temp −65 to +150 °C covers required −40 to +85 °C (p.2), package SOD-123 matches (p.1), pinout 1:cathode/2:anode matches (p.1). Rejected look-alikes B0520LW-7-F (VRRM 20 V < 32 V) and B0530W-7-F (VRRM 30 V < 32 V) — both fail the reverse voltage requirement and are no_safe_match. Minor caveat: IR test condition is TJ=25 °C while board runs to 85 °C, but 24 V operating reverse voltage is below the 40 V test condition so impact is negligible.",
         "rejected": [
           {
             "mpn": "B0520LW-7-F",
@@ -362,6 +438,15 @@
       "data": {
         "ref": "U2",
         "step": 1,
+        "kind": "reasoning",
+        "text": "Let me start by understanding the task. I need to verify a replacement for BOM line U2, which is an LDO (MCP1700-3302E/TT from Microchip). The resolved requirements show:\n- input_voltage_v: 24.0 (this seems odd - the line description says fed from 5V rail, but resolved requirements say 24V input)\n- req_vin_max_v: 5.5\n- req_vout_v: 3.3\n- req_iout_a: 0.15\n- req_temp_min_c: -40.0\n- req_temp_max_c: 85.0\n- req_headroom_vin_v: 5.0\n\nWait, there's a discrepancy. The line description says \"3.3 V LDO for "
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "U2",
+        "step": 2,
         "kind": "tool_call",
         "tool": "search_candidates",
         "arguments": {
@@ -375,7 +460,7 @@
       "event": "agent_step",
       "data": {
         "ref": "U2",
-        "step": 2,
+        "step": 3,
         "kind": "tool_result",
         "tool": "search_candidates",
         "summary": "2 candidates: AP7333-33SAG-7, AP7333-33SRG-7"
@@ -385,7 +470,16 @@
       "event": "agent_step",
       "data": {
         "ref": "U2",
-        "step": 3,
+        "step": 4,
+        "kind": "reasoning",
+        "text": "Now I need to compare specs for each candidate against the original for ref U2. Let me call compare_specs for both candidates."
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "U2",
+        "step": 5,
         "kind": "tool_call",
         "tool": "compare_specs",
         "arguments": {
@@ -399,7 +493,7 @@
       "event": "agent_step",
       "data": {
         "ref": "U2",
-        "step": 4,
+        "step": 6,
         "kind": "tool_result",
         "tool": "compare_specs",
         "summary": "AP7333-33SAG-7: needs_redesign; 1 fail, 2 caveat"
@@ -409,7 +503,16 @@
       "event": "agent_step",
       "data": {
         "ref": "U2",
-        "step": 5,
+        "step": 7,
+        "kind": "reasoning",
+        "text": "The first candidate AP7333-33SAG-7 has a pinout fail - pins 1 and 3 are swapped (GND vs VIN). This means needs_redesign at best. Let me check the second candidate AP7333-33SRG-7 to see if it has the same pinout issue."
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "U2",
+        "step": 8,
         "kind": "tool_call",
         "tool": "compare_specs",
         "arguments": {
@@ -423,10 +526,115 @@
       "event": "agent_step",
       "data": {
         "ref": "U2",
-        "step": 6,
+        "step": 9,
         "kind": "tool_result",
         "tool": "compare_specs",
         "summary": "AP7333-33SRG-7: drop_in_with_caveats; 0 fail, 2 caveat"
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "U2",
+        "step": 10,
+        "kind": "reasoning",
+        "text": "Now I have results for both candidates:\n\n1. AP7333-33SAG-7: pinout FAIL → needs_redesign (pins 1 and 3 swapped: GND/VIN vs VIN/GND)\n2. AP7333-33SRG-7: pinout PASS → drop_in_with_caveats (dropout 550 mV vs 350 mV, IQ 55 µA vs 1.6 µA)\n\nThe SRG variant passes pinout. Both have the same electrical caveats (dropout and IQ). The SRG is the preferred one since pinout matches.\n\nNow I need to consider the conditions:\n- The circuit: input_voltage_v = 24.0?? Wait, that's odd. The resolved requirements say "
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "U2",
+        "step": 11,
+        "kind": "tool_call",
+        "tool": "get_datasheet_excerpt",
+        "arguments": {
+          "mpn": "AP7333-33SRG-7",
+          "topic": "application"
+        }
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "U2",
+        "step": 12,
+        "kind": "tool_result",
+        "tool": "get_datasheet_excerpt",
+        "summary": "error: no_excerpt"
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "U2",
+        "step": 13,
+        "kind": "reasoning",
+        "text": "No application excerpt available. Let me try thermal and electrical topics to get more context on the caveats."
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "U2",
+        "step": 14,
+        "kind": "tool_call",
+        "tool": "get_datasheet_excerpt",
+        "arguments": {
+          "mpn": "AP7333-33SRG-7",
+          "topic": "thermal"
+        }
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "U2",
+        "step": 15,
+        "kind": "tool_result",
+        "tool": "get_datasheet_excerpt",
+        "summary": "error: no_excerpt"
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "U2",
+        "step": 16,
+        "kind": "reasoning",
+        "text": "No excerpts available. I have enough from compare_specs. Let me record the decision.\n\nThe SRG variant:\n- Passes: output_type, vout, vin_abs_max, vin_max, vin_min, iout_max, temp_min, temp_max, package, pinout\n- Caveats: dropout (550 mV vs 350 mV original, but fits 1.7 V headroom), iq (55 µA vs 1.6 µA, more than 2x)\n- Suggested verdict: drop_in_with_caveats\n\nThe SAG variant fails pinout → needs_redesign.\n\nFor lowest_risk, SRG is the choice. Verdict: drop_in_with_caveats. Caveats: higher quiescent"
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "U2",
+        "step": 17,
+        "kind": "tool_call",
+        "tool": "record_decision",
+        "arguments": {
+          "ref": "U2",
+          "candidate_mpn": "AP7333-33SRG-7",
+          "verdict": "drop_in_with_caveats",
+          "confidence": 0.85,
+          "caveats": [
+            "Quiescent current is 55 µA typ (AP7333 datasheet p.5) vs 1.6 µA typ for MCP1700 (p.3) — more than 2x, so standby draw will be higher.",
+            "Dropout is 550 mV max at 300 mA (AP7333 p.5) vs 350 mV max at 250 mA for MCP1700 (p.3) — still fits the 1.7 V headroom from 5 V to 3.3 V, but with less margin.",
+            "Maximum operating temperature is exactly 85 °C (AP7333 p.4), meeting but not exceeding the board's 85 °C requirement — no temperature margin above spec.",
+            "Pinout matches original (1 GND, 2 OUT, 3 IN) and package is SOT-23-3, so it is a physical drop-in."
+          ],
+          "explanation": "Chose AP7333-33SRG-7 (Diodes Incorporated) over AP7333-33SAG-7. Both are 3.3 V fixed LDOs in SOT-23-3 with 300 mA output, 6 V max operating input, -40 to 85 °C range, and 3.3 V output matching the line requirement (compare_specs: vout pass p.2, vin_max pass p.4, iout_max pass p.4, temp pass p.4). The SAG variant was rejected because its pinout swaps pins 1 and 3 (1 IN / 3 GND vs original 1 GND / 3 VIN), which compare_specs marked as a pinout fail → needs_redesign. The SRG variant passes pinout (1 GND, 2 OUT, 3 IN) and package, so it is a physical drop-in. Remaining caveats: IQ 55 µA typ vs 1.6 µA typ original (more than 2x), dropout 550 mV max vs 350 mV max original (fits the 1.7 V headroom but with less margin), and temp max exactly at the 85 °C requirement with no margin above it. All numeric checks passed; verdict is drop_in_with_caveats rather than drop_in because of the IQ, dropout, and temperature-margin caveats."
+        }
+      }
+    },
+    {
+      "event": "agent_step",
+      "data": {
+        "ref": "U2",
+        "step": 18,
+        "kind": "tool_result",
+        "tool": "record_decision",
+        "summary": "U2: drop_in_with_caveats (AP7333-33SRG-7)"
       }
     },
     {
@@ -439,11 +647,11 @@
         "recommended_manufacturer": "Diodes Incorporated",
         "compared_mpn": "AP7333-33SRG-7",
         "verdict": "drop_in_with_caveats",
-        "model_verdict": null,
+        "model_verdict": "drop_in_with_caveats",
         "tightened": false,
-        "confidence": null,
-        "source": "deterministic",
-        "model": null,
+        "confidence": 0.85,
+        "source": "model",
+        "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
         "spec_checks": [
           {
             "spec": "output_type",
@@ -692,10 +900,12 @@
           "detail": "Same SOT-23-3 package and pin functions."
         },
         "caveats": [
-          "dropout_v: candidate 550 mV max fits the 1.7 V headroom but is more than 50 mV above the original 350 mV max",
-          "iq_a: candidate 55 µA typ is more than 2x the original 1.6 µA typ"
+          "Quiescent current is 55 µA typ (AP7333 datasheet p.5) vs 1.6 µA typ for MCP1700 (p.3) — more than 2x, so standby draw will be higher.",
+          "Dropout is 550 mV max at 300 mA (AP7333 p.5) vs 350 mV max at 250 mA for MCP1700 (p.3) — still fits the 1.7 V headroom from 5 V to 3.3 V, but with less margin.",
+          "Maximum operating temperature is exactly 85 °C (AP7333 p.4), meeting but not exceeding the board's 85 °C requirement — no temperature margin above spec.",
+          "Pinout matches original (1 GND, 2 OUT, 3 IN) and package is SOT-23-3, so it is a physical drop-in."
         ],
-        "explanation": "Drop-in with caveats: AP7333-33SRG-7. dropout_v: candidate 550 mV max fits the 1.7 V headroom but is more than 50 mV above the original 350 mV max.",
+        "explanation": "Chose AP7333-33SRG-7 (Diodes Incorporated) over AP7333-33SAG-7. Both are 3.3 V fixed LDOs in SOT-23-3 with 300 mA output, 6 V max operating input, -40 to 85 °C range, and 3.3 V output matching the line requirement (compare_specs: vout pass p.2, vin_max pass p.4, iout_max pass p.4, temp pass p.4). The SAG variant was rejected because its pinout swaps pins 1 and 3 (1 IN / 3 GND vs original 1 GND / 3 VIN), which compare_specs marked as a pinout fail → needs_redesign. The SRG variant passes pinout (1 GND, 2 OUT, 3 IN) and package, so it is a physical drop-in. Remaining caveats: IQ 55 µA typ vs 1.6 µA typ original (more than 2x), dropout 550 mV max vs 350 mV max original (fits the 1.7 V headroom but with less margin), and temp max exactly at the 85 °C requirement with no margin above it. All numeric checks passed; verdict is drop_in_with_caveats rather than drop_in because of the IQ, dropout, and temperature-margin caveats.",
         "rejected": [
           {
             "mpn": "AP7333-33SAG-7",
@@ -714,8 +924,8 @@
     {
       "event": "run_completed",
       "data": {
-        "run_id": "run-0fc23ebbadd3",
-        "elapsed_ms": 5
+        "run_id": "run-a9c78fd3785c",
+        "elapsed_ms": 73544
       }
     }
   ],
@@ -728,11 +938,11 @@
       "recommended_manufacturer": "Diodes Incorporated",
       "compared_mpn": "B0540W-7-F",
       "verdict": "drop_in",
-      "model_verdict": null,
+      "model_verdict": "drop_in",
       "tightened": false,
-      "confidence": null,
-      "source": "deterministic",
-      "model": null,
+      "confidence": 0.95,
+      "source": "model",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
       "spec_checks": [
         {
           "spec": "diode_count",
@@ -920,8 +1130,10 @@
         "pinout_result": "pass",
         "detail": "Same SOD-123 package and pin functions."
       },
-      "caveats": [],
-      "explanation": "Drop-in: B0540W-7-F.",
+      "caveats": [
+        "Reverse leakage (IR) is specified at TJ = 25 °C per datasheet p.2; the board operates to 85 °C, so actual leakage at high temperature may be higher, though the circuit sees only 24 V reverse versus the 40 V test condition, keeping leakage negligible."
+      ],
+      "explanation": "Selected Diodes Incorporated B0540W-7-F as a drop-in replacement for onsemi MBR0540T1G on line D1 (reverse-polarity Schottky on 24 V input). All numeric checks passed per compare_specs: VRRM 40 V >= required 32 V (p.2), IF 0.5 A >= required 0.5 A (p.2), VF 0.510 V at IF=0.5 A, TJ=25 °C matches original exactly (p.2), IR 20 µA at VR=40 V, TJ=25 °C within limit (p.2), operating temp −65 to +150 °C covers required −40 to +85 °C (p.2), package SOD-123 matches (p.1), pinout 1:cathode/2:anode matches (p.1). Rejected look-alikes B0520LW-7-F (VRRM 20 V < 32 V) and B0530W-7-F (VRRM 30 V < 32 V) — both fail the reverse voltage requirement and are no_safe_match. Minor caveat: IR test condition is TJ=25 °C while board runs to 85 °C, but 24 V operating reverse voltage is below the 40 V test condition so impact is negligible.",
       "rejected": [
         {
           "mpn": "B0520LW-7-F",
@@ -952,11 +1164,11 @@
       "recommended_manufacturer": "Diodes Incorporated",
       "compared_mpn": "AP7333-33SRG-7",
       "verdict": "drop_in_with_caveats",
-      "model_verdict": null,
+      "model_verdict": "drop_in_with_caveats",
       "tightened": false,
-      "confidence": null,
-      "source": "deterministic",
-      "model": null,
+      "confidence": 0.85,
+      "source": "model",
+      "model": "nvidia/nemotron-3.5-super-vl-120b-a12b",
       "spec_checks": [
         {
           "spec": "output_type",
@@ -1205,10 +1417,12 @@
         "detail": "Same SOT-23-3 package and pin functions."
       },
       "caveats": [
-        "dropout_v: candidate 550 mV max fits the 1.7 V headroom but is more than 50 mV above the original 350 mV max",
-        "iq_a: candidate 55 µA typ is more than 2x the original 1.6 µA typ"
+        "Quiescent current is 55 µA typ (AP7333 datasheet p.5) vs 1.6 µA typ for MCP1700 (p.3) — more than 2x, so standby draw will be higher.",
+        "Dropout is 550 mV max at 300 mA (AP7333 p.5) vs 350 mV max at 250 mA for MCP1700 (p.3) — still fits the 1.7 V headroom from 5 V to 3.3 V, but with less margin.",
+        "Maximum operating temperature is exactly 85 °C (AP7333 p.4), meeting but not exceeding the board's 85 °C requirement — no temperature margin above spec.",
+        "Pinout matches original (1 GND, 2 OUT, 3 IN) and package is SOT-23-3, so it is a physical drop-in."
       ],
-      "explanation": "Drop-in with caveats: AP7333-33SRG-7. dropout_v: candidate 550 mV max fits the 1.7 V headroom but is more than 50 mV above the original 350 mV max.",
+      "explanation": "Chose AP7333-33SRG-7 (Diodes Incorporated) over AP7333-33SAG-7. Both are 3.3 V fixed LDOs in SOT-23-3 with 300 mA output, 6 V max operating input, -40 to 85 °C range, and 3.3 V output matching the line requirement (compare_specs: vout pass p.2, vin_max pass p.4, iout_max pass p.4, temp pass p.4). The SAG variant was rejected because its pinout swaps pins 1 and 3 (1 IN / 3 GND vs original 1 GND / 3 VIN), which compare_specs marked as a pinout fail → needs_redesign. The SRG variant passes pinout (1 GND, 2 OUT, 3 IN) and package, so it is a physical drop-in. Remaining caveats: IQ 55 µA typ vs 1.6 µA typ original (more than 2x), dropout 550 mV max vs 350 mV max original (fits the 1.7 V headroom but with less margin), and temp max exactly at the 85 °C requirement with no margin above it. All numeric checks passed; verdict is drop_in_with_caveats rather than drop_in because of the IQ, dropout, and temperature-margin caveats.",
       "rejected": [
         {
           "mpn": "AP7333-33SAG-7",

@@ -275,6 +275,34 @@ def test_max_turns_fallback():
     assert len(client.requests) == 10
 
 
+def test_length_retry_disables_thinking_once():
+    decision, _, client = run([
+        reply(content="thinking ran out", finish_reason="length"),
+        reply(search()),
+        reply(compare("SAFE40")),
+        reply(record("SAFE40", "drop_in")),
+    ])
+    assert decision.source.value == "model"
+    assert client.requests[1]["extra_body"]["chat_template_kwargs"]["enable_thinking"] is False
+
+
+def test_second_length_falls_back():
+    decision, _, client = run([
+        reply(content="thinking ran out", finish_reason="length"),
+        reply(content="still thinking", finish_reason="length"),
+    ])
+    assert decision.source.value == "deterministic_fallback"
+    assert len(client.requests) == 2
+
+
+def test_line_time_budget_falls_back(monkeypatch):
+    ticks = iter([0, loop.LINE_TIME_BUDGET_S + 1])
+    monkeypatch.setattr(loop.time, "monotonic", lambda: next(ticks))
+    decision, _, client = run([reply(search())])
+    assert decision.source.value == "deterministic_fallback"
+    assert client.requests == []
+
+
 def test_reasoning_emitted():
     long_thought = "Checking Vrrm against the 32 V input. " * 30
     _, events, client = run([

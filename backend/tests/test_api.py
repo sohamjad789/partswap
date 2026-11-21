@@ -186,9 +186,10 @@ def test_live_without_key_is_sse_error(client, monkeypatch):
     assert events == [("error", {"message": "NVIDIA_API_KEY is not set"})]
 
 
-def test_cache_mode_is_sse_error_until_phase_5b(client):
+def test_cache_mode_uses_deterministic_fallback_on_miss(client):
     events = stream(client, {"lines": [D1], "design_context": {}, "mode": "cache"})
-    assert [e for e, _ in events] == ["error"]
+    decisions = [Decision.model_validate(data) for event, data in events if event == "part_decision"]
+    assert len(decisions) == 1 and decisions[0].source.value == "deterministic"
 
 
 def test_run_survives_restart(client):
