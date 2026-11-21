@@ -1,0 +1,36 @@
+{
+  "mpn": "AP2112K-3.3TRG1",
+  "manufacturer": "Diodes Incorporated",
+  "category": "ldo",
+  "description": "3.3 V 600 mA fixed LDO with enable, SOT-23-5",
+  "datasheet_filename": "AP2112.pdf",
+  "package": {"code": "SOT-23-5", "pins": 5, "page": 1},
+  "pinout": [
+    {"pin": 1, "name": "VIN", "functions": ["power_in"]},
+    {"pin": 2, "name": "GND", "functions": ["ground"]},
+    {"pin": 3, "name": "EN", "functions": ["enable_active_high"]},
+    {"pin": 4, "name": "NC", "functions": ["nc"]},
+    {"pin": 5, "name": "VOUT", "functions": ["power_out"]}
+  ],
+  "pinout_page": 2,
+  "polarity": null,
+  "diode_count": null,
+  "channel_count": null,
+  "topology": null,
+  "output_type": "fixed",
+  "unit_price_usd": null,
+  "lead_time_weeks": null,
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vout_v": {"value": 3.3, "raw": "3.3 V", "condition": "fixed output code 3.3", "page": 2, "table": "Ordering Information"},
+    "vin_abs_max_v": {"value": 6.5, "raw": "6.5 V", "condition": "absolute maximum power supply voltage; stress rating", "page": 3, "table": "Absolute Maximum Ratings"},
+    "vin_max_v": {"value": 6.0, "raw": "6.0 V", "condition": "recommended operating supply voltage maximum", "page": 3, "table": "Recommended Operating Conditions"},
+    "vin_min_v": {"value": 2.5, "raw": "2.5 V", "condition": "recommended operating supply voltage minimum", "page": 3, "table": "Recommended Operating Conditions"},
+    "iout_max_a": {"value": 0.6, "raw": "600 mA min", "condition": "guaranteed minimum output current; VIN = 4.3 V, VOUT within 3.251 V to 3.350 V", "page": 7, "table": "AP2112-3.3 Electrical Characteristics"},
+    "dropout_v": {"value": 0.2, "raw": "200 mV max", "condition": "max, IOUT = 300 mA", "page": 7, "table": "AP2112-3.3 Electrical Characteristics"},
+    "iq_a": {"value": 5.5e-05, "raw": "55 µA typ", "condition": "typ, VIN = 4.3 V, IOUT = 0 mA", "page": 7, "table": "AP2112-3.3 Electrical Characteristics"},
+    "temp_min_c": {"value": -40, "raw": "-40 °C", "condition": "recommended ambient operating temperature minimum", "page": 3, "table": "Recommended Operating Conditions"},
+    "temp_max_c": {"value": 85, "raw": "+85 °C", "condition": "recommended ambient operating temperature maximum", "page": 3, "table": "Recommended Operating Conditions"}
+  }
+}

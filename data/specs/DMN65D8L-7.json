@@ -1,0 +1,96 @@
+{
+  "mpn": "DMN65D8L-7",
+  "manufacturer": "Diodes Incorporated",
+  "category": "mosfet",
+  "description": "60 V 270 mA N-channel MOSFET with ESD-protected gate, SOT-23",
+  "datasheet_filename": "DMN65D8L.pdf",
+  "package": {
+    "code": "SOT-23-3",
+    "pins": 3,
+    "page": 1
+  },
+  "pinout": [
+    {
+      "pin": 1,
+      "name": "G",
+      "functions": [
+        "gate"
+      ]
+    },
+    {
+      "pin": 2,
+      "name": "S",
+      "functions": [
+        "source"
+      ]
+    },
+    {
+      "pin": 3,
+      "name": "D",
+      "functions": [
+        "drain"
+      ]
+    }
+  ],
+  "pinout_page": 1,
+  "polarity": "n",
+  "diode_count": null,
+  "channel_count": null,
+  "topology": null,
+  "output_type": null,
+  "unit_price_usd": null,
+  "lead_time_weeks": null,
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vds_max_v": {
+      "value": 60,
+      "raw": "60 V",
+      "condition": "maximum drain-source voltage",
+      "page": 2,
+      "table": "Maximum Ratings"
+    },
+    "id_max_a": {
+      "value": 0.27,
+      "raw": "270 mA",
+      "condition": "maximum continuous drain current at TA = +25 \u00b0C, steady state, VGS = 5 V",
+      "page": 2,
+      "table": "Maximum Ratings"
+    },
+    "vgs_max_v": {
+      "value": 20,
+      "raw": "\u00b120 V",
+      "condition": "maximum continuous gate-source voltage magnitude",
+      "page": 2,
+      "table": "Maximum Ratings"
+    },
+    "vgs_th_max_v": {
+      "value": 2.0,
+      "raw": "2.0 V max",
+      "condition": "max, VDS = VGS, ID = 250 \u00b5A",
+      "page": 2,
+      "table": "Electrical Characteristics"
+    },
+    "rds_on_ohm": {
+      "value": 4.0,
+      "raw": "4 \u03a9 max",
+      "condition": "max, VGS = 5 V, ID = 0.115 A; other specified point is 3 \u03a9 max at VGS = 10 V, ID = 0.115 A",
+      "page": 2,
+      "table": "Electrical Characteristics"
+    },
+    "temp_min_c": {
+      "value": -55,
+      "raw": "-55 \u00b0C",
+      "condition": "operating junction temperature minimum",
+      "page": 2,
+      "table": "Maximum Ratings"
+    },
+    "temp_max_c": {
+      "value": 150,
+      "raw": "+150 \u00b0C",
+      "condition": "operating junction temperature maximum",
+      "page": 2,
+      "table": "Maximum Ratings"
+    }
+  }
+}

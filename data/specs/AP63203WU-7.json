@@ -1,0 +1,124 @@
+{
+  "mpn": "AP63203WU-7",
+  "manufacturer": "Diodes Incorporated",
+  "category": "buck",
+  "description": "32 V 2 A fixed 3.3 V synchronous buck converter, TSOT26",
+  "datasheet_filename": "AP63200-AP63201-AP63203-AP63205.pdf",
+  "package": {
+    "code": "SOT-23-6",
+    "pins": 6,
+    "page": 16
+  },
+  "pinout": [
+    {
+      "pin": 1,
+      "name": "FB",
+      "functions": [
+        "feedback"
+      ]
+    },
+    {
+      "pin": 2,
+      "name": "EN",
+      "functions": [
+        "enable_active_high"
+      ]
+    },
+    {
+      "pin": 3,
+      "name": "VIN",
+      "functions": [
+        "power_in"
+      ]
+    },
+    {
+      "pin": 4,
+      "name": "GND",
+      "functions": [
+        "ground"
+      ]
+    },
+    {
+      "pin": 5,
+      "name": "SW",
+      "functions": [
+        "switch"
+      ]
+    },
+    {
+      "pin": 6,
+      "name": "BST",
+      "functions": [
+        "bootstrap"
+      ]
+    }
+  ],
+  "pinout_page": 2,
+  "polarity": null,
+  "diode_count": null,
+  "channel_count": null,
+  "topology": "synchronous",
+  "output_type": "fixed",
+  "unit_price_usd": null,
+  "lead_time_weeks": null,
+  "verified": true,
+  "synthetic": false,
+  "specs": {
+    "vin_min_v": {
+      "value": 3.8,
+      "raw": "3.8 V",
+      "condition": "recommended operating input voltage minimum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    },
+    "vin_max_v": {
+      "value": 32.0,
+      "raw": "32 V",
+      "condition": "recommended operating input voltage maximum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    },
+    "vout_v": {
+      "value": 3.3,
+      "raw": "3.3 V",
+      "condition": "fixed output voltage, AP63203 version",
+      "page": 16,
+      "table": "Ordering Information"
+    },
+    "iout_max_a": {
+      "value": 2.0,
+      "raw": "2000 mA",
+      "condition": "maximum continuous output current",
+      "page": 1,
+      "table": "Product Summary"
+    },
+    "fsw_hz": {
+      "value": 1100000.0,
+      "raw": "1.1 MHz",
+      "condition": "nominal switching frequency for this fixed-output part number",
+      "page": 16,
+      "table": "Ordering Information"
+    },
+    "iq_a": {
+      "value": 2.2e-05,
+      "raw": "22 \u00b5A typ",
+      "condition": "typical quiescent current, no-load non-switching condition",
+      "page": 5,
+      "table": "Electrical Characteristics"
+    },
+    "temp_min_c": {
+      "value": -40,
+      "raw": "-40 \u00b0C",
+      "condition": "recommended operating junction/ambient temperature minimum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    },
+    "temp_max_c": {
+      "value": 85,
+      "raw": "+85 \u00b0C",
+      "condition": "recommended operating junction/ambient temperature maximum",
+      "page": 4,
+      "table": "Recommended Operating Conditions"
+    }
+  }
+}

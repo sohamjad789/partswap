@@ -970,7 +970,7 @@ Record both AP7333 variants with `package.code` `SOT-23-3` (the datasheet calls 
   The manifest is test data and demo documentation. No tool, prompt, or route other than `/api/demo-bom` (which returns only `design_context`) reads it.
 - [ ] `pytest -q backend/tests/test_specs_valid.py backend/tests/test_manifest.py` (written in Phase 2). Fix data until green.
 - [ ] After Phase 3 lands: `python backend/scripts/record_fixture.py --mode deterministic` and confirm in the browser.
-- [ ] Tier B lines, one at a time, each ending with the two tests green and the fixture re-recorded.
+- [x] Tier B lines verified one at a time: D2, U3, Q1, U1. D3 skipped: no Diodes single-line 5 V candidate was verified as the same package and the datasheet did not establish the required 5 V working standoff rating within the search window. Phase 1 tests passed and the deterministic fixture was re-recorded after each added line.
 - [ ] 5:00–6:00 PM: author `data/eval/pairs.json` and the `SYN-` spec files it needs (section 4.17). Synthetic specs set `synthetic: true`, `verified: true`, and write `"synthetic"` in `table`. Class C parts also get a hand-written `data/excerpts/{MPN}.json`.
 
 **Pitfalls:** Never type a pinout or a rating from memory. Never mark a guessed value verified. Do not add footprint aliases. Do not grow past 30 parts.
