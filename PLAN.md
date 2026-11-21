@@ -38,14 +38,14 @@ None found. Checked and absent: `.cursor/rules/*.mdc`, `.cursorrules`, `AGENTS.m
 
 Rules that bind every executor:
 
-- Commit only when the human running your chat asks. Never push, force-push, change git config, or skip hooks on your own.
-- `origin` is `https://github.com/sohamjad789/tinyml-edge-vs-cloud.git`. Its only commit was made today at 10:59 AM, so it is probably the team's repo from an earlier idea, but this plan could not confirm that. **The team decides before the first push** whether PartSwap goes to this remote or a new one (open question in section 5).
+- Commit and push only when the human running your chat asks. Never force-push, change git config, or skip hooks.
+- The project remote is `origin`, `https://github.com/sohamjad789/tinyml-edge-vs-cloud.git`, branch `main`. The repository name is left over from an earlier idea; PartSwap lives here.
 - Datasheet PDFs and `.env` are never committed.
 - UI changes are verified in a browser before a phase is called done.
 
 ## 3. Current State
 
-Git branch `main`, one commit `947f6c8` "Initial commit", tracking `origin/main`. `PLAN.md` is untracked.
+Git branch `main`, tracking `origin/main`. Two commits when this plan was written: `947f6c8` "Initial commit" and the commit that added `PLAN.md`.
 
 | Path | What it is |
 | --- | --- |
@@ -805,10 +805,9 @@ Decided; do not reopen during implementation:
 - The stage path is `cache` mode plus one live line. A cache miss runs the deterministic pipeline, never a surprise live call.
 - "Max current per rail" from the brief is a per-line `req_iout_a`, not a board-level field.
 - The brief's `search_candidates(category, constraints, preferred_manufacturer)` drops `constraints` on purpose: filtering would hide traps.
+- The remote is `origin` (`sohamjad789/tinyml-edge-vs-cloud`), branch `main`.
 
-Open question for the team (not a blocker for coding):
-
-- **Which remote?** Decide before the first push whether PartSwap goes to `sohamjad789/tinyml-edge-vs-cloud` (rename it if so) or a new repo.
+There are no open questions that block coding.
 
 Verify in Phase 0 and record in `docs/model_probe.md`:
 
@@ -884,7 +883,7 @@ Four lanes. Everyone starts at 1:00 PM; nobody waits for Phase 0, because the co
 
 - **Tests** in `backend/tests/` belong to the lane that owns the module under test. One test file per module, so two lanes never edit the same file.
 - **Contract changes** (any field name, event shape, or tool signature in section 4): tell the Lead. The Lead changes `PLAN.md`, `schemas.py`, and `shared/examples/` together and tells the Frontend lane. Nobody else edits those files.
-- **Git:** once the remote question is settled, work on `main` in small commits; `git pull --rebase` before each push. Lanes own disjoint paths, so conflicts should be rare. Agents commit only when their human asks.
+- **Git:** work on `main` in small commits and push to `origin`; `git pull --rebase` before each push. Lanes own disjoint paths, so conflicts should be rare. Agents commit and push only when their human asks.
 - **Fewer than four people:** with three, the Lead and Backend lanes are one person and Phase 3 goes to whoever is free first; expect the deterministic checkpoint near 4:30 PM and the first live line near 5:15 PM. With one or two, follow the "minimum path" in section 10.
 
 ### Phase 0 — Contracts, scaffold, model probe
@@ -1184,7 +1183,7 @@ Two parts, so a live line exists early.
 - [ ] 7:30–8:00: record the rehearsal to `docs/demo-backup.mp4` (screen recording with voice).
 - [ ] `docs/nemotron.md`, under 700 words: what each Nemotron model does here and why that model; why numbers and the verdict floor are deterministic; what the model adds beyond the rules (class C results); the evaluation table copied from `results.json`; the prompt change made after the first evaluation run, if any; the extraction totals; the model-ID finding from `docs/model_probe.md`. Every number comes from a generated file.
 - [ ] `README.md`: setup, environment variables, how to fetch the PDFs in `SOURCES.md`, run commands, test commands, the four modes, links to the two docs.
-- [ ] 8:30: code freeze. Run section 9's checklist. Decide the remote and push only if the team says so.
+- [ ] 8:30: code freeze. Run section 9's checklist. Push the final state to `origin main` when the human running the chat asks.
 
 **Pitfalls:** No rule or threshold changes in this phase. No extraction on stage. Do not leave the recording to the end.
 
@@ -1334,7 +1333,7 @@ Never cut: the verdict floor and its tests, Tier A data verified against the PDF
 
 - Do your phase only. Finish with the handoff note from section 9.
 - Use `/opt/homebrew/bin/python3.11` for the venv on this machine. `python3` is 3.14.
-- Commit only when asked. Do not push until the team has settled the remote.
+- Commit and push only when asked. The remote is `origin` (`sohamjad789/tinyml-edge-vs-cloud`), branch `main`.
 - If something in this plan is impossible or contradicts what you find, stop and report which sentence, rather than quietly doing something else. Contract changes go through the Lead.
 - The datasheet facts in section 5 and the roles in Phase 1 are leads from a web search. The PDF decides. When the PDF disagrees, change the data or the part, not `data/categories.json`.
 - Pin numbering is never portable between vendors or even between suffixes of one part (AP7333 SA vs SR). Read the page.
