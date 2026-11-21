@@ -1,5 +1,4 @@
 const paths: Record<string, string> = {
-  logo: "M7 4h6a5 5 0 0 1 0 10H9v6H6V5a1 1 0 0 1 1-1zm2 3v4h4a2 2 0 0 0 0-4H9z",
   upload: "M12 16V4m0 0-4.5 4.5M12 4l4.5 4.5M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3",
   file: "M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5zm0 0v5h5M9 13h6M9 17h4",
   sparkle: "M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z",
@@ -31,7 +30,7 @@ const paths: Record<string, string> = {
 export type IconName = keyof typeof paths;
 
 export function Icon({ name, size = 18, className, strokeWidth = 1.9 }: { name: IconName; size?: number; className?: string; strokeWidth?: number }) {
-  const filled = name === "play" || name === "logo";
+  const filled = name === "play";
   return (
     <svg
       className={className}
