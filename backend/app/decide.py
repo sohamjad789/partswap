@@ -48,6 +48,15 @@ def _describe(check: Check) -> str:
     return f"{check.spec}: {check.reason}"
 
 
+def floor_reason(comparison: Comparison) -> str:
+    """`"{spec}: {reason}"` of the check that sets the comparison's floor verdict."""
+    deciding = _deciding_check(comparison)
+    if deciding is not None:
+        return _describe(deciding)
+    caveats = _caveat_checks(comparison)
+    return _describe(caveats[0]) if caveats else comparison.suggested_verdict.value
+
+
 def build_decision(
     line: BomLine,
     context: DesignContext,
@@ -160,8 +169,7 @@ def decide_deterministic(line: BomLine, context: DesignContext, emit: Optional[E
     best = rank_candidates(comparisons, context)[0]
     verdict = best.suggested_verdict
     caveats = [_describe(c) for c in _caveat_checks(best)]
-    deciding = _deciding_check(best)
-    detail = caveats[0] if verdict == Verdict.drop_in_with_caveats and caveats else (_describe(deciding) if deciding else "")
+    detail = floor_reason(best) if verdict != Verdict.drop_in else ""
     explanation = f"{VERDICT_LABELS[verdict]}: {best.candidate_mpn}." + (f" {_sentence(detail)}" if detail else "")
     return build_decision(line, context, comparisons, best.candidate_mpn, verdict, source=Source.deterministic,
                           caveats=caveats, explanation=explanation)

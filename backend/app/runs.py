@@ -1,6 +1,7 @@
 """Run modes, SSE framing, and the run store (PLAN.md sections 4.1, 4.11, 4.12)."""
 
 import json
+import queue
 import re
 import threading
 import time
@@ -101,8 +102,10 @@ def run_events(lines: list[BomLine], context: DesignContext, mode: Mode, *, fast
         yield from _fixture_events(lines, fast)
     elif mode == Mode.deterministic:
         yield from _deterministic_events(lines, context)
+    elif mode == Mode.live:
+        yield from _live_events(lines, context)
     else:
-        yield "error", {"message": f"Mode '{mode.value}' is not implemented yet; use 'fixture' or 'deterministic'."}
+        yield "error", {"message": f"Mode '{mode.value}' is not implemented yet; use 'fixture', 'deterministic', or 'live'."}
 
 
 def _fixture_events(lines: list[BomLine], fast: bool) -> Iterator[Event]:
@@ -135,22 +138,37 @@ def _deterministic_events(lines: list[BomLine], context: DesignContext) -> Itera
         yield "error", {"message": "Deterministic mode needs backend/app/decide.py, which has not landed yet."}
         return
 
+    yield from _decided_events(lines, context, Mode.deterministic,
+                               lambda line, emit: decide_deterministic(line, context, emit=emit))
+
+
+def _live_events(lines: list[BomLine], context: DesignContext) -> Iterator[Event]:
+    from app.agent.client import make_client
+    from app.agent.loop import run_part
+
+    settings = get_settings()
+    client = make_client(settings)
+    yield from _decided_events(lines, context, Mode.live,
+                               lambda line, emit: run_part(line, context, settings.super_model, emit, client=client))
+
+
+Decide = Callable[[BomLine, Callable[..., None]], Decision]
+
+
+def _decided_events(lines: list[BomLine], context: DesignContext, mode: Mode, decide: Decide) -> Iterator[Event]:
     run_id = _new_run_id()
     started = time.monotonic()
-    run = Run(run_id=run_id, created_at=_now_iso(), mode=Mode.deterministic, design_context=context, decisions=[])
-    yield "run_started", {"run_id": run_id, "part_count": len(lines), "mode": Mode.deterministic.value}
+    run = Run(run_id=run_id, created_at=_now_iso(), mode=mode, design_context=context, decisions=[])
+    yield "run_started", {"run_id": run_id, "part_count": len(lines), "mode": mode.value}
     try:
         for index, line in enumerate(lines):
             yield "part_started", {"ref": line.ref, "mpn": line.mpn, "index": index}
-            steps: list[Event] = []
-            try:
-                decision = decide_deterministic(line, context, emit=_collector(steps))
-            except Exception as exc:  # one line failing never stops the run
-                yield from steps
+            outcome: list[Any] = []
+            yield from _streamed(lambda emit: decide(line, emit), outcome)
+            decision, exc = outcome
+            if exc is not None:  # one line failing never stops the run
                 yield "part_error", {"ref": line.ref, "message": f"{type(exc).__name__}: {exc}", "fallback": True}
                 decision = _error_decision(line, exc)
-            else:
-                yield from steps
             run.decisions.append(decision)
             yield "part_decision", decision.model_dump(mode="json")
         yield "run_completed", {"run_id": run_id, "elapsed_ms": int((time.monotonic() - started) * 1000)}
@@ -158,14 +176,32 @@ def _deterministic_events(lines: list[BomLine], context: DesignContext) -> Itera
         save_run(StoredRun(run=run, lines=lines))
 
 
-def _collector(steps: list[Event]) -> Callable[..., None]:
+def _streamed(work: Callable[[Callable[..., None]], Decision], outcome: list[Any]) -> Iterator[Event]:
+    """Run `work(emit)` in a thread and yield its events as they arrive; `outcome` gets `[decision, exception]`."""
+    events: queue.Queue = queue.Queue()
+    done = object()
+
+    def target() -> None:
+        try:
+            outcome[:] = [work(_collector(events.put)), None]
+        except Exception as exc:
+            outcome[:] = [None, exc]
+        finally:
+            events.put(done)
+
+    threading.Thread(target=target, daemon=True).start()
+    while (item := events.get()) is not done:
+        yield item
+
+
+def _collector(sink: Callable[[Event], None]) -> Callable[..., None]:
     """`emit` for Phase 2/5 code. Accepts `emit(event, data)` or `emit(agent_step)` with a dict or model."""
 
     def emit(*args: Any) -> None:
         event, data = args if len(args) == 2 else ("agent_step", args[0])
         if isinstance(data, BaseModel):
             data = data.model_dump(mode="json", exclude_none=True)
-        steps.append((event, data))
+        sink((event, data))
 
     return emit
 

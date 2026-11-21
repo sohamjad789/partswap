@@ -186,7 +186,7 @@ def test_live_without_key_is_sse_error(client, monkeypatch):
     assert events == [("error", {"message": "NVIDIA_API_KEY is not set"})]
 
 
-def test_cache_mode_is_sse_error_until_phase_5(client):
+def test_cache_mode_is_sse_error_until_phase_5b(client):
     events = stream(client, {"lines": [D1], "design_context": {}, "mode": "cache"})
     assert [e for e, _ in events] == ["error"]
 
