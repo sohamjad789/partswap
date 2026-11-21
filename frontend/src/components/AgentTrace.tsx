@@ -1,0 +1,2 @@
+import type { AgentStep } from "../types";
+export function AgentTrace({ steps }: { steps: AgentStep[] }) { return <section className="panel trace"><h2>Agent trace</h2>{steps.length === 0 ? <p>No steps yet.</p> : <ol>{steps.map(step => <li key={`${step.step}-${step.kind}`} className={step.kind}><span>{step.kind.replace("_", " ")}</span>{step.text && <p>{step.text}</p>}{step.tool && <code>{step.tool}{step.arguments ? `(${JSON.stringify(step.arguments)})` : ""}{step.summary ? ` — ${step.summary}` : ""}</code>}</li>)}</ol>}</section>; }
