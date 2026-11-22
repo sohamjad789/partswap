@@ -913,3 +913,113 @@ body.resizing, body.resizing * { cursor: ns-resize !important; user-select: none
   .setup-scroll { flex: 1 1 auto; display: flex; flex-direction: column; }
   .step { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: center; }
 }
+
+/* --------------------------------------------------------------------------
+   Results empty state: fits whatever height the card has. Centered, spacing in
+   rem so it shrinks with the screen, and it scrolls (disappearing scrollbar)
+   only if the card is resized smaller than its content.
+   -------------------------------------------------------------------------- */
+.results { display: flex; flex-direction: column; }
+.results .empty-state {
+  flex: 1 1 auto; min-height: 0; overflow-y: auto; justify-content: center;
+  gap: 0.4rem; padding: 0.75rem 2rem 1rem;
+}
+.results .empty-state .empty-art { width: 3.75rem; height: 3.75rem; flex: none; }
+.results .empty-state .empty-art svg { width: 1.75rem; height: 1.75rem; }
+.results .empty-state h3 { margin-top: 0.25rem; }
+.results .empty-state p { margin-bottom: 0.5rem; }
+.results .empty-state .btn { flex: none; }
+
+/* ==========================================================================
+   Dark mode. Same drafting style, inverted: dark paper, light ink, faint grid.
+   The toggle sets data-theme on <html>; index.html applies it before first paint.
+   Verdict badge colors are fixed by PLAN.md §4.16 and stay the same.
+   ========================================================================== */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0c1016;
+  --bg-grad: linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  --surface: #131922;
+  --surface-2: #18202b;
+  --surface-3: #202a37;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --hover-border: rgba(255, 255, 255, 0.34);
+  --topbar-bg: rgba(12, 16, 22, 0.88);
+  --foot-fade: rgba(19, 25, 34, 0.9);
+  --skeleton-hi: #2a3544;
+  --idle: #5d6a7d;
+
+  --text: #e7ebf1;
+  --text-2: #b6bfcc;
+  --text-3: #8a95a6;
+
+  --accent: #2f86ea;
+  --accent-hover: #4596f2;
+  --accent-press: #1f72d1;
+  --accent-2: #d9a650;
+  --accent-disabled: #2a4568;
+  --accent-soft: rgba(47, 134, 234, 0.14);
+  --accent-soft-2: rgba(47, 134, 234, 0.28);
+  --accent-text: #74b6ff;
+  --accent-glow: rgba(47, 134, 234, 0.4);
+  --ring: 0 0 0 3px rgba(217, 166, 80, 0.45);
+
+  --pass-fg: #5fd39b;
+  --pass-bg: rgba(27, 127, 78, 0.2);
+  --pass-border: rgba(95, 211, 155, 0.3);
+  --fail-fg: #ff8f84;
+  --fail-bg: rgba(180, 35, 24, 0.2);
+  --fail-hover: rgba(180, 35, 24, 0.28);
+  --fail-border: rgba(255, 143, 132, 0.32);
+  --caveat-fg: #f3c84b;
+  --caveat-bg: rgba(138, 106, 0, 0.22);
+  --caveat-hover: rgba(138, 106, 0, 0.3);
+  --caveat-border: rgba(243, 200, 75, 0.3);
+  --caveat-pill: rgba(243, 200, 75, 0.18);
+  --unknown-fg: #f3c84b;
+  --cell-tint: rgba(0, 0, 0, 0.25);
+  --strike: rgba(255, 143, 132, 0.7);
+  --reason-fg: #b9a4ff;
+  --reason-bg: rgba(139, 108, 255, 0.15);
+  --reason-border: rgba(185, 164, 255, 0.3);
+  --guard-fg: #ff9d5c;
+  --guard-bg: rgba(194, 65, 12, 0.18);
+  --guard-border: rgba(255, 157, 92, 0.3);
+  --code-bg: #080b10;
+  --code-fg: #d6e6ff;
+
+  --shadow-xs: 0 1px 0 rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 0 rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 44px rgba(0, 0, 0, 0.55);
+
+  --scrollbar-thumb: rgba(255, 255, 255, 0.3);
+}
+:root { --scrollbar-thumb: rgba(26, 26, 26, 0.32); }
+.auto-scrollbar.is-scrolling { scrollbar-color: var(--scrollbar-thumb) transparent; }
+:root[data-theme="dark"] .args pre { border-color: var(--border-strong); }
+html { transition: background-color var(--med) var(--ease); }
+
+/* --------------------------------------------------------------------------
+   Top bar: status pinned at the exact center (never drifts as its text changes),
+   bubbles shown without enclosing outlines, and the theme toggle.
+   -------------------------------------------------------------------------- */
+.topbar { position: sticky; }
+.topbar-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+.topbar-right { grid-column: 3; align-items: center; gap: 1rem; }
+
+.run-status, .run-status.live, .run-status.ok, .run-status.error,
+.pill, .key-pill, .mode-pill {
+  height: auto; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none;
+}
+.run-status { white-space: nowrap; }
+
+.theme-toggle {
+  display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: var(--radius);
+  color: var(--text-2); transition: color var(--fast), background var(--fast), transform var(--med) var(--ease);
+}
+.theme-toggle:hover { color: var(--accent); background: var(--accent-soft); }
+.theme-toggle:active { transform: rotate(-20deg) scale(0.92); }
+@media (max-width: 860px) { .topbar-right { grid-column: auto; } }

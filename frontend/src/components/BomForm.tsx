@@ -25,11 +25,11 @@ const goals: Array<{ value: Goal; label: string }> = [
 ];
 const modes: Mode[] = ["fixture", "deterministic", "cache", "live"];
 
-function Step({ n, title, done, children }: { n: number; title: string; done: boolean; children: ReactNode }) {
+function Step({ n, title, children }: { n: number; title: string; children: ReactNode }) {
   return (
     <section className="step">
       <header className="step-head">
-        <span className={`step-num${done ? " done" : ""}`}>{done ? <Icon name="check" size={14} strokeWidth={2.6} /> : n}</span>
+        <span className="step-num">{n}</span>
         <h2>{title}</h2>
       </header>
       <div className="step-body">{children}</div>
@@ -70,7 +70,7 @@ export function BomForm({ context, mode, hasKey, running, errors, bomName, lineC
   return (
     <aside className="setup card" aria-label="Run setup">
       <div className="setup-scroll">
-        <Step n={1} title="Bill of materials" done={lineCount > 0}>
+        <Step n={1} title="Bill of materials">
           <div
             className={`dropzone${dragging ? " dragging" : ""}${lineCount ? " loaded" : ""}`}
             role="button"
@@ -103,7 +103,7 @@ export function BomForm({ context, mode, hasKey, running, errors, bomName, lineC
           )}
         </Step>
 
-        <Step n={2} title="Design context" done={lineCount > 0}>
+        <Step n={2} title="Design context">
           <div className="grid-2">
             <NumberField label="Input voltage" unit="V" value={context.input_voltage_v} onChange={v => set("input_voltage_v", v)} />
             <NumberField label="Input max" unit="V" value={context.input_voltage_max_v} onChange={v => set("input_voltage_max_v", v)} />
@@ -124,7 +124,7 @@ export function BomForm({ context, mode, hasKey, running, errors, bomName, lineC
           </div>
         </Step>
 
-        <Step n={3} title="Mode" done={false}>
+        <Step n={3} title="Mode">
           <div className="mode-grid" role="radiogroup" aria-label="Mode">
             {modes.map(item => (
               <button type="button" role="radio" aria-checked={mode === item} key={item} className={`mode-option${mode === item ? " on" : ""}`} onClick={() => onMode(item)}>

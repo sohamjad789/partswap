@@ -124,7 +124,7 @@ export function ResultsTable({ lines, decisions, selectedRef, activeRef, running
       )}
 
       {lines.length === 0 ? (
-        <div className="empty-state">
+        <div className="empty-state auto-scrollbar">
           <div className="empty-art"><Icon name="chip" size={34} /></div>
           <h3>Check your BOM for safe swaps</h3>
           <p>Upload a BOM CSV or load the demo board, set the design context, then run. Each line gets one verdict, backed by the datasheet.</p>
