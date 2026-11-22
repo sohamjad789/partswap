@@ -8,8 +8,9 @@ import { PartDetail } from "./components/PartDetail";
 import { PowerTree } from "./components/PowerTree";
 import { ResultsTable } from "./components/ResultsTable";
 import { SummaryStrip } from "./components/SummaryStrip";
+import { ThemeToggle } from "./components/ThemeToggle";
 import { Toasts, useToasts } from "./components/Toasts";
-import { VERDICTS, modeInfo, trapCount } from "./format";
+import { VERDICTS, trapCount } from "./format";
 import type { AgentStep, BomLine, Decision, DesignContext, EvalResults, Health, Mode, RunEvent, Verdict } from "./types";
 
 const defaults: DesignContext = { input_voltage_v: 24, input_voltage_max_v: 32, operating_temp_min_c: -40, operating_temp_max_c: 85, preferred_manufacturer: "Diodes Incorporated", goal: "lowest_risk" };
@@ -188,10 +189,10 @@ export default function App() {
         </h1>
         <div className="topbar-center">{status}</div>
         <div className="topbar-right">
-          <span className="pill mode-pill" title={modeInfo[mode].hint}><Icon name="layers" size={14} />{modeInfo[mode].label}</span>
           <span className={`pill key-pill ${health?.has_api_key ? "on" : "off"}`}>
             <span className="sdot" />{health ? (health.has_api_key ? "Nemotron connected" : "No API key") : offline ? "Offline" : "Checking…"}
           </span>
+          <ThemeToggle />
         </div>
       </header>
 
