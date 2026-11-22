@@ -5,6 +5,7 @@ import { BomForm } from "./components/BomForm";
 import { EvalPanel } from "./components/EvalPanel";
 import { Icon } from "./components/Icon";
 import { PartDetail } from "./components/PartDetail";
+import { PowerTree } from "./components/PowerTree";
 import { ResultsTable } from "./components/ResultsTable";
 import { SummaryStrip } from "./components/SummaryStrip";
 import { Toasts, useToasts } from "./components/Toasts";
@@ -231,6 +232,7 @@ export default function App() {
             onDemo={() => void loadDemo()}
           />
           <EvalPanel results={evalResults} />
+          <PowerTree />
         </section>
 
         <aside className="pane card" aria-label="Line detail">

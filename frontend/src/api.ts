@@ -1,4 +1,4 @@
-import type { BomLine, DesignContext, EvalResults, Extraction, Health, Mode, PartInfo, RunEvent } from "./types";
+import type { BomLine, DesignContext, EvalResults, Extraction, Health, Mode, PartInfo, PowerTreeResult, Rail, RunEvent } from "./types";
 
 /** An HTTP error that may carry a list of readable messages (BOM row errors). */
 export class ApiError extends Error {
@@ -30,6 +30,8 @@ export const parseBom = (csv: string) => json<{ lines: BomLine[] }>("/api/bom/pa
 export const fetchPart = (mpn: string) => json<PartInfo>(`/api/parts/${encodeURIComponent(mpn)}`);
 export const fetchEval = () => json<EvalResults>("/api/eval");
 export const fetchExtraction = (mpn: string) => json<Extraction>(`/api/extract/${encodeURIComponent(mpn)}`);
+export const proposePowerTree = (body: { input_voltage_v: number; rails: Rail[] }) =>
+  json<PowerTreeResult>("/api/power-tree", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
 export const datasheetUrl = (mpn: string, page?: number | null) => `/api/datasheets/${encodeURIComponent(mpn)}${page ? `#page=${page}` : ""}`;
 
 export async function streamRun(body: { lines: BomLine[]; design_context: DesignContext; mode: Mode }, onEvent: (event: RunEvent) => void) {

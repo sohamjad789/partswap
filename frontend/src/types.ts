@@ -15,4 +15,8 @@ export interface Health { status: string; mode_default: Mode; has_api_key: boole
 export interface EvalApproach { name: string; accuracy: number; false_drop_in_count: number; model_false_drop_in_count?: number | null; tightened_count?: number | null; fallback_count?: number | null; median_latency_ms: number; }
 export interface EvalResults { ready?: boolean; generated_at?: string; pair_count?: number; dangerous_count?: number; prompt_version?: string; approaches?: EvalApproach[]; }
 export interface PartInfo { mpn: string; manufacturer: string; category: string; description?: string; datasheet_available?: boolean; package?: { code: string; pins: number } | null; }
+export interface Rail { voltage_v: number; current_a: number; }
+export interface PowerStage { rail: string; rail_voltage_v: number; source: string; source_voltage_v?: number | null; mpn?: string | null; manufacturer?: string | null; category?: "ldo" | "buck" | null; load_a: number; input_current_a?: number | null; loss_w?: number | null; efficiency?: number | null; unit_price_usd?: number | null; note?: string | null; }
+export interface PowerOption { label: string; complete: boolean; stages: PowerStage[]; part_count: number; total_loss_w?: number | null; efficiency?: number | null; cost_usd?: number | null; }
+export interface PowerTreeResult { input_voltage_v: number; options: PowerOption[]; unserved: Array<{ rail: string; reason: string }>; }
 export interface Extraction { available: boolean; parser?: string; fields?: Array<{ key: string; verified_raw?: string | null; extracted_raw?: string | null; status: "match" | "mismatch" | "missing" }>; }

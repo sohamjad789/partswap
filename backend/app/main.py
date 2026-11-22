@@ -5,9 +5,10 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse, Response, StreamingResponse
 
-from app import export, runs
+from app import export, power_tree, runs
 from app.config import get_settings
 from app.paths import data_dir
+from app.power_tree import PowerTreeRequest
 from app.schemas import DesignContext, Mode, RunRequest
 
 app = FastAPI(title="PartSwap")
@@ -148,6 +149,11 @@ def get_eval() -> dict[str, Any]:
     if not path.exists():
         return {"ready": False}
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+@app.post("/api/power-tree")
+def post_power_tree(request: PowerTreeRequest) -> dict[str, Any]:
+    return power_tree.propose(request)
 
 
 @app.get("/api/extract/{mpn:path}")
