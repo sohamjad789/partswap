@@ -49,6 +49,14 @@ export function PowerTree() {
     <section className="card eval power-tree">
       <header className="card-head">
         <div><h2>Power tree</h2><p className="sub">Catalog bucks and LDOs for up to three rails · ranked by total loss</p></div>
+        <div className="head-actions">
+          {rails.length < MAX_RAILS && (
+            <button type="button" className="btn ghost" onClick={() => setRails(old => [...old, { voltage_v: 1.8, current_a: 0.1 }])}>Add rail</button>
+          )}
+          <button type="button" className="btn primary" disabled={busy} onClick={() => void propose()}>
+            {busy ? <><span className="spinner" />Proposing…</> : <><Icon name="bolt" size={15} />Propose</>}
+          </button>
+        </div>
       </header>
       <div className="pt-form">
         <label className="field">
@@ -70,14 +78,6 @@ export function PowerTree() {
             )}
           </div>
         ))}
-        <div className="pt-actions">
-          {rails.length < MAX_RAILS && (
-            <button type="button" className="btn ghost" onClick={() => setRails(old => [...old, { voltage_v: 1.8, current_a: 0.1 }])}>Add rail</button>
-          )}
-          <button type="button" className="btn primary" disabled={busy} onClick={() => void propose()}>
-            {busy ? <><span className="spinner" />Proposing…</> : <><Icon name="bolt" size={15} />Propose</>}
-          </button>
-        </div>
       </div>
 
       {error && <div className="callout danger pt-callout" role="alert"><Icon name="alert" size={18} /><div>{error}</div></div>}

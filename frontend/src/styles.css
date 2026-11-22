@@ -380,11 +380,11 @@ button.stat:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); b
 .num-good { color: var(--pass-fg); font-weight: 700; }
 .pt-form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 18px; padding: 0 22px 16px; }
 .pt-form > .field { width: 110px; }
-.pt-rail { display: flex; align-items: flex-end; gap: 8px; }
-.pt-rail .field { width: 100px; }
+.pt-rail { display: flex; align-items: flex-end; gap: 8px; flex: 1 1 200px; max-width: 252px; min-width: 0; }
+.pt-rail .field { flex: 1 1 100px; min-width: 0; }
 .pt-rail .icon-btn { margin-bottom: 3px; }
-.pt-actions { display: flex; gap: 10px; margin-left: auto; }
 .pt-callout { margin: 0 22px 14px; }
+.eval.power-tree .card-head { align-items: flex-start; }
 
 /* --------------------------------------------------------------------------
    Detail pane (Sentry / Snyk issue view)
@@ -906,4 +906,10 @@ button.stat:hover { box-shadow: var(--shadow-md); border-color: var(--text); }
 body.resizing, body.resizing * { cursor: ns-resize !important; user-select: none; }
 @media (min-width: 1501px) and (min-height: 700px) {
   .center { overflow-y: auto; scrollbar-width: thin; }
+}
+
+/* Single screen: the setup steps share the column's spare height instead of leaving a gap under Run. */
+@media (min-width: 1501px) and (min-height: 700px) {
+  .setup-scroll { flex: 1 1 auto; display: flex; flex-direction: column; }
+  .step { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: center; }
 }
