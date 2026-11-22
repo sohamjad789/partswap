@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from "react";
 import { percent, trapCount, verdictLabel } from "../format";
 import type { BomLine, Decision, Verdict } from "../types";
 import { Icon } from "./Icon";
@@ -66,8 +66,41 @@ export function ResultsTable({ lines, decisions, selectedRef, activeRef, running
   const selectedRow = useRef<HTMLTableRowElement>(null);
   useEffect(() => { selectedRow.current?.scrollIntoView({ block: "nearest", behavior: "smooth" }); }, [selectedRef]);
 
+  const card = useRef<HTMLElement>(null);
+  const [height, setHeight] = useState<number>();
+  const clampHeight = (h: number) => {
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    return Math.round(Math.min(Math.max(h, 12 * rem), window.innerHeight * 0.85));
+  };
+  const startResize = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const el = card.current;
+    if (!el || event.button !== 0) return;
+    event.preventDefault();
+    const handle = event.currentTarget;
+    const startY = event.clientY;
+    const startH = el.getBoundingClientRect().height;
+    handle.setPointerCapture(event.pointerId);
+    document.body.classList.add("resizing");
+    const move = (e: PointerEvent) => setHeight(clampHeight(startH + e.clientY - startY));
+    const end = () => {
+      document.body.classList.remove("resizing");
+      handle.removeEventListener("pointermove", move);
+      handle.removeEventListener("pointerup", end);
+      handle.removeEventListener("pointercancel", end);
+    };
+    handle.addEventListener("pointermove", move);
+    handle.addEventListener("pointerup", end);
+    handle.addEventListener("pointercancel", end);
+  };
+  const keyResize = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    const step = event.key === "ArrowDown" ? 32 : event.key === "ArrowUp" ? -32 : 0;
+    if (!step || !card.current) return;
+    event.preventDefault();
+    setHeight(clampHeight(card.current.getBoundingClientRect().height + step));
+  };
+
   return (
-    <section className="card results">
+    <section ref={card} className={`card results${height ? " sized" : ""}`} style={height ? { height } : undefined}>
       <header className="card-head">
         <div>
           <h2>Replacement analysis</h2>
@@ -147,6 +180,20 @@ export function ResultsTable({ lines, decisions, selectedRef, activeRef, running
             </tbody>
           </table>
         </div>
+      )}
+
+      {lines.length > 0 && (
+        <div
+          className="resize-handle"
+          role="separator"
+          aria-orientation="horizontal"
+          aria-label="Resize results"
+          title="Drag to resize · double-click to reset"
+          tabIndex={0}
+          onPointerDown={startResize}
+          onDoubleClick={() => setHeight(undefined)}
+          onKeyDown={keyResize}
+        />
       )}
     </section>
   );

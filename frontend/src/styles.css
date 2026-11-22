@@ -886,3 +886,24 @@ button.stat:hover { box-shadow: var(--shadow-md); border-color: var(--text); }
   .results .table-wrap { flex: 1 1 auto; min-height: 0; overflow-y: hidden; }
   .results-table { flex: 1 1 auto; min-height: 0; }
 }
+
+/* --------------------------------------------------------------------------
+   Resizable results card: drag the bottom handle to set its height.
+   Once sized, the cards below it scroll inside the center column.
+   -------------------------------------------------------------------------- */
+.results.sized { flex: none; display: flex; flex-direction: column; min-height: 0; }
+.results.sized .table-wrap, .results.sized .results-table { flex: 1 1 auto; min-height: 0; }
+.resize-handle {
+  flex: none; height: 14px; display: grid; place-items: center;
+  cursor: ns-resize; touch-action: none; outline: none;
+  border-top: 1px solid var(--border);
+}
+.resize-handle::after {
+  content: ""; width: 40px; height: 4px; border-radius: 2px; background: var(--border-strong);
+  transition: background var(--fast), width var(--fast) var(--ease);
+}
+.resize-handle:hover::after, .resize-handle:focus-visible::after, body.resizing .resize-handle::after { width: 64px; background: var(--accent); }
+body.resizing, body.resizing * { cursor: ns-resize !important; user-select: none; }
+@media (min-width: 1501px) and (min-height: 700px) {
+  .center { overflow-y: auto; scrollbar-width: thin; }
+}
