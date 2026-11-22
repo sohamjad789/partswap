@@ -170,6 +170,28 @@ def _confidence(value: Any) -> Optional[float]:
     return min(max(float(value), 0.0), 1.0)
 
 
+def caveat_list(value: Any) -> list[str]:
+    """Normalize `caveats` to a list of strings.
+
+    Models sometimes send the array JSON-encoded as one string; iterating that string would store one
+    caveat per character. A JSON array string is decoded; any other string is a single caveat.
+    """
+    if isinstance(value, str):
+        text = value.strip()
+        if text.startswith("["):
+            try:
+                decoded = json.loads(text)
+            except ValueError:
+                decoded = None
+            if isinstance(decoded, list):
+                value = decoded
+        if isinstance(value, str):
+            value = [text]
+    if not isinstance(value, (list, tuple)):
+        return []
+    return [str(c).strip() for c in value if str(c).strip()]
+
+
 def _record_decision(state: AgentState, args: dict[str, Any]) -> dict[str, Any]:
     verdict = args.get("verdict")
     if verdict not in VERDICTS:
@@ -189,7 +211,7 @@ def _record_decision(state: AgentState, args: dict[str, Any]) -> dict[str, Any]:
                 return {"error": "uncompared_candidate",
                         "message": f"You have not compared {c.candidate_mpn}. Compare it before deciding."}
 
-    caveats = [str(c) for c in args.get("caveats") or [] if str(c).strip()]
+    caveats = caveat_list(args.get("caveats"))
     explanation = str(args.get("explanation") or "").strip()
     stored, tightened, compared_mpn = verdict, False, None
     if candidate_mpn is not None:

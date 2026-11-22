@@ -103,5 +103,61 @@
     "category": "buck",
     "description": "32 V 2 A fixed 3.3 V synchronous buck converter, TSOT26",
     "spec_file": "specs/AP63203WU-7.json"
+  },
+  {
+    "mpn": "SYN-N60-4VTH",
+    "manufacturer": "Synthetic (evaluation only)",
+    "category": "mosfet",
+    "description": "60 V N-channel MOSFET, SOT-23; gate threshold up to 4 V (synthetic)",
+    "spec_file": "specs/SYN-N60-4VTH.json"
+  },
+  {
+    "mpn": "SYN-LDO33-5VIN",
+    "manufacturer": "Synthetic (evaluation only)",
+    "category": "ldo",
+    "description": "3.3 V 300 mA LDO, SOT-23; 5.0 V maximum input (synthetic)",
+    "spec_file": "specs/SYN-LDO33-5VIN.json"
+  },
+  {
+    "mpn": "SYN-SBD40-70C",
+    "manufacturer": "Synthetic (evaluation only)",
+    "category": "schottky",
+    "description": "40 V 0.5 A Schottky, SOD-123; rated to +70 °C (synthetic)",
+    "spec_file": "specs/SYN-SBD40-70C.json"
+  },
+  {
+    "mpn": "SYN-N60-DSWAP",
+    "manufacturer": "Synthetic (evaluation only)",
+    "category": "mosfet",
+    "description": "60 V N-channel MOSFET, SOT-23; drain on pin 2, source on pin 3 (synthetic)",
+    "spec_file": "specs/SYN-N60-DSWAP.json"
+  },
+  {
+    "mpn": "SYN-LDO33-ENB",
+    "manufacturer": "Synthetic (evaluation only)",
+    "category": "ldo",
+    "description": "3.3 V 600 mA LDO, SOT-23-5; active-low enable (synthetic)",
+    "spec_file": "specs/SYN-LDO33-ENB.json"
+  },
+  {
+    "mpn": "SYN-N60-10VRDS",
+    "manufacturer": "Synthetic (evaluation only)",
+    "category": "mosfet",
+    "description": "60 V N-channel MOSFET, SOT-23; on-resistance specified at 10 V gate drive (synthetic)",
+    "spec_file": "specs/SYN-N60-10VRDS.json"
+  },
+  {
+    "mpn": "SYN-LDO33-10UF",
+    "manufacturer": "Synthetic (evaluation only)",
+    "category": "ldo",
+    "description": "3.3 V 300 mA low quiescent current LDO, SOT-23 (synthetic)",
+    "spec_file": "specs/SYN-LDO33-10UF.json"
+  },
+  {
+    "mpn": "SYN-SBD40-HOTIR",
+    "manufacturer": "Synthetic (evaluation only)",
+    "category": "schottky",
+    "description": "40 V 0.5 A low-VF Schottky, SOD-123 (synthetic)",
+    "spec_file": "specs/SYN-SBD40-HOTIR.json"
   }
 ]

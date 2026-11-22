@@ -1,0 +1,15 @@
+{
+  "mpn": "SYN-SBD40-HOTIR",
+  "authored": true,
+  "synthetic": true,
+  "chunks": [
+    {
+      "page": 2,
+      "text": "Electrical Characteristics. Reverse leakage current IR: 50 µA max at VR = 40 V, TJ = 25 °C; 15 mA typical at VR = 24 V, TJ = 85 °C; 40 mA typical at VR = 24 V, TJ = 100 °C. Leakage roughly doubles for every 10 °C rise in junction temperature."
+    },
+    {
+      "page": 3,
+      "text": "Thermal characteristics: junction-to-ambient thermal resistance 340 °C/W. Reverse leakage power adds to junction heating; at high junction temperature and reverse bias, thermal runaway is possible."
+    }
+  ]
+}

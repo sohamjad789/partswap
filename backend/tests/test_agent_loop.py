@@ -121,6 +121,29 @@ def test_model_may_be_stricter():
     assert decision.recommended_mpn == "SAFE40"
 
 
+def test_caveats_sent_as_a_json_string_are_decoded_not_split_into_characters():
+    # Seen in the Phase 7 Super run: the model passed the caveats array JSON-encoded as one string.
+    decision, _, _ = run([
+        reply(search()),
+        reply(compare("SAFE40")),
+        reply(record("SAFE40", "drop_in_with_caveats", caveats='["Rds(on) given only at VGS = 10 V", "Check gate drive"]')),
+    ])
+    assert decision.caveats == ["Rds(on) given only at VGS = 10 V", "Check gate drive"]
+
+
+@pytest.mark.parametrize("value, expected", [
+    (["a", " ", "b"], ["a", "b"]),
+    ('["a", "b"]', ["a", "b"]),
+    ("one plain caveat", ["one plain caveat"]),
+    ("[not json", ["[not json"]),
+    (None, []),
+    (42, []),
+])
+def test_caveat_list_normalizes(value, expected):
+    from app.agent.tools import caveat_list
+    assert caveat_list(value) == expected
+
+
 def test_unknown_candidate_rejected():
     decision, events, client = run([
         reply(search()),

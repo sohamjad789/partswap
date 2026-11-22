@@ -1,0 +1,96 @@
+{
+  "mpn": "SYN-N60-4VTH",
+  "manufacturer": "Synthetic (evaluation only)",
+  "category": "mosfet",
+  "description": "60 V N-channel MOSFET, SOT-23; gate threshold up to 4 V (synthetic)",
+  "datasheet_filename": null,
+  "package": {
+    "code": "SOT-23-3",
+    "pins": 3,
+    "page": 1
+  },
+  "pinout": [
+    {
+      "pin": 1,
+      "name": "G",
+      "functions": [
+        "gate"
+      ]
+    },
+    {
+      "pin": 2,
+      "name": "S",
+      "functions": [
+        "source"
+      ]
+    },
+    {
+      "pin": 3,
+      "name": "D",
+      "functions": [
+        "drain"
+      ]
+    }
+  ],
+  "pinout_page": 1,
+  "polarity": "n",
+  "diode_count": null,
+  "channel_count": null,
+  "topology": null,
+  "output_type": null,
+  "unit_price_usd": null,
+  "lead_time_weeks": null,
+  "verified": true,
+  "synthetic": true,
+  "specs": {
+    "vds_max_v": {
+      "value": 60,
+      "raw": "60 V",
+      "condition": "maximum drain-source voltage",
+      "page": 2,
+      "table": "synthetic"
+    },
+    "id_max_a": {
+      "value": 0.2,
+      "raw": "200 mA",
+      "condition": "maximum continuous drain current, TA = 25 °C",
+      "page": 2,
+      "table": "synthetic"
+    },
+    "vgs_max_v": {
+      "value": 20,
+      "raw": "±20 V",
+      "condition": "maximum continuous gate-source voltage magnitude",
+      "page": 2,
+      "table": "synthetic"
+    },
+    "vgs_th_max_v": {
+      "value": 4.0,
+      "raw": "4.0 V max",
+      "condition": "max, VDS = VGS, ID = 250 µA",
+      "page": 2,
+      "table": "synthetic"
+    },
+    "rds_on_ohm": {
+      "value": 5.0,
+      "raw": "5.0 Ω max",
+      "condition": "max, VGS = 5.0 V, ID = 50 mA",
+      "page": 2,
+      "table": "synthetic"
+    },
+    "temp_min_c": {
+      "value": -55,
+      "raw": "-55 °C",
+      "condition": "operating junction temperature minimum",
+      "page": 2,
+      "table": "synthetic"
+    },
+    "temp_max_c": {
+      "value": 150,
+      "raw": "+150 °C",
+      "condition": "operating junction temperature maximum",
+      "page": 2,
+      "table": "synthetic"
+    }
+  }
+}

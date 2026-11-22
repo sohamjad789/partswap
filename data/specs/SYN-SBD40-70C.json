@@ -1,0 +1,82 @@
+{
+  "mpn": "SYN-SBD40-70C",
+  "manufacturer": "Synthetic (evaluation only)",
+  "category": "schottky",
+  "description": "40 V 0.5 A Schottky, SOD-123; rated to +70 °C (synthetic)",
+  "datasheet_filename": null,
+  "package": {
+    "code": "SOD-123",
+    "pins": 2,
+    "page": 1
+  },
+  "pinout": [
+    {
+      "pin": 1,
+      "name": "K",
+      "functions": [
+        "cathode"
+      ]
+    },
+    {
+      "pin": 2,
+      "name": "A",
+      "functions": [
+        "anode"
+      ]
+    }
+  ],
+  "pinout_page": 1,
+  "polarity": null,
+  "diode_count": 1,
+  "channel_count": null,
+  "topology": null,
+  "output_type": null,
+  "unit_price_usd": null,
+  "lead_time_weeks": null,
+  "verified": true,
+  "synthetic": true,
+  "specs": {
+    "vrrm_v": {
+      "value": 40,
+      "raw": "40 V",
+      "condition": "peak repetitive reverse voltage",
+      "page": 2,
+      "table": "synthetic"
+    },
+    "if_avg_a": {
+      "value": 0.5,
+      "raw": "0.5 A",
+      "condition": "average rectified output current",
+      "page": 2,
+      "table": "synthetic"
+    },
+    "vf_v": {
+      "value": 0.5,
+      "raw": "0.50 V max",
+      "condition": "max, IF = 0.5 A, TJ = 25 °C",
+      "page": 2,
+      "table": "synthetic"
+    },
+    "ir_a": {
+      "value": 2e-05,
+      "raw": "20 µA max",
+      "condition": "max, VR = 40 V, TJ = 25 °C",
+      "page": 2,
+      "table": "synthetic"
+    },
+    "temp_min_c": {
+      "value": -55,
+      "raw": "-55 °C",
+      "condition": "operating junction temperature minimum",
+      "page": 2,
+      "table": "synthetic"
+    },
+    "temp_max_c": {
+      "value": 70,
+      "raw": "+70 °C",
+      "condition": "operating junction temperature maximum",
+      "page": 2,
+      "table": "synthetic"
+    }
+  }
+}
