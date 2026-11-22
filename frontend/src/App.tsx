@@ -247,7 +247,7 @@ export default function App() {
               <Icon name={wide ? "collapse" : "expand"} size={16} />
             </button>
           </div>
-          <div className="pane-body" key={`${tab}-${selectedRef ?? "none"}`}>
+          <div className="pane-body auto-scrollbar" key={`${tab}-${selectedRef ?? "none"}`}>
             {tab === "detail" ? (
               <PartDetail
                 decision={selected}

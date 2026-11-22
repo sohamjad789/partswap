@@ -1,0 +1,15 @@
+{
+  "mpn": "SYN-N60-10VRDS",
+  "authored": true,
+  "synthetic": true,
+  "chunks": [
+    {
+      "page": 2,
+      "text": "Electrical Characteristics (TJ = 25 °C unless noted). Static drain-source on-resistance RDS(on): 5.0 Ω max at VGS = 10 V, ID = 500 mA. RDS(on) is specified at VGS = 10 V only; the device is not characterized for on-resistance below VGS = 4.5 V. Gate threshold voltage VGS(th): 1.0 V min, 3.0 V max at VDS = VGS, ID = 250 µA. At the threshold voltage the channel conducts only 250 µA."
+    },
+    {
+      "page": 3,
+      "text": "Application information: for logic-level gate drive below 4.5 V, select a device with RDS(on) specified at the drive voltage used. Operation near VGS(th) gives high, poorly controlled on-resistance."
+    }
+  ]
+}

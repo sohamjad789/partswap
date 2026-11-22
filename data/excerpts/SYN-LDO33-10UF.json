@@ -1,0 +1,15 @@
+{
+  "mpn": "SYN-LDO33-10UF",
+  "authored": true,
+  "synthetic": true,
+  "chunks": [
+    {
+      "page": 4,
+      "text": "Application information. Output capacitor: the regulator requires an output capacitor of at least 10 µF with an equivalent series resistance (ESR) between 0.3 Ω and 3 Ω for stability. Multilayer ceramic capacitors alone, or output capacitance below 10 µF, can cause sustained oscillation."
+    },
+    {
+      "page": 4,
+      "text": "Input capacitor: a 1 µF or larger capacitor from VIN to GND, placed close to the device, is recommended. Layout: keep the output capacitor within 5 mm of the VOUT pin."
+    }
+  ]
+}

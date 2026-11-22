@@ -1,0 +1,226 @@
+{
+  "generated_at": "2026-11-21T17:30:32-06:00",
+  "pair_count": 20,
+  "dangerous_count": 14,
+  "prompt_version": "v1",
+  "approaches": [
+    {
+      "name": "naive_baseline",
+      "accuracy": 0.2,
+      "false_drop_in_count": 11,
+      "model_false_drop_in_count": null,
+      "tightened_count": null,
+      "fallback_count": null,
+      "median_latency_ms": 1.7
+    },
+    {
+      "name": "partswap_rules",
+      "accuracy": 0.85,
+      "false_drop_in_count": 3,
+      "model_false_drop_in_count": null,
+      "tightened_count": null,
+      "fallback_count": null,
+      "median_latency_ms": 3.8
+    },
+    {
+      "name": "partswap_bolt",
+      "accuracy": 0.9,
+      "false_drop_in_count": 2,
+      "model_false_drop_in_count": 0,
+      "tightened_count": 0,
+      "fallback_count": 10,
+      "median_latency_ms": 27229.3
+    },
+    {
+      "name": "partswap_super",
+      "accuracy": 0.7,
+      "false_drop_in_count": 0,
+      "model_false_drop_in_count": 0,
+      "tightened_count": 0,
+      "fallback_count": 0,
+      "median_latency_ms": 21436.3
+    }
+  ],
+  "per_pair": [
+    {
+      "id": "A1-schottky-vrrm-20",
+      "class": "A",
+      "expected": "no_safe_match",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "no_safe_match",
+      "partswap_super": "no_safe_match",
+      "partswap_bolt": "no_safe_match"
+    },
+    {
+      "id": "A2-schottky-vrrm-30",
+      "class": "A",
+      "expected": "no_safe_match",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "no_safe_match",
+      "partswap_super": "no_safe_match",
+      "partswap_bolt": "no_safe_match"
+    },
+    {
+      "id": "A3-mosfet-vgsth-4v",
+      "class": "A",
+      "expected": "no_safe_match",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "no_safe_match",
+      "partswap_super": "no_safe_match",
+      "partswap_bolt": "no_safe_match"
+    },
+    {
+      "id": "A4-ldo-vin-5v",
+      "class": "A",
+      "expected": "no_safe_match",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "no_safe_match",
+      "partswap_super": "no_safe_match",
+      "partswap_bolt": "no_safe_match"
+    },
+    {
+      "id": "A5-schottky-temp-70c",
+      "class": "A",
+      "expected": "no_safe_match",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "no_safe_match",
+      "partswap_super": "no_safe_match",
+      "partswap_bolt": "no_safe_match"
+    },
+    {
+      "id": "B1-ldo-pinout-sot23r",
+      "class": "B",
+      "expected": "needs_redesign",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "needs_redesign",
+      "partswap_super": "needs_redesign",
+      "partswap_bolt": "needs_redesign"
+    },
+    {
+      "id": "B2-mosfet-pinout-ds-swap",
+      "class": "B",
+      "expected": "needs_redesign",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "needs_redesign",
+      "partswap_super": "needs_redesign",
+      "partswap_bolt": "needs_redesign"
+    },
+    {
+      "id": "B3-ldo-enable-polarity",
+      "class": "B",
+      "expected": "needs_redesign",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "needs_redesign",
+      "partswap_super": "needs_redesign",
+      "partswap_bolt": "needs_redesign"
+    },
+    {
+      "id": "C1-mosfet-rdson-10v",
+      "class": "C",
+      "expected": "drop_in_with_caveats",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "drop_in",
+      "partswap_super": "needs_redesign",
+      "partswap_bolt": "drop_in_with_caveats"
+    },
+    {
+      "id": "C2-ldo-output-cap",
+      "class": "C",
+      "expected": "drop_in_with_caveats",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "drop_in",
+      "partswap_super": "no_safe_match",
+      "partswap_bolt": "drop_in"
+    },
+    {
+      "id": "C3-schottky-hot-leakage",
+      "class": "C",
+      "expected": "drop_in_with_caveats",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "drop_in",
+      "partswap_super": "no_safe_match",
+      "partswap_bolt": "drop_in"
+    },
+    {
+      "id": "D1-ldo-sot23-to-tlv755",
+      "class": "D",
+      "expected": "needs_redesign",
+      "naive_baseline": "no_safe_match",
+      "partswap_rules": "needs_redesign",
+      "partswap_super": "needs_redesign",
+      "partswap_bolt": "needs_redesign"
+    },
+    {
+      "id": "D2-ldo-sot23-to-ap2112k",
+      "class": "D",
+      "expected": "needs_redesign",
+      "naive_baseline": "no_safe_match",
+      "partswap_rules": "needs_redesign",
+      "partswap_super": "needs_redesign",
+      "partswap_bolt": "needs_redesign"
+    },
+    {
+      "id": "D3-ldo-sot23-5-to-mcp1700",
+      "class": "D",
+      "expected": "needs_redesign",
+      "naive_baseline": "no_safe_match",
+      "partswap_rules": "needs_redesign",
+      "partswap_super": "needs_redesign",
+      "partswap_bolt": "needs_redesign"
+    },
+    {
+      "id": "E1-schottky-b0540w",
+      "class": "E",
+      "expected": "drop_in",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "drop_in",
+      "partswap_super": "drop_in",
+      "partswap_bolt": "drop_in"
+    },
+    {
+      "id": "E2-schottky-b0520lw",
+      "class": "E",
+      "expected": "drop_in",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "drop_in",
+      "partswap_super": "drop_in_with_caveats",
+      "partswap_bolt": "drop_in"
+    },
+    {
+      "id": "E3-schottky-b0530w",
+      "class": "E",
+      "expected": "drop_in",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "drop_in",
+      "partswap_super": "drop_in_with_caveats",
+      "partswap_bolt": "drop_in"
+    },
+    {
+      "id": "E4-schottky-mbr0540",
+      "class": "E",
+      "expected": "drop_in",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "drop_in",
+      "partswap_super": "drop_in_with_caveats",
+      "partswap_bolt": "drop_in"
+    },
+    {
+      "id": "F1-ldo-iq-ap7333",
+      "class": "F",
+      "expected": "drop_in_with_caveats",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "drop_in_with_caveats",
+      "partswap_super": "drop_in_with_caveats",
+      "partswap_bolt": "drop_in_with_caveats"
+    },
+    {
+      "id": "F2-ldo-iq-ap2112k",
+      "class": "F",
+      "expected": "drop_in_with_caveats",
+      "naive_baseline": "drop_in",
+      "partswap_rules": "drop_in_with_caveats",
+      "partswap_super": "drop_in_with_caveats",
+      "partswap_bolt": "drop_in_with_caveats"
+    }
+  ]
+}

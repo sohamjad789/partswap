@@ -792,3 +792,90 @@ button.stat:hover { box-shadow: var(--shadow-md); border-color: var(--text); }
 
 /* Tighter word gap on mono step and section labels ("TOOL CALL", "WHY THIS VERDICT") */
 .tl-kind, .why h3, .meta { letter-spacing: 0.03em; word-spacing: -0.3em; }
+
+/* Evaluation table: note under an arm that mostly fell back to the rules */
+.fallback-note { display: block; margin-top: 2px; font-size: var(--fs-xs); color: var(--fail-fg); white-space: normal; }
+
+/* Compact evaluation card so the results table keeps its rows on one screen */
+.eval .card-head { padding-bottom: 0.625rem; }
+.eval-headline { margin: 0 1.375rem 0.75rem; padding: 0.55rem 0.875rem; font-size: var(--fs-sm); }
+.eval-headline svg { width: 1rem; height: 1rem; margin-top: 0.15rem; }
+.eval .rtable { margin-top: 0; }
+.eval .rtable th { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.eval .rtable td { padding-top: 0.45rem; padding-bottom: 0.45rem; white-space: nowrap; }
+.eval .rtable td:first-child { white-space: normal; }
+.eval .meter-bar { width: 3rem; }
+.fallback-note { margin-top: 0; line-height: 1.25; }
+@media (min-width: 1501px) and (min-height: 700px) {
+  .center { gap: 0.875rem; }
+  .results .rtable td { padding-top: 0.55rem; padding-bottom: 0.55rem; }
+  .results .rtable th, .eval .rtable th { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+  .eval-headline { margin-bottom: 0.5rem; }
+  .eval .rtable td { padding-top: 0.32rem; padding-bottom: 0.32rem; }
+  .eval .card-head, .results .card-head { padding-top: 0.875rem; }
+  .stat { padding-top: 0.75rem; padding-bottom: 0.625rem; }
+  .stat-num { font-size: 1.75rem; }
+}
+
+/* --------------------------------------------------------------------------
+   Results table scrolling: works like the Detail / Agent pane. The card title
+   stays put, column headers stay pinned and opaque, rows scroll beneath them.
+   -------------------------------------------------------------------------- */
+.results .progress { margin-bottom: 0.5rem; }
+.results .table-wrap { border-top: 1px solid var(--border-strong); scrollbar-width: thin; overscroll-behavior: contain; }
+.results .rtable { margin-top: 0; }
+.results .rtable thead th {
+  position: sticky; top: 0; z-index: 2;
+  border-top: 0; border-bottom: 0; box-shadow: inset 0 -1px 0 var(--border-strong);
+  background: var(--surface-2);
+}
+
+/* Single screen: the results card takes the space left over; the evaluation card is a little roomier. */
+@media (min-width: 1501px) and (min-height: 700px) {
+  .results { flex: 1 1 0; min-height: 12rem; }
+  .eval .rtable td { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+  .eval .rtable th { padding-top: 0.6rem; padding-bottom: 0.6rem; }
+  .eval-headline { margin-bottom: 0.75rem; padding: 0.7rem 0.875rem; }
+}
+
+/* Evaluation headline: compact banner on the right of the header, level with the subtitle line */
+.eval .card-head { align-items: flex-end; }
+.eval .card-head .eval-headline {
+  margin: 0 0 0 auto; padding: 0.3rem 0.7rem; gap: 0.45rem; align-items: center;
+  font-size: var(--fs-xs); line-height: 1.3; white-space: nowrap;
+}
+.eval .card-head .eval-headline svg { width: 1rem; height: 1rem; margin-top: 0; }
+
+/* --------------------------------------------------------------------------
+   Disappearing scrollbars (results rows, Detail / Agent pane).
+   autoScrollbar.ts adds .is-scrolling while the element scrolls.
+   -------------------------------------------------------------------------- */
+.auto-scrollbar { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+.auto-scrollbar.is-scrolling { scrollbar-color: rgba(26, 26, 26, 0.32) transparent; }
+
+/* --------------------------------------------------------------------------
+   Results table: the column-header row sits outside the scroll area, so only
+   the rows scroll and the scrollbar starts below the header line.
+   Header and body reserve the same scrollbar gutter; fixed widths keep columns aligned.
+   -------------------------------------------------------------------------- */
+.results .table-wrap { display: flex; flex-direction: column; overflow-x: auto; overflow-y: hidden; }
+.results-table { display: flex; flex-direction: column; width: 100%; min-width: 46rem; }
+.results-table thead, .results-table tbody { display: block; scrollbar-gutter: stable; }
+.results-table thead { flex: none; overflow: hidden; scrollbar-width: thin; scrollbar-color: transparent transparent; }
+.results-table tbody { flex: 1 1 auto; min-height: 0; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; }
+.results-table tr { display: table; width: 100%; table-layout: fixed; }
+.results .rtable thead th { position: static; }
+.results-table tr > :nth-child(1) { width: 9%; }
+.results-table tr > :nth-child(2) { width: 19%; }
+.results-table tr > :nth-child(3) { width: 4%; }
+.results-table tr > :nth-child(4) { width: 19%; }
+.results-table tr > :nth-child(5) { width: 23%; }
+.results-table tr > :nth-child(6) { width: 13%; }
+.results-table tr > :nth-child(7) { width: 13%; }
+.results-table tr > td.no-rows { width: 100%; }
+.results-table td { overflow: hidden; }
+
+@media (min-width: 1501px) and (min-height: 700px) {
+  .results .table-wrap { flex: 1 1 auto; min-height: 0; overflow-y: hidden; }
+  .results-table { flex: 1 1 auto; min-height: 0; }
+}

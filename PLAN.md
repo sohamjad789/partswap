@@ -619,7 +619,7 @@ Use the `raw` strings. `skip` checks are omitted.
 
 ### 4.14 Prompts
 
-`agent/prompts.py`. Write these strings verbatim. `PROMPT_VERSION = "v1"`.
+`agent/prompts.py`. Write these strings verbatim. `PROMPT_VERSION = "v2"`. (v2 came from the single Phase 7 improvement loop: steps 3, 5, 6 and 7 below were revised because v1 over-tightened true drop-ins on generic 25 °C test conditions and gave class C pairs a stricter verdict than caveats. `data/eval/results_v1.json` keeps the v1 numbers.)
 
 `SYSTEM_PROMPT`:
 
@@ -631,11 +631,11 @@ Facts come from tools. Never invent a part number, a spec value, a unit, or a pa
 How to work:
 1. Call search_candidates, then compare_specs on the plausible candidates (at most 4).
 2. compare_specs is authoritative for the numbers. A fail marked no_safe_match cannot be any kind of drop-in. A package or pinout fail means needs_redesign at best.
-3. Then do what the numeric checks cannot. For each value that passed, read its "condition" and compare it with this circuit: the line description and the resolved requirements. A value measured under a condition this circuit does not meet is unverified. Examples: Rds(on) given only at a higher gate voltage than the circuit drives; leakage given only at 25 °C for a board that runs hot; a current rating that needs more input headroom than the circuit has.
+3. Then do what the numeric checks cannot. For each value that passed, read its "condition" and compare it with this circuit: the line description and the resolved requirements. A value measured under a condition this circuit does not meet is unverified, but only when that value matters for what this part does in this circuit. Examples: Rds(on) given only at a higher gate voltage than the circuit drives; leakage given only at 25 °C when the description says reverse leakage matters, such as a diode blocking a battery on a board that runs hot; a current rating that needs more input headroom than the circuit has. A standard test condition (25 °C, typical values) is not a concern by itself when this circuit's job does not depend on that value.
 4. When a concern depends on text rather than a number (pin functions, output capacitor or stability requirements, derating), call get_datasheet_excerpt for that part and topic.
-5. If a passing value is unverified for this circuit, or an excerpt shows a requirement this circuit may not meet, choose a stricter verdict than the numeric result and say exactly why. You may always be stricter than compare_specs. You may never be more lenient.
-6. Prefer the preferred manufacturer when two candidates are equally safe. lowest_risk means fewer caveats and more margin, not a lower price.
-7. Finish with record_decision exactly once. The explanation must name the datasheet values and pages the tools returned, and should say which look-alike candidates were rejected and why.
+5. If every numeric check passes but a passing value is unverified for this circuit, or an excerpt shows a requirement this circuit may not meet, record drop_in_with_caveats and name the condition and the circuit fact in the caveats. Reserve needs_redesign for package or pinout differences and no_safe_match for ratings that fail or are unknown. You may never be more lenient than compare_specs.
+6. Prefer the preferred manufacturer when two candidates are equally safe. That preference ranks candidates; it is never a caveat. lowest_risk means fewer caveats and more margin, not a lower price.
+7. Finish with record_decision exactly once. caveats is a JSON array of short strings. The explanation must name the datasheet values and pages the tools returned, and should say which look-alike candidates were rejected and why.
 
 Do not claim pin compatibility unless the pinout check passed. Treat unknown as unverified, never as pass.
 ```
@@ -971,7 +971,7 @@ Record both AP7333 variants with `package.code` `SOT-23-3` (the datasheet calls 
 - [ ] `pytest -q backend/tests/test_specs_valid.py backend/tests/test_manifest.py` (written in Phase 2). Fix data until green.
 - [ ] After Phase 3 lands: `python backend/scripts/record_fixture.py --mode deterministic` and confirm in the browser.
 - [x] Tier B lines verified one at a time: D2, U3, Q1, U1. D3 skipped: no Diodes single-line 5 V candidate was verified as the same package and the datasheet did not establish the required 5 V working standoff rating within the search window. Phase 1 tests passed and the deterministic fixture was re-recorded after each added line.
-- [ ] 5:00–6:00 PM: author `data/eval/pairs.json` and the `SYN-` spec files it needs (section 4.17). Synthetic specs set `synthetic: true`, `verified: true`, and write `"synthetic"` in `table`. Class C parts also get a hand-written `data/excerpts/{MPN}.json`.
+- [x] 5:00–6:00 PM: author `data/eval/pairs.json` and the `SYN-` spec files it needs (section 4.17). Synthetic specs set `synthetic: true`, `verified: true`, and write `"synthetic"` in `table`. Class C parts also get a hand-written `data/excerpts/{MPN}.json`.
 
 **Pitfalls:** Never type a pinout or a rating from memory. Never mark a guessed value verified. Do not add footprint aliases. Do not grow past 30 parts.
 
@@ -1157,12 +1157,12 @@ Two parts, so a live line exists early.
 
 **Steps:**
 
-- [ ] `test_eval.py`: `pairs.json` has 20 entries with the class counts in section 4.17; every MPN resolves; for every class A, B, C pair `headline_match` is true; for A, B, D, E, F the rules verdict equals `expected_verdict`; for class C the rules verdict is `drop_in` (so those pairs measure the model, not the rules); metric functions give the right counts on a hand-built example.
-- [ ] `run_eval.py --arms baseline,rules[,bolt][,super] [--refresh]`: computes each arm, merges into `results.json` (keeping arms from earlier runs), writes `per_pair`. Model arms build a synthetic `BomLine` from the pair (`ref` = pair id, requirement cells from `requirements`, `description`), call `run_part(..., only_candidates=[candidate])` with 3 worker threads, and cache each pair's decision in `data/cache/eval/{arm}/{id}.json`.
-- [ ] Run `--arms baseline,rules`. Expected by construction: baseline `false_drop_in_count` 11, rules 3 (the class C pairs). If not, fix the pairs.
-- [ ] Run `--arms super`, then `--arms bolt`. Look at `per_pair` for misses.
-- [ ] One improvement loop, 20 minutes at most: if Super misses class C pairs or over-tightens class E pairs, adjust `SYSTEM_PROMPT`, bump `PROMPT_VERSION`, re-run with `--refresh`. Save the earlier file as `data/eval/results_v1.json` so the writeup can show before and after. Stop after one loop whatever the numbers are.
-- [ ] Confirm the UI panel shows the table and the headline sentence from the file.
+- [x] `test_eval.py`: `pairs.json` has 20 entries with the class counts in section 4.17; every MPN resolves; for every class A, B, C pair `headline_match` is true; for A, B, D, E, F the rules verdict equals `expected_verdict`; for class C the rules verdict is `drop_in` (so those pairs measure the model, not the rules); metric functions give the right counts on a hand-built example.
+- [x] `run_eval.py --arms baseline,rules[,bolt][,super] [--refresh]`: computes each arm, merges into `results.json` (keeping arms from earlier runs), writes `per_pair`. Model arms build a synthetic `BomLine` from the pair (`ref` = pair id, requirement cells from `requirements`, `description`), call `run_part(..., only_candidates=[candidate])` with 3 worker threads, and cache each pair's decision in `data/cache/eval/{arm}/{id}.json`.
+- [x] Run `--arms baseline,rules`. Expected by construction: baseline `false_drop_in_count` 11, rules 3 (the class C pairs). If not, fix the pairs.
+- [x] Run `--arms super`, then `--arms bolt`. Look at `per_pair` for misses.
+- [x] One improvement loop, 20 minutes at most: if Super misses class C pairs or over-tightens class E pairs, adjust `SYSTEM_PROMPT`, bump `PROMPT_VERSION`, re-run with `--refresh`. Save the earlier file as `data/eval/results_v1.json` so the writeup can show before and after. Stop after one loop whatever the numbers are.
+- [x] Confirm the UI panel shows the table and the headline sentence from the file.
 
 **Pitfalls:** Report the numbers that come out. An arm with more than 4 fallbacks is reported with its `fallback_count` and is not described as the model's accuracy. Never run the eval during the stage demo.
 

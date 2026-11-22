@@ -99,11 +99,11 @@ export function ResultsTable({ lines, decisions, selectedRef, activeRef, running
         </div>
       ) : (
         <div className="table-wrap">
-          <table className="rtable">
+          <table className="rtable results-table">
             <thead>
               <tr><th>Ref</th><th>Original</th><th aria-label="replaced by" /><th>Recommended</th><th>Verdict</th><th>Confidence</th><th>Traps</th></tr>
             </thead>
-            <tbody>
+            <tbody className="auto-scrollbar">
               {visible.map((line, i) => {
                 const d = decisions[line.ref];
                 const traps = trapCount(d);
